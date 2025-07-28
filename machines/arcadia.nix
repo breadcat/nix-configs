@@ -32,6 +32,7 @@ in
     imports = [
       ../home/fish.nix
       ../home/hyprland.nix
+      ../home/ghostty.nix
       (import ../home/kodi.nix {inherit username;})
       (import ../home/ssh.nix {inherit domain username;})
     ];
@@ -59,7 +60,6 @@ in
 
   # Packages
   environment.systemPackages = with pkgs; [
-    alacritty
     # duckstation
     hyprland
     kodiPackages.inputstream-adaptive

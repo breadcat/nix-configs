@@ -37,7 +37,6 @@ in {
   home-manager.users.${username} = {pkgs, ...}: {
     imports = [
       ../home/fish.nix
-      ../home/alacritty.nix
       ../home/ghostty.nix
       ../home/cursor.nix
       ../home/firefox.nix
