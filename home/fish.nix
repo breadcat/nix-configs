@@ -10,6 +10,7 @@
     loginShellInit = ''
       set fish_greeting # Disable greeting
       set --erase fish_greeting # Disable greeting
+      set -gx DOMAIN minskio.co.uk
       set -gx SYNCDIR $HOME/vault
       set -gx EDITOR nvim
       set -gx VISUAL $EDITOR
