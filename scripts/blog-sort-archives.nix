@@ -21,7 +21,7 @@
     echo -n "Writing movies export... "
     {
       printf "%s\n" "$movie_header"
-      printf "\n%s" "$movies_raw" | sort | uniq -i
+      printf "%s\n" "$movies_raw" | paste <( printf "%s\n" "$movies_raw" | sed 's/^\* //' | sed -E 's/^(The|A|An) //I' ) - | sort -f | cut -f2
     } >"$movies_export"
     movies_shasum_modified="$(sha512sum "$movies_export" | awk '{print $1}')"
 	if [[ "$movies_shasum_original" != "$movies_shasum_modified" ]]; then
@@ -37,7 +37,7 @@
     echo -n "Writing TV shows export... "
     {
       printf "%s\n" "$tvshows_header"
-      printf "\n%s" "$tvshows_raw" | sort | uniq -i
+      printf "%s\n" "$tvshows_raw" | paste <( printf "%s\n" "$tvshows_raw" | sed 's/^\* //' | sed -E 's/^(The|A|An) //I' ) - | sort -f | cut -f2
     } >"$tvshows_export"
     tvshows_shasum_modified="$(sha512sum "$tvshows_export" | awk '{print $1}')"
 	if [[ "$tvshows_shasum_original" != "$tvshows_shasum_modified" ]]; then
