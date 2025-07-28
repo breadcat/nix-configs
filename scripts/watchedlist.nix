@@ -17,20 +17,18 @@ let
 	fi
 	# TODO: blank database check
 	# movies
-	if [ -f "movies.csv" ]; then rm movies.csv; fi
-	sqlite3 -noheader -csv $database "select title from movie_watched;" > movies.csv
-	sed -i -e 's|\"||g' -e 's|^|* |g' movies.csv
-	sort -k 2 < movies.csv > movies.md
-	rm movies.csv
+	sqlite3 -noheader -quote "$database" "SELECT title FROM movie_watched" | sed "s/^'//;s/'$//" | sed 's/^/* /' > movies.md
 	# tv shows
-	sqlite3 -noheader -csv $database "select * from tvshows;" > tv_shows_index.csv
-	watched_id=$(sqlite3 -noheader $database "select idShow from episode_watched;" | uniq)
-	for i in $watched_id; do grep "$i" tv_shows_index.csv | cut -f2- -d, >> tv_shows.csv; done
-	sed -i -e 's|\"||g' -e 's|^|* |g' tv_shows.csv
-	sort -k 2 < tv_shows.csv > tv_shows.md
-	rm tv_shows.csv tv_shows_index.csv
+	watched_ids=$(sqlite3 -noheader "$database" "SELECT DISTINCT idShow FROM episode_watched;")
+	for id in $watched_ids; do
+	  title=$(sqlite3 -noheader -quote "$database" "SELECT title FROM tvshows WHERE idShow = $id;")
+	  title=''${title//\"/}
+	  title=''${title//\'/}
+	  latest_season=$(sqlite3 -noheader "$database" "SELECT MAX(season) FROM episode_watched WHERE idShow = $id;")
+	  latest_episode=$(sqlite3 -noheader "$database" "SELECT MAX(episode) FROM episode_watched WHERE idShow = $id AND season = $latest_season;")
+	  echo "* "$title" ("$latest_season"x"$latest_episode")"
+	done > tv_shows.md
   '';
-
 in {
   environment.systemPackages = [ watchedlist ];
 }
