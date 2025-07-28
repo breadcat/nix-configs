@@ -22,6 +22,7 @@
         };
       addonSettings = {
         "service.watchedlist" = {
+	  "extdb" = "true";
           "dbpath" = "/home/${username}/vault/";
           "dbfilename" = "watchedlist.db";
           };
