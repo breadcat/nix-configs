@@ -4,7 +4,7 @@
   ...
 }: let
   blog-sort-archives = pkgs.writeShellScriptBin "blog-sort-archives" ''
-      # variables
+    # variables
     movies_export="$HOME/vault/src/blog.${domain}/content/posts/archived-movies.md"
     tvshows_export="$HOME/vault/src/blog.${domain}/content/posts/archived-television.md"
     # functions
