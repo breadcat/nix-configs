@@ -16,25 +16,31 @@
 in {
   # Core OS imports
   imports = [
-    # Include the results of the hardware scan.
-    ./${machine}-hardware.nix
+    ./${machine}-hardware.nix # Include the results of the hardware scan.
+    (import "${home-manager}/nixos") # Home-Manager
     ../common/flakes.nix
+    ../common/garbage.nix
     ../common/locale.nix
     ../common/packages.nix
-    ../scripts/phone-dump.nix
-    ../scripts/watchedlist.nix
-    ../scripts/ctimerename.nix
-    ../scripts/duupmove.nix
-    ../scripts/youtube-id-rss.nix
-    (import ../scripts/overtid.nix {inherit pkgs;})
-    (import ../scripts/blog-sort-archives.nix {inherit pkgs domain;})
-    (import ../scripts/blog-sort-quotes.nix {inherit pkgs domain;})
-    (import ../scripts/blog-sort-languages.nix {inherit pkgs domain;})
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain;})
+    (import ../common/ssh.nix {inherit username sshkey;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
-    (import ../common/ssh.nix {inherit username sshkey;})
-    (import "${home-manager}/nixos")
+    (import ../scripts/audiobook-cleaner.nix {inherit pkgs domain;})
+    ../scripts/backup-local.nix
+    (import ../scripts/blog-duolingo-rank.nix {inherit pkgs domain;})
+    (import ../scripts/blog-sort-archives.nix {inherit pkgs domain;})
+    (import ../scripts/blog-sort-languages.nix {inherit pkgs domain;})
+    (import ../scripts/blog-sort-quotes.nix {inherit pkgs domain;})
+    (import ../scripts/blog-weight.nix {inherit pkgs domain;})
+    ../scripts/ctimerename.nix
+    ../scripts/duupmove.nix
+    (import ../scripts/overtid.nix {inherit pkgs;})
+    ../scripts/payslips.nix
+    ../scripts/phone-dump.nix
+    ../scripts/tank-sort.nix
+    ../scripts/watchedlist.nix
+    ../scripts/youtube-id-rss.nix
   ];
 
   # Home-Manager
@@ -42,9 +48,9 @@ in {
   home-manager.users.${username} = {pkgs, ...}: {
     imports = [
       ../home/fish.nix
+      (import ../home/git.nix {inherit fullname email;})
       ../home/htop.nix
       ../home/neovim.nix
-      (import ../home/git.nix {inherit fullname email;})
       (import ../home/rbw.nix {inherit pkgs domain email;})
       (import ../home/ssh.nix {inherit domain username;})
     ];

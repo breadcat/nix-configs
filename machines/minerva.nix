@@ -16,8 +16,8 @@
 in {
   # Core OS imports
   imports = [
-    # Include the results of the hardware scan.
-    ./${machine}-hardware.nix
+    ./${machine}-hardware.nix # Include the results of the hardware scan.
+    (import "${home-manager}/nixos") # Home-Manager
     ../common/audio.nix
     ../common/flakes.nix
     ../common/fonts.nix
@@ -25,11 +25,12 @@ in {
     ../common/locale.nix
     ../common/nfs.nix
     ../common/packages.nix
+    (import ../common/ssh.nix {inherit username sshkey;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
-    (import ../common/ssh.nix {inherit username sshkey;})
     (import ../common/ydotool.nix {inherit pkgs username;})
-    (import "${home-manager}/nixos")
+    ../scripts/ctimerename.nix
+    ../scripts/duupmove.nix
   ];
 
   # Home-Manager
