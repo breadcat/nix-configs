@@ -4,6 +4,7 @@
   services.syncthing = {
     enable = true;
     user = "${username}";
+    group = "users";
     dataDir = "/home/${username}/";
     configDir = "/home/${username}/.config/syncthing";
     settings = {
