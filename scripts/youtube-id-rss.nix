@@ -5,7 +5,7 @@ let
     if [ "$#" -eq 0 ]
     then
 	  echo "No URI argument supplied, using clipboard"
-	  uri="$(wl-paste)"
+	  uri="${pkgs.wl-clipboard}/bin/wl-paste)"
     else
 	  uri="$1"
     fi
