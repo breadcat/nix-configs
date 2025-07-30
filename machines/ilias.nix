@@ -18,11 +18,12 @@ in {
   imports = [
     ./${machine}-hardware.nix # Include the results of the hardware scan.
     (import "${home-manager}/nixos") # Home-Manager
-    (import ../common/restic.nix {inherit pkgs username;})
+    (import ../common/cron-duolingo-rank.nix {inherit username;})
     ../common/flakes.nix
     ../common/garbage.nix
     ../common/locale.nix
     ../common/packages.nix
+    (import ../common/restic.nix {inherit pkgs username;})
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain;})
     (import ../common/ssh.nix {inherit username sshkey;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
@@ -32,6 +33,7 @@ in {
     (import ../scripts/audiobook-cleaner.nix {inherit pkgs domain;})
     ../scripts/backup-local.nix
     (import ../scripts/blog-duolingo-rank.nix {inherit pkgs domain;})
+    (import ../scripts/blog-music.nix {inherit pkgs domain;})
     (import ../scripts/blog-sort-archives.nix {inherit pkgs domain;})
     (import ../scripts/blog-sort-languages.nix {inherit pkgs domain;})
     (import ../scripts/blog-sort-quotes.nix {inherit pkgs domain;})
@@ -41,6 +43,7 @@ in {
     (import ../scripts/overtid.nix {inherit pkgs;})
     ../scripts/payslips.nix
     ../scripts/phone-dump.nix
+    ../scripts/seedy.nix
     ../scripts/watchedlist.nix
     ../scripts/youtube-id-rss.nix
   ];
