@@ -22,7 +22,7 @@
     read -n1 -r -p "Press any key to begin..." key
     # process
     mkdir -p "$(dirname "$report_file")"
-    rsync -avhP --delete --exclude=lost+found/ --exclude=reports/ "''${mount_points[0]}" "''${mount_points[1]}" 2>&1 | tee "$report_file"
+    ${pkgs.rsync}/bin/rsync -avhP --delete --exclude=lost+found/ --exclude=reports/ "''${mount_points[0]}" "''${mount_points[1]}" 2>&1 | tee "$report_file"
   '';
 in {
   environment.systemPackages = [backup-local];
