@@ -17,12 +17,12 @@
 	# process
 	page_source="$(curl -s https://duome.eu/"$username")"
 	rank_lingot="$(printf %s "$page_source" | awk -F"[#><]" '/icon lingot/ {print $15}')"
-	rank_streak="$(printf %s "$page_source" | awk -F"[#><]" '/icon streak/{getline;print $15}')'"
-	# check
+	rank_streak="$(printf %s "$page_source" | awk -F"[#><]" '/icon streak/{getline;print $15}')"
 	# write
 	echo -e "$i \e[32mdone\e[39m"
 	echo -n "Appending ranks to page... "
-	echo "| $(date +%F) | $(date +%H:%M) | $rank_streak | $rank_lingot |" | tr -d \' >>"$post_file"
+	sed -i '/<\/tbody><\/table>/d' "$post_file"
+	printf "  <tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n</tbody></table>" "$(date +%F)" "$(date +%H:%M)" "$rank_streak" "$rank_lingot" >>"$post_file"
 	echo -e "$i \e[32mdone\e[39m"
 	lastmod "$post_file"
   '';
