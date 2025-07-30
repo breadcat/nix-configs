@@ -26,6 +26,8 @@ in {
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain;})
     (import ../common/ssh.nix {inherit username sshkey;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
+    (import ../common/tank-log.nix {inherit pkgs username;})
+    (import ../common/tank-sort.nix {inherit pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
     (import ../scripts/audiobook-cleaner.nix {inherit pkgs domain;})
     ../scripts/backup-local.nix
@@ -39,7 +41,6 @@ in {
     (import ../scripts/overtid.nix {inherit pkgs;})
     ../scripts/payslips.nix
     ../scripts/phone-dump.nix
-    ../scripts/tank-sort.nix
     ../scripts/watchedlist.nix
     ../scripts/youtube-id-rss.nix
   ];
