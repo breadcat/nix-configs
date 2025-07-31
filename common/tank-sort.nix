@@ -31,6 +31,7 @@ in {
 
   systemd.services.tank-sort = {
     script = "tank-sort";
+    path = [ "/run/current-system/sw" ];
     serviceConfig = {
       Type = "oneshot";
       User = "${username}";

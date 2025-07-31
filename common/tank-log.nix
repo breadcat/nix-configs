@@ -56,6 +56,7 @@ in {
 
   systemd.services.tank-log = {
     script = "tank-log";
+    path = [ "/run/current-system/sw" ];
     serviceConfig = {
       Type = "oneshot";
       User = "${username}";

@@ -19,16 +19,6 @@ let
 in {
   environment.systemPackages = [ backup-cloud ];
 
-  systemd.services.restic-backup = {
-    description = "Backup specific directories to BorgBase";
-    script = "backup-cloud";
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
-      # ExecStart = "${backup-cloud}/bin/backup-cloud";
-    };
-  };
-
   systemd.timers.restic-backup = {
     description = "Timer to run Restic backup";
     wantedBy = [ "timers.target" ];
@@ -37,4 +27,16 @@ in {
       Persistent = true;
     };
   };
+
+  systemd.services.restic-backup = {
+    description = "Backup specific directories to BorgBase";
+    script = "backup-cloud";
+    path = [ "/run/current-system/sw" ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "${username}";
+      # ExecStart = "${backup-cloud}/bin/backup-cloud";
+    };
+  };
+
 }
