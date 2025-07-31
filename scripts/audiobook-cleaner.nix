@@ -15,12 +15,21 @@
     echo -n "$var"
   }
 
+  normalize() {
+    echo "$1" \
+      | tr '[:upper:]' '[:lower:]' \
+      | sed "s/['’\"]//g" \
+      | sed 's/[^a-z0-9]/ /g' \
+      | tr -s ' ' \
+      | sed 's/^ *//;s/ *$//'
+  }
+
   echo "Generating file list from $media_dir ..."
   mapfile -t file_list < <(find "$media_dir" -type f)
 
   declare -a lc_file_names
   for i in "''${!file_list[@]}"; do
-    lc_file_names[$i]=$(basename "''${file_list[$i]}" | tr '[:upper:]' '[:lower:]')
+    lc_file_names[$i]=$(normalize "$(basename "''${file_list[$i]}")")
   done
 
   declare -a matched_files
@@ -33,8 +42,8 @@
     title=$(cut -d'-' -f2- <<< "$line")
     title=$(trim "$title")
 
-    lauthor=$(echo "$author" | tr '[:upper:]' '[:lower:]')
-    ltitle=$(echo "$title" | tr '[:upper:]' '[:lower:]')
+    lauthor=$(normalize "$author")
+    ltitle=$(normalize "$title")
 
     for i in "''${!file_list[@]}"; do
       lfile="''${lc_file_names[$i]}"
