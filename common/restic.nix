@@ -23,7 +23,7 @@ in {
     description = "Timer to run Restic backup";
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnActiveSec = "12h";
+      OnCalendar = "0/12:00:00";
       Persistent = true;
     };
   };

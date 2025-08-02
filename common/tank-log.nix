@@ -49,7 +49,7 @@ in {
   systemd.timers.tank-log = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnUnitActiveSec = "12h";
+      OnCalendar = [ "0/12:20:00" ];
       Persistent = true;
     };
   };

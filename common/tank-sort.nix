@@ -24,7 +24,7 @@ in {
   systemd.timers.tank-sort = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnUnitActiveSec = "12h";
+      OnCalendar = "0/12:00:00";
       Persistent = true;
     };
   };
