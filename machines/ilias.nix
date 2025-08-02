@@ -22,6 +22,7 @@ in {
     ../common/flakes.nix
     ../common/garbage.nix
     ../common/locale.nix
+    (import ../common/magnets.nix {inherit pkgs username;})
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain;})
