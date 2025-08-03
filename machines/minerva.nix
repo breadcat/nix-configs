@@ -25,6 +25,7 @@ in {
     ../common/locale.nix
     ../common/nfs.nix
     ../common/packages.nix
+    (import ../common/restic.nix {inherit pkgs username;})
     (import ../common/ssh.nix {inherit username sshkey;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
