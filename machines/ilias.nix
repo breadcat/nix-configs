@@ -45,6 +45,7 @@ in {
     ../scripts/payslips.nix
     ../scripts/phone-dump.nix
     ../scripts/seedy.nix
+    ../scripts/stagit-generate.nix
     ../scripts/startpage-sort.nix
     ../scripts/watchedlist.nix
     ../scripts/youtube-id-rss.nix
