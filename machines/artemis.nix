@@ -26,6 +26,7 @@ in {
     (import "${home-manager}/nixos") # Home-Manager
     (import ../common/docker.nix {inherit config pkgs username domain timezone htpasswd todosecret vpnusername vpnpassword;})
     (import ../common/blog-duolingo.nix {inherit pkgs domain username;})
+    (import ../common/blog-status.nix {inherit pkgs domain username;})
     ../common/flakes.nix
     ../common/garbage.nix
     ../common/vnstat.nix
