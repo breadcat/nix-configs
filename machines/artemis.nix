@@ -10,6 +10,7 @@
   sshkey,
   sshport,
   timezone,
+  htpasswd,
   todosecret,
   vpnusername,
   vpnpassword,
@@ -23,7 +24,7 @@ in {
     [
     ./${machine}-hardware.nix # Include the results of the hardware scan.
     (import "${home-manager}/nixos") # Home-Manager
-    (import ../common/docker.nix {inherit config pkgs username domain timezone todosecret vpnusername vpnpassword;})
+    (import ../common/docker.nix {inherit config pkgs username domain timezone htpasswd todosecret vpnusername vpnpassword;})
     (import ../common/blog-duolingo.nix {inherit pkgs domain username;})
     ../common/flakes.nix
     ../common/garbage.nix

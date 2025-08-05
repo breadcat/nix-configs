@@ -1,4 +1,4 @@
-{ pkgs, username, domain, timezone, todosecret, vpnusername, vpnpassword, ... }: {
+{ pkgs, username, domain, timezone, todosecret, htpasswd, vpnusername, vpnpassword, ... }: {
 
   # Runtime
   virtualisation.docker.enable = true;

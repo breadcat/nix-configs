@@ -5,7 +5,7 @@
   ...
 }: let
   vars = import ./variables.nix { inherit lib; };
-  inherit (vars) fullname username domain email sshkey sshport timezone vpnusername vpnpassword todosecret;
+  inherit (vars) fullname username domain email sshkey sshport timezone htpasswd vpnusername vpnpassword todosecret;
 
   hostname =
     if builtins.pathExists "/etc/hostname"
@@ -16,6 +16,6 @@
   osConfigPath = ./machines + "/${machine}.nix";
 in {
   imports = [
-    (import osConfigPath { inherit config pkgs lib fullname username domain email sshkey sshport timezone vpnusername vpnpassword todosecret machine ; })
+    (import osConfigPath { inherit config pkgs lib fullname username domain email sshkey sshport timezone htpasswd vpnusername vpnpassword todosecret machine ; })
   ];
 }
