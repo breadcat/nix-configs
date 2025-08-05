@@ -8,6 +8,8 @@
   fullname,
   domain,
   sshkey,
+  sshport,
+  timezone,
   ...
 }: let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz; # Stable
@@ -18,12 +20,13 @@ in {
     [
     ./${machine}-hardware.nix # Include the results of the hardware scan.
     (import "${home-manager}/nixos") # Home-Manager
+    (import ../common/docker.nix {inherit config pkgs username domain;})
     ../common/flakes.nix
     ../common/garbage.nix
-    ../common/locale.nix
+    (import ../common/locale.nix {inherit pkgs timezone;})
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
-    (import ../common/ssh.nix {inherit username sshkey;})
+    (import ../common/ssh.nix {inherit username sshkey sshport;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
     ../scripts/stagit-generate.nix
@@ -38,7 +41,7 @@ in {
       ../home/htop.nix
       ../home/neovim.nix
       (import ../home/rbw.nix {inherit pkgs domain email;})
-      (import ../home/ssh.nix {inherit domain username;})
+      (import ../home/ssh.nix {inherit domain username sshport;})
     ];
     home.stateVersion = "25.05";
   };

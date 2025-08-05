@@ -8,6 +8,7 @@
   domain,
   email,
   sshkey,
+  sshport,
   ...
 }: let
   media-sort = import ../common/media-sort.nix {inherit pkgs;};
@@ -26,7 +27,7 @@ in {
     ../common/nfs.nix
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
-    (import ../common/ssh.nix {inherit username sshkey;})
+    (import ../common/ssh.nix {inherit username sshkey sshport;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
     (import ../common/ydotool.nix {inherit pkgs username;})
@@ -52,7 +53,7 @@ in {
       ../home/tofi.nix
       (import ../home/git.nix {inherit fullname email;})
       (import ../home/rbw.nix {inherit pkgs domain email;})
-      (import ../home/ssh.nix {inherit domain username;})
+      (import ../home/ssh.nix {inherit domain username sshport;})
       (import ../home/newsboat.nix {inherit pkgs domain username;})
     ];
     # The state version is required and should stay at the version you

@@ -1,6 +1,6 @@
 # HTPC
 
-{ config, pkgs, domain, machine, username, fullname, sshkey, ... }:
+{ config, pkgs, domain, machine, username, fullname, sshkey, sshport, timezone, ... }:
 
 let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz; # stable
@@ -15,13 +15,13 @@ in
       ../common/audio.nix
       ../common/flakes.nix
       ../common/garbage.nix
-      ../common/locale.nix
+      (import ../common/locale.nix {inherit config pkgs timezone;})
       ../common/nfs.nix
       # ../common/kodi-module.nix
       ../common/packages.nix
       (import ../common/syncthing.nix {inherit config pkgs username;})
       (import ../common/user.nix {inherit config pkgs username fullname;})
-      (import ../common/ssh.nix {inherit username sshkey;})
+      (import ../common/ssh.nix {inherit username sshkey sshport;})
       ../scripts/htpc-launcher.nix
       (import "${home-manager}/nixos")
     ];
@@ -34,7 +34,7 @@ in
       ../home/hyprland.nix
       ../home/ghostty.nix
       (import ../home/kodi.nix {inherit username;})
-      (import ../home/ssh.nix {inherit domain username;})
+      (import ../home/ssh.nix {inherit domain username sshport;})
     ];
 
     # The state version is required and should stay at the version you

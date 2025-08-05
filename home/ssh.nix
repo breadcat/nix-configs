@@ -1,4 +1,4 @@
-{ domain, username, ... }:
+{ domain, username, sshport, ... }:
 
 {
 	programs.ssh = {
@@ -8,13 +8,13 @@
 			"minskio" = {
 				hostname = "${domain}";
 				user = "${username}";
-				port = 55012;
+				port = sshport;
 				identityFile = "~/vault/docs/secure/ssh-key-2022-02-16.key";
 			};
 			"tunnel" = {
 				hostname = "${domain}";
 				user = "${username}";
-				port = 55012;
+				port = sshport;
 				identityFile = "~/vault/docs/secure/ssh-key-2022-02-16.key";
 				extraOptions = {
 					RemoteCommand = "ssh -p 55013 ${username}@localhost -i ~/vault/docs/secure/ssh-key-2022-02-16.key";

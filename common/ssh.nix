@@ -1,9 +1,10 @@
-{ username, sshkey, ... }:
+{ username, sshkey, sshport, ... }:
 
 {
   # SSH service
   services.openssh = {
     enable = true;
+    ports = [ sshport ];
     settings.PasswordAuthentication = false;
     };
   # Fail2ban service

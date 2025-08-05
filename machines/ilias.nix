@@ -8,6 +8,8 @@
   fullname,
   domain,
   sshkey,
+  sshport,
+  timezone,
   ...
 }: let
   media-sort = import ../common/media-sort.nix {inherit pkgs;};
@@ -21,12 +23,12 @@ in {
     (import ../common/cron-duolingo-rank.nix {inherit username;})
     ../common/flakes.nix
     ../common/garbage.nix
-    ../common/locale.nix
+    (import ../common/locale.nix {inherit pkgs timezone;})
     (import ../common/magnets.nix {inherit pkgs username;})
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain;})
-    (import ../common/ssh.nix {inherit username sshkey;})
+    (import ../common/ssh.nix {inherit username sshkey sshport;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/tank-log.nix {inherit pkgs username;})
     (import ../common/tank-sort.nix {inherit pkgs username;})
@@ -60,7 +62,7 @@ in {
       ../home/htop.nix
       ../home/neovim.nix
       (import ../home/rbw.nix {inherit pkgs domain email;})
-      (import ../home/ssh.nix {inherit domain username;})
+      (import ../home/ssh.nix {inherit domain username sshport;})
     ];
     # The state version is required and should stay at the version you
     # originally installed.
