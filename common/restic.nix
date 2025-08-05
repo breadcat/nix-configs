@@ -24,6 +24,7 @@ in {
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnCalendar = "0/12:00:00";
+      RandomizedDelaySec = "30min";
       Persistent = true;
     };
   };
@@ -35,7 +36,6 @@ in {
     serviceConfig = {
       Type = "oneshot";
       User = "${username}";
-      # ExecStart = "${backup-cloud}/bin/backup-cloud";
     };
   };
 

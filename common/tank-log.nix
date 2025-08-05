@@ -50,6 +50,7 @@ in {
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnCalendar = [ "0/12:20:00" ];
+      RandomizedDelaySec = "10min";
       Persistent = true;
     };
   };
