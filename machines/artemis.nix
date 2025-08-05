@@ -10,6 +10,9 @@
   sshkey,
   sshport,
   timezone,
+  todosecret,
+  vpnusername,
+  vpnpassword,
   ...
 }: let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz; # Stable
@@ -20,7 +23,7 @@ in {
     [
     ./${machine}-hardware.nix # Include the results of the hardware scan.
     (import "${home-manager}/nixos") # Home-Manager
-    (import ../common/docker.nix {inherit config pkgs username domain;})
+    (import ../common/docker.nix {inherit config pkgs username domain timezone todosecret vpnusername vpnpassword;})
     ../common/flakes.nix
     ../common/garbage.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
