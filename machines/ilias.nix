@@ -27,7 +27,7 @@ in {
     (import ../common/magnets.nix {inherit pkgs username;})
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
-    (import ../common/ssh-tunnel.nix {inherit config pkgs username domain;})
+    (import ../common/ssh-tunnel.nix {inherit config pkgs username domain sshport;})
     (import ../common/ssh.nix {inherit username sshkey sshport;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/tank-log.nix {inherit pkgs username;})
