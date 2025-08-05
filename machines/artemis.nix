@@ -53,6 +53,12 @@ in {
     home.stateVersion = "25.05";
   };
 
+  # Storage tank
+  fileSystems."/tank" = {
+    device = "/dev/disk/by-label/TANK";
+    fsType = "ext4";
+  };
+
   networking.hostName = "artemis"; # Define your hostname.
 
   system.stateVersion = "25.05"; # Did you read the comment?
