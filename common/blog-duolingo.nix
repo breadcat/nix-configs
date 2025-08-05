@@ -1,9 +1,7 @@
-{
-  pkgs,
-  domain,
-  ...
-}: let
-  blog-duolingo-rank = pkgs.writeShellScriptBin "blog-duolingo-rank" ''
+{ pkgs, username, domain, ... }:
+
+let
+  blog-duolingo = pkgs.writeShellScriptBin "blog-duolingo" ''
     # variables
     username="$(awk -F'[/()]' '/Duolingo/ {print $5}' "$HOME/vault/src/blog.${domain}/content/about.md")"
 	post_file="$HOME/vault/src/blog.${domain}/content/posts/logging-duolingo-ranks-over-time.md"
@@ -27,5 +25,21 @@
 	lastmod "$post_file"
   '';
 in {
-  environment.systemPackages = [blog-duolingo-rank];
+  environment.systemPackages = [blog-duolingo];
+
+  systemd.timers.blog-duolingo = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "Sun 23:59";
+      Persistent = true;
+    };
+  };
+  systemd.services.blog-duolingo = {
+    script = "blog-duolingo";
+    path = [ "/run/current-system/sw" ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "${username}";
+    };
+  };
 }

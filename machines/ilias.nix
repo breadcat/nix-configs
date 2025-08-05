@@ -20,7 +20,6 @@ in {
   imports = [
     ./${machine}-hardware.nix # Include the results of the hardware scan.
     (import "${home-manager}/nixos") # Home-Manager
-    (import ../common/cron-duolingo-rank.nix {inherit username;})
     ../common/flakes.nix
     ../common/garbage.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
@@ -35,7 +34,6 @@ in {
     (import ../common/user.nix {inherit config pkgs username fullname;})
     (import ../scripts/audiobook-cleaner.nix {inherit pkgs domain;})
     ../scripts/backup-local.nix
-    (import ../scripts/blog-duolingo-rank.nix {inherit pkgs domain;})
     (import ../scripts/blog-music.nix {inherit pkgs domain;})
     (import ../scripts/blog-sort-archives.nix {inherit pkgs domain;})
     (import ../scripts/blog-sort-languages.nix {inherit pkgs domain;})
