@@ -17,7 +17,7 @@ let
 		# TODO printf "* Torrent Ratio: %s\\n" "$(echo "scale=3; $(awk '/uploaded/ {print $2}' "$(find_directory docker)"/transmission/stats.json)" / "$(awk '/downloaded/ {print $2}' "$(find_directory docker)"/transmission/stats.json | sed 's/,//g')" | bc)"
 		printf "* NAS Storage: %s\\n" "$(git --git-dir="$HOME/vault/src/logger/.git" show | awk 'END{print $3" "$4}')"
 		printf "* [Containers](https://github.com/breadcat/Dockerfiles): %s\\n" "$(docker ps -q | wc -l)/$(docker ps -aq | wc -l)"
-		# TODO printf "* Packages: %s\\n" "$(pacman -Q | wc -l)"
+		printf "* Packages: %s\\n" "$(${pkgs.fastfetch}/bin/fastfetch | awk -F": " '/Packages/ {print $2}')"
 		printf "* Monthly Data: %s\\n" "$(vnstat -m --oneline | cut -f11 -d\;)"
 		printf "\\nHardware specifications themselves are covered on the [hardware page](/hardware/#server).\\n"
 	} >"$HOME/vault/src/blog.${domain}/content/status.md"
