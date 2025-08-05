@@ -86,6 +86,7 @@ in {
     posy-cursors
     rbw
     seatd
+    shellcheck-minimal
     swayimg
     tofi
     unzip
