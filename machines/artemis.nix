@@ -27,6 +27,7 @@ in {
     (import ../common/blog-duolingo.nix {inherit pkgs domain username;})
     ../common/flakes.nix
     ../common/garbage.nix
+    ../common/vnstat.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
