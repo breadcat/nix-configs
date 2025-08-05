@@ -12,7 +12,6 @@ let
 		printf "* CPU Load: %s\\n" "$(cut -d" " -f1-3 </proc/loadavg)"
 		printf "* Users: %s\\n" "$(who | wc -l)"
 		printf "* RAM Usage: %s%%\\n" "$(printf "%.2f" "$(free | awk '/Mem/ {print $3/$2 * 100.0}')")"
-		# printf "* Swap Usage: %s%%\\n" "$(printf "%.2f" "$(free | awk '/Swap/ {print $3/$2 * 100.0}')")"
 		printf "* Root Storage: %s\\n" "$(df / | awk 'END{print $5}')"
 		# TODO printf "* Tank Storage: %s\\n" "$(df | awk -v tank="$directory_tank" '$0 ~ tank {print $5}')"
 		# TODO printf "* Torrent Ratio: %s\\n" "$(echo "scale=3; $(awk '/uploaded/ {print $2}' "$(find_directory docker)"/transmission/stats.json)" / "$(awk '/downloaded/ {print $2}' "$(find_directory docker)"/transmission/stats.json | sed 's/,//g')" | bc)"
