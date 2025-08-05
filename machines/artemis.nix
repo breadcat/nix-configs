@@ -40,7 +40,7 @@ in {
   home-manager.backupFileExtension = "hm-bak";
   home-manager.users.${username} = {pkgs, ...}: {
     imports = [
-      ../home/fish.nix
+      (import ../home/fish.nix {inherit pkgs domain;})
       (import ../home/git.nix {inherit fullname email;})
       ../home/htop.nix
       ../home/neovim.nix

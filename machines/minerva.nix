@@ -39,7 +39,7 @@ in {
   home-manager.backupFileExtension = "hm-bak";
   home-manager.users.${username} = {pkgs, ...}: {
     imports = [
-      ../home/fish.nix
+      (import ../home/fish.nix {inherit pkgs domain;})
       ../home/ghostty.nix
       ../home/cursor.nix
       ../home/firefox.nix

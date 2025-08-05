@@ -30,7 +30,7 @@ in
   home-manager.backupFileExtension = "hm-bak";
   home-manager.users.${username} = { pkgs, ... }: {
     imports = [
-      ../home/fish.nix
+      (import ../home/fish.nix {inherit pkgs domain;})
       ../home/hyprland.nix
       ../home/ghostty.nix
       (import ../home/kodi.nix {inherit username;})
