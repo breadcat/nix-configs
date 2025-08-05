@@ -46,6 +46,12 @@
 					HostKeyAlgorithms = "+ssh-rsa";
 					};
 			};
+			"artemis" = {
+				hostname = "artemis.${domain}";
+				user = "${username}";
+				port = sshport;
+				identityFile = "~/vault/docs/secure/ssh-key-2022-02-16.key";
+			};
 		};
 	};
 
