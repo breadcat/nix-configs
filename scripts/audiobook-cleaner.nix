@@ -6,7 +6,7 @@
   audiobook-cleaner = pkgs.writeShellScriptBin "audiobook-cleaner" ''
   # variables
   list_file="$HOME/vault/src/blog.${domain}/content/reading-list.md"
-  media_dir="/mnt/media/literature/audiobooks"
+  media_dir="/tank/media/literature/audiobooks"
 
   trim() {
     local var="$*"

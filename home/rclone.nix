@@ -29,7 +29,7 @@
         };
       nas.config = {
         type = "alias";
-        remote = "/mnt/media";
+        remote = "/tank/media";
         };
       myrient.config = {
         type = "http";

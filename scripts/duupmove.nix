@@ -4,7 +4,7 @@
     target_dir="$1"
 
       if [ -z "$target_dir" ]; then
-        echo "Target directory variable is empty. Please specify a directory, e.g. /mnt/destination/"
+        echo "Target directory variable is empty. Please specify a directory, e.g. ~/destination/"
         exit 1
       fi
 

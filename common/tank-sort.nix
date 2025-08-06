@@ -5,9 +5,9 @@ let
 	# variables
 	temp_mount="$(mktemp -d)"
 	rclone_remote="seedbox:"
-	destination_tvshows="/mnt/media/videos/television"
+	destination_tvshows="/tank/media/videos/television"
 	template_tvshows="{{ .Name }}/{{ .Name }} S{{ printf \"%02d\" .Season }}E{{ printf \"%02d\" .Episode }}{{ if ne .ExtraEpisode -1 }}-{{ printf \"%02d\" .ExtraEpisode }}{{end}}.{{ .Ext }}"
-	destination_movies="/mnt/media/videos/movies"
+	destination_movies="/tank/media/videos/movies"
 	template_movies="{{ .Name }} ({{ .Year }})/{{ .Name }}.{{ .Ext }}"
 	# mount remote
 	${pkgs.rclone}/bin/rclone mount "$rclone_remote" "$temp_mount" --daemon

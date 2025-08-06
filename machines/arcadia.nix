@@ -16,6 +16,7 @@ in
       ../common/flakes.nix
       ../common/garbage.nix
       (import ../common/locale.nix {inherit config pkgs timezone;})
+      ../common/mount-drives.nix
       ../common/nfs.nix
       # ../common/kodi-module.nix
       ../common/packages.nix

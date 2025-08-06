@@ -3,7 +3,7 @@
 let
   payslips = pkgs.writeShellScriptBin "payslips" ''
     # Default destination directory, or use argument
-    destination_default="/mnt/paperwork/personal/workplace/wages"
+    destination_default="/tank/paperwork/personal/workplace/wages"
     destination_dir="''${1:-$destination_default}"
 
     # Process matching files

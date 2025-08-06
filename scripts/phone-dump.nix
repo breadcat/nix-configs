@@ -2,7 +2,7 @@
   phone-dump = pkgs.writeShellScriptBin "phone-dump" ''
     # variables
     phone_remote=phone
-    destination="/mnt/pictures/personal"
+    destination="/tank/pictures/personal"
     if [ ! -d "$destination" ]; then
       echo "Destination $destination does not exist."
       exit 1

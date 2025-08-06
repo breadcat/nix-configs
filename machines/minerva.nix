@@ -24,6 +24,7 @@ in {
     ../common/fonts.nix
     ../common/garbage.nix
     ../common/locale.nix
+    ../common/mount-drives.nix
     ../common/nfs.nix
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})

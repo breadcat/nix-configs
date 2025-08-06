@@ -5,7 +5,7 @@
 }: let
   backup-local = pkgs.writeShellScriptBin "backup-local" ''
     # variables
-    mount_points=("/mnt/" "/usb/")
+    mount_points=("/tank/" "/usb/")
     report_file=("''${mount_points[1]}reports/$(date +"%Y-%m-%d_%H-%M").log")
     # checks
     for dir in "''${mount_points[@]}"; do

@@ -24,6 +24,7 @@ in {
     ../common/flakes.nix
     ../common/garbage.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
+    ../common/mount-drives.nix
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain sshport privatekey;})
@@ -71,15 +72,11 @@ in {
   # Hostname
   networking.hostName = "ilias"; # Define your hostname.
 
-  # Second drive and NFS
-  fileSystems."/mnt" = {
-    device = "/dev/disk/by-uuid/9b205675-7376-45ba-b575-2f36eb50ea99";
-    fsType = "ext4";
-  };
+  # NFS server
   services.nfs.server = {
     enable = true;
     exports = ''
-      /mnt    192.168.1.0/24(rw)
+      /tank    192.168.1.0/24(rw)
     '';
   };
   # Firewall and NFS server ports
