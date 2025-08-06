@@ -45,12 +45,6 @@
 				port = sshport;
 				identityFile = "${privatekey}";
 			};
-			"atlas" = {
-				hostname = "old.${domain}";
-				user = "${username}";
-				port = sshport;
-				identityFile = "${privatekey}";
-			};
 		};
 	};
 
