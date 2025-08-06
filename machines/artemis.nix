@@ -14,6 +14,7 @@
   todosecret,
   vpnusername,
   vpnpassword,
+  privatekey,
   ...
 }: let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz; # Stable
@@ -48,7 +49,7 @@ in {
       ../home/htop.nix
       ../home/neovim.nix
       (import ../home/rbw.nix {inherit pkgs domain email;})
-      (import ../home/ssh.nix {inherit domain username sshport;})
+      (import ../home/ssh.nix {inherit domain username sshport privatekey;})
     ];
     home.stateVersion = "25.05";
   };

@@ -1,4 +1,4 @@
-{ pkgs, username, domain, sshport, ... }:
+{ pkgs, username, domain, sshport, privatekey, ... }:
 
 {
   systemd.services.reverse-ssh-tunnel = {
@@ -8,7 +8,7 @@
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
-      ExecStart = "${pkgs.openssh}/bin/ssh -NTg -o ServerAliveInterval=30 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=accept-new -p ${toString sshport} -i /home/${username}/vault/docs/secure/ssh-key-2022-02-16.key -R 55013:localhost:22 ${username}@${domain}";
+      ExecStart = "${pkgs.openssh}/bin/ssh -NTg -o ServerAliveInterval=30 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=accept-new -p ${toString sshport} -i ${privatekey} -R 55013:localhost:22 ${username}@${domain}";
       Restart = "always";
       RestartSec = "10s";
       User = "${username}";

@@ -1,37 +1,30 @@
-{ domain, username, sshport, ... }:
+{ domain, username, sshport, privatekey, ... }:
 
 {
 	programs.ssh = {
 		enable = true;
-
 		matchBlocks = {
-			"minskio" = {
-				hostname = "${domain}";
-				user = "${username}";
-				port = sshport;
-				identityFile = "~/vault/docs/secure/ssh-key-2022-02-16.key";
-			};
 			"tunnel" = {
 				hostname = "${domain}";
 				user = "${username}";
 				port = sshport;
-				identityFile = "~/vault/docs/secure/ssh-key-2022-02-16.key";
+				identityFile = "${privatekey}";
 				extraOptions = {
-					RemoteCommand = "ssh -p 55013 ${username}@localhost -i ~/vault/docs/secure/ssh-key-2022-02-16.key";
+					RemoteCommand = "ssh -p 55013 ${username}@localhost -i ${privatekey}";
 					RequestTTY = "force";
 					};
 			};
-			"htpc" = {
+			"arcadia" = {
 				hostname = "192.168.1.6";
 				user = "${username}";
 				port = 22;
-				identityFile = "~/vault/docs/secure/ssh-key-2022-02-16.key";
+				identityFile = "${privatekey}";
 			};
-			"nas" = {
+			"ilias" = {
 				hostname = "192.168.1.3";
 				user = "${username}";
 				port = 22;
-				identityFile = "~/vault/docs/secure/ssh-key-2022-02-16.key";
+				identityFile = "${privatekey}";
 			};
 			"router" = {
 				hostname = "192.168.1.1";
@@ -47,10 +40,16 @@
 					};
 			};
 			"artemis" = {
-				hostname = "artemis.${domain}";
+				hostname = "${domain}";
 				user = "${username}";
 				port = sshport;
-				identityFile = "~/vault/docs/secure/ssh-key-2022-02-16.key";
+				identityFile = "${privatekey}";
+			};
+			"atlas" = {
+				hostname = "old.${domain}";
+				user = "${username}";
+				port = sshport;
+				identityFile = "${privatekey}";
 			};
 		};
 	};
