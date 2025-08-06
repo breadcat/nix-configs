@@ -8,7 +8,7 @@ let
   sshkey = "ssh-rsa yourkeyhere";
   sshport = 2222;
   timezone = "Europe/London";
-  htpasswd = "";
+  htpasswd = ""; # caddy hash-password --plaintext "yourpassword" | base64 -w0
   vpnusername = "";
   vpnpassword = "";
   todosecret = "";

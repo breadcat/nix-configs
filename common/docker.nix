@@ -85,8 +85,7 @@
         autoStart = true;
         dependsOn = [ "caddy" ];
         image = "awesometic/h5ai";
-        # labels = { "caddy" = "pub.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; "caddy.basic_auth" = "/.todo/*"; "caddy.basicauth.${username}" = "${htpasswd}";};
-        labels = { "caddy" = "pub.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
+        labels = { "caddy" = "pub.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; "caddy.basic_auth" = "/.tank/*"; "caddy.basic_auth.${username}" = "${htpasswd}";};
         networks = [ "proxy" ];
         # volumes = [ "/home/${username}/vault/pub:/h5ai:ro" "/home/${username}/vault/src/nix-configs/resources/h5ai.css:/config/h5ai/_h5ai/public/css/styles.css" ];
         volumes = [ "/home/${username}/vault/pub:/h5ai" "/tank/complete:/h5ai/.tank" ];
