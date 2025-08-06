@@ -31,7 +31,7 @@
         image = "ckulka/baikal:nginx";
         labels = { "caddy" = "dav.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/baikal:/var/www/baikal/Specific:rw" ];
+        volumes = [ "/home/${username}/docker/baikal:/var/www/baikal/Specific" ];
         };
 
       caddy = {
@@ -40,7 +40,7 @@
         image = "lucaslorentz/caddy-docker-proxy";
         networks = [ "proxy" ];
         ports = [ "80:80" "443:443" ];
-        volumes = [ "/var/run/docker.sock:/var/run/docker.sock:rw" "/home/${username}/docker/caddy:/data" ];
+        volumes = [ "/var/run/docker.sock:/var/run/docker.sock" "/home/${username}/docker/caddy:/data" ];
         };
 
       changedetection = {
@@ -49,7 +49,7 @@
         image = "lscr.io/linuxserver/changedetection.io";
         labels = { "caddy" = "diff.${domain}"; "caddy.reverse_proxy" = "{{upstreams 5000}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/changedetection:/config:rw" ];
+        volumes = [ "/home/${username}/docker/changedetection:/config" ];
         };
 
       docker-rss = {
@@ -73,7 +73,7 @@
         image = "lscr.io/linuxserver/freshrss";
         labels = { "caddy" = "rss.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/freshrss:/config:rw" ];
+        volumes = [ "/home/${username}/docker/freshrss:/config" ];
         };
 
       h5ai = {
@@ -82,8 +82,8 @@
         # labels = { "caddy" = "pub.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; "caddy.basic_auth" = "/.todo/*"; "caddy.basicauth.${username}" = "${htpasswd}";};
         labels = { "caddy" = "pub.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
         networks = [ "proxy" ];
-        # volumes = [ "/home/${username}/vault/pub:/h5ai:rw" "/home/${username}/vault/src/nix-configs/resources/h5ai.css:/config/h5ai/_h5ai/public/css/styles.css:rw" ];
-        volumes = [ "/home/${username}/vault/pub:/h5ai:rw" ];
+        # volumes = [ "/home/${username}/vault/pub:/h5ai:ro" "/home/${username}/vault/src/nix-configs/resources/h5ai.css:/config/h5ai/_h5ai/public/css/styles.css" ];
+        volumes = [ "/home/${username}/vault/pub:/h5ai" "/tank/complete:/h5ai/.tank" ];
         };
 
       hugo = {
@@ -92,7 +92,7 @@
         image = "klakegg/hugo";
         labels = { "caddy" = "${domain}, blog.${domain}, www.${domain}"; "caddy.reverse_proxy" = "{{upstreams 1313}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/vault/src/blog.${domain}:/src:rw" ];
+        volumes = [ "/home/${username}/vault/src/blog.${domain}:/src" ];
         };
 
       jackett = {
@@ -101,7 +101,7 @@
         image = "lscr.io/linuxserver/jackett";
         labels = { "caddy" = "jack.${domain}"; "caddy.reverse_proxy" = "{{upstreams 9117}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/jackett:/config:rw" "/home/${username}/vault:/downloads:rw" ];
+        volumes = [ "/home/${username}/docker/jackett:/config" "/home/${username}/vault:/downloads" ];
         };
 
       stagit = {
@@ -123,7 +123,7 @@
         image = "vaultwarden/server:alpine";
         labels = { "caddy" = "pass.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/vaultwarden:/data:rw" ];
+        volumes = [ "/home/${username}/docker/vaultwarden:/data" ];
         };
 
       vikunja = {
@@ -132,7 +132,7 @@
         image = "vikunja/vikunja";
         labels = { "caddy" = "todo.${domain}"; "caddy.reverse_proxy" = "{{upstreams 3456}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/vikunja:/db:rw" ];
+        volumes = [ "/home/${username}/docker/vikunja:/db" ];
         };
 
     };
