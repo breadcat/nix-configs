@@ -25,9 +25,9 @@ let
 		rm "$file_git_log"
 	fi
 	printf "Creating log...\n"
-	rclone ls "$log_remote" | sort -k2 >"$file_git_log"
+	${pkgs.rclone}/bin/rclone ls "$log_remote" | sort -k2 >"$file_git_log"
 	printf "Appending size information...\n"
-	rclone size "$log_remote" >>"$file_git_log"
+	${pkgs.rclone}/bin/rclone size "$log_remote" >>"$file_git_log"
 	printf "Commiting log file to repository...\n"
 	$git_logger add "$file_git_log"
 	$git_logger commit -m "Update: $(date +%F)"

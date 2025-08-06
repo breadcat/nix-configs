@@ -2,7 +2,6 @@
   phone-dump = pkgs.writeShellScriptBin "phone-dump" ''
     # variables
     phone_remote=phone
-    phone_ip=$(grep -A4 "$phone_remote" "$(rclone config file | tail -1)" | awk '/host/ {print $3}')
     destination="/mnt/pictures/personal"
     if [ ! -d "$destination" ]; then
       echo "Destination $destination does not exist."
@@ -10,10 +9,10 @@
     fi
 
     # if ping phone
-    if ping -c 1 "$phone_ip" &>/dev/null; then
+    if ping -c 1 "$phone_remote" &>/dev/null; then
       echo "Phone reachable, mounting remote"
       directory_temp="$(mktemp -d)"
-      rclone mount "$phone_remote": "$directory_temp" --daemon
+      ${pkgs.rclone}/bin/rclone mount "$phone_remote": "$directory_temp" --daemon
       cd "$directory_temp" || exit
 
     declare -a directories=(

@@ -49,6 +49,7 @@ in {
       ../home/htop.nix
       ../home/neovim.nix
       (import ../home/rbw.nix {inherit pkgs domain email;})
+      (import ../home/rclone.nix {inherit domain username sshport privatekey;})
       (import ../home/ssh.nix {inherit domain username sshport privatekey;})
     ];
     home.stateVersion = "25.05";
