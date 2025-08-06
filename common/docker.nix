@@ -28,6 +28,7 @@
 
       baikal = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         image = "ckulka/baikal:nginx";
         labels = { "caddy" = "dav.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
         networks = [ "proxy" ];
@@ -45,6 +46,7 @@
 
       changedetection = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         environment = { PGID = "100"; PUID = "1000"; LC_ALL = "en_US.UTF-8";};
         image = "lscr.io/linuxserver/changedetection.io";
         labels = { "caddy" = "diff.${domain}"; "caddy.reverse_proxy" = "{{upstreams 5000}}"; };
@@ -54,6 +56,7 @@
 
       docker-rss = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         image = "theconnman/docker-hub-rss";
         labels = { "caddy" = "dock.${domain}"; "caddy.reverse_proxy" = "{{upstreams 3000}}"; };
         networks = [ "proxy" ];
@@ -61,6 +64,7 @@
 
       echoip = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         cmd = [ "-H" "X-Forwarded-For" ];
         image = "mpolden/echoip";
         labels = { "caddy" = "ip.${domain}"; "caddy.reverse_proxy" = "{{upstreams 8080}}"; };
@@ -69,6 +73,7 @@
 
       freshrss = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         environment = { PGID = "100"; PUID = "1000"; TZ = "${timezone}";};
         image = "lscr.io/linuxserver/freshrss";
         labels = { "caddy" = "rss.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
@@ -78,6 +83,7 @@
 
       h5ai = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         image = "awesometic/h5ai";
         # labels = { "caddy" = "pub.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; "caddy.basic_auth" = "/.todo/*"; "caddy.basicauth.${username}" = "${htpasswd}";};
         labels = { "caddy" = "pub.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
@@ -88,6 +94,7 @@
 
       hugo = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         cmd = [ "server" "--watch=true" "--disableLiveReload" "--minify" "--source=/src" "--baseURL=https://${domain}" "--bind=0.0.0.0" "--appendPort=false" "--buildFuture" ];
         image = "klakegg/hugo";
         labels = { "caddy" = "${domain}, blog.${domain}, www.${domain}"; "caddy.reverse_proxy" = "{{upstreams 1313}}"; };
@@ -97,6 +104,7 @@
 
       jackett = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         environment = { PGID = "100"; PUID = "1000"; TZ = "${timezone}";};
         image = "lscr.io/linuxserver/jackett";
         labels = { "caddy" = "jack.${domain}"; "caddy.reverse_proxy" = "{{upstreams 9117}}"; };
@@ -106,6 +114,7 @@
 
       stagit = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         environment = { PGID = "100"; PUID = "1000";};
         image = "lscr.io/linuxserver/nginx";
         labels = { "caddy" = "git.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
@@ -119,6 +128,7 @@
 
       vaultwarden = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         environment = { WEBSOCKET_ENABLED = "false"; SIGNUPS_ALLOWED = "false"; };
         image = "vaultwarden/server:alpine";
         labels = { "caddy" = "pass.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
@@ -128,6 +138,7 @@
 
       vikunja = {
         autoStart = true;
+        dependsOn = [ "caddy" ];
         environment = { PGID = "100"; PUID = "1000"; VIKUNJA_SERVICE_ENABLEREGISTRATION = "false"; VIKUNJA_SERVICE_ENABLETASKCOMMENTS = "false"; VIKUNJA_SERVICE_JWTSECRET = "${todosecret}"; VIKUNJA_SERVICE_PUBLICURL = "https://todo.${domain}/"; VIKUNJA_SERVICE_TIMEZONE = "${timezone}";};
         image = "vikunja/vikunja";
         labels = { "caddy" = "todo.${domain}"; "caddy.reverse_proxy" = "{{upstreams 3456}}"; };
