@@ -1,6 +1,6 @@
 # HTPC
 
-{ config, pkgs, domain, machine, username, fullname, sshkey, sshport, timezone, ... }:
+{ config, pkgs, domain, machine, username, fullname, sshkey, sshport, timezone, privatekey, ... }:
 
 let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz; # stable
@@ -10,21 +10,20 @@ in
 {
   # Common OS imports
   imports =
-    [ # Include the results of the hardware scan.
-      ./${machine}-hardware.nix
+    [
+      ./${machine}-hardware.nix # Include the results of the hardware scan.
+      (import "${home-manager}/nixos") # Home-Manager
       ../common/audio.nix
       ../common/flakes.nix
       ../common/garbage.nix
       (import ../common/locale.nix {inherit config pkgs timezone;})
       ../common/mount-drives.nix
       ../common/nfs.nix
-      # ../common/kodi-module.nix
       ../common/packages.nix
+      (import ../common/ssh.nix {inherit username sshkey sshport privatekey;})
       (import ../common/syncthing.nix {inherit config pkgs username;})
       (import ../common/user.nix {inherit config pkgs username fullname;})
-      (import ../common/ssh.nix {inherit username sshkey sshport;})
       ../scripts/htpc-launcher.nix
-      (import "${home-manager}/nixos")
     ];
 
   # Home-Manager
@@ -32,10 +31,10 @@ in
   home-manager.users.${username} = { pkgs, ... }: {
     imports = [
       (import ../home/fish.nix {inherit pkgs domain;})
-      ../home/hyprland.nix
       ../home/ghostty.nix
+      ../home/hyprland.nix
       (import ../home/kodi.nix {inherit username;})
-      (import ../home/ssh.nix {inherit domain username sshport;})
+      (import ../home/ssh.nix {inherit domain username sshport privatekey;})
     ];
 
     # The state version is required and should stay at the version you

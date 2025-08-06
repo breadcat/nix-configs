@@ -25,12 +25,11 @@ in {
     [
     ./${machine}-hardware.nix # Include the results of the hardware scan.
     (import "${home-manager}/nixos") # Home-Manager
-    (import ../common/docker.nix {inherit config pkgs username domain timezone htpasswd todosecret vpnusername vpnpassword;})
     (import ../common/blog-duolingo.nix {inherit pkgs domain username;})
     (import ../common/blog-status.nix {inherit pkgs domain username;})
+    (import ../common/docker.nix {inherit config pkgs username domain timezone htpasswd todosecret vpnusername vpnpassword;})
     ../common/flakes.nix
     ../common/garbage.nix
-    ../common/vnstat.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
     (import ../common/magnets.nix {inherit pkgs username;})
     ../common/mount-drives.nix
@@ -39,6 +38,7 @@ in {
     (import ../common/ssh.nix {inherit username sshkey sshport;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
+    ../common/vnstat.nix
     ../scripts/stagit-generate.nix
     ];
 
