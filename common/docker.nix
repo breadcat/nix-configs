@@ -121,9 +121,37 @@
         volumes = [ "/home/${username}/docker/stagit:/config/www:ro" ];
         };
 
-      # transmission
-      # transmission-proxy
-      # transmission-rss
+      transmission = {
+        autoStart = true;
+        capabilities = { NET_ADMIN = true; };
+        dependsOn = [ "caddy" ];
+        devices = [ "/dev/net/tun" ];
+        environment = { PGID = "100"; PUID = "1000"; LOCAL_NETWORK = "10.0.0.0/24"; NORDVPN_CATEGORY = "p2p"; NORDVPN_COUNTRY = "GB"; OPENVPN_PASSWORD = "${vpnpassword}";  OPENVPN_PROVIDER = "NORDVPN"; OPENVPN_USERNAME = "${vpnusername}"; };
+        extraOptions = [ "--dns=8.8.8.8" "--dns=9.9.9.9" ];
+        image = "haugene/transmission-openvpn";
+        networks = [ "proxy" ];
+        ports = [ "9091:9091" "51413:51413" ];
+        volumes = [ "/tank/complete:/data/completed" "/tank/incomplete:/data/incomplete" "/home/${username}/docker/transmission:/data/transmission-home" "/home/${username}/vault/watch:/data/watch" ];
+        };
+
+      transmission-proxy = {
+        autoStart = true;
+        dependsOn = [ "caddy" "transmission" ];
+        extraOptions = [ "--link=transmission" ];
+        image = "haugene/transmission-openvpn-proxy";
+        labels = { "caddy" = "tor.${domain}"; "caddy.reverse_proxy" = "{{upstreams 8080}}"; "caddy.basic_auth" = "*"; "caddy.basic_auth.${username}" = "${htpasswd}";};
+        networks = [ "proxy" ];
+        };
+
+      transmission-rss = {
+        autoStart = true;
+        dependsOn = [ "transmission" ];
+        environment = { GID = "100"; UID = "1000"; };
+        extraOptions = [ "--link=transmission" ];
+        image = "haugene/transmission-rss";
+        networks = [ "proxy" ];
+        volumes = [ "/home/${username}/docker/transmission-rss/config:/etc/transmission-rss.conf" "/home/${username}/docker/transmission-rss/seen:/etc/transmission-rss.seen" ];
+        };
 
       vaultwarden = {
         autoStart = true;
