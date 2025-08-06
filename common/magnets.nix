@@ -3,7 +3,7 @@
 let
   magnets = pkgs.writeShellScriptBin "magnets" ''
   # variables
-  working_directory="$HOME/vault/"
+  working_directory="$HOME/vault/watch"
   # trackers
   trackers_list=(
     "http://0123456789nonexistent.com:80/announce"

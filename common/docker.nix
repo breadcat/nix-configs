@@ -108,7 +108,7 @@
         image = "lscr.io/linuxserver/jackett";
         labels = { "caddy" = "jack.${domain}"; "caddy.reverse_proxy" = "{{upstreams 9117}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/jackett:/config" "/home/${username}/vault:/downloads" ];
+        volumes = [ "/home/${username}/docker/jackett:/config" "/home/${username}/vault/watch:/downloads" ];
         };
 
       stagit = {
