@@ -8,6 +8,7 @@
     duckstation
     flycast
     gopher64
+    melonDS
     mgba
     pcsx2
     ppsspp
