@@ -8,7 +8,9 @@
   domain,
   email,
   sshkey,
+  timezone,
   sshport,
+  privatekey,
   ...
 }: let
   media-sort = import ../common/media-sort.nix {inherit pkgs;};
@@ -23,7 +25,7 @@ in {
     ../common/flakes.nix
     ../common/fonts.nix
     ../common/garbage.nix
-    ../common/locale.nix
+    (import ../common/locale.nix {inherit timezone;})
     ../common/mount-drives.nix
     ../common/nfs.nix
     ../common/packages.nix
@@ -40,22 +42,21 @@ in {
   home-manager.backupFileExtension = "hm-bak";
   home-manager.users.${username} = {pkgs, ...}: {
     imports = [
-      (import ../home/fish.nix {inherit pkgs domain;})
-      ../home/ghostty.nix
       ../home/cursor.nix
       ../home/firefox.nix
-      ../home/fish.nix
+      (import ../home/fish.nix {inherit pkgs domain;})
+      ../home/ghostty.nix
+      (import ../home/git.nix {inherit fullname email;})
       ../home/htop.nix
       # ../home/iamb.nix
       ../home/hyprland.nix
       ../home/lf.nix
       ../home/mpv.nix
       ../home/neovim.nix
-      ../home/tofi.nix
-      (import ../home/git.nix {inherit fullname email;})
-      (import ../home/rbw.nix {inherit pkgs domain email;})
-      (import ../home/ssh.nix {inherit domain username sshport;})
       (import ../home/newsboat.nix {inherit pkgs domain username;})
+      (import ../home/rbw.nix {inherit pkgs domain email;})
+      (import ../home/ssh.nix {inherit domain username sshport privatekey;})
+      ../home/tofi.nix
     ];
     # The state version is required and should stay at the version you
     # originally installed.
