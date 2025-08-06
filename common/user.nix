@@ -7,9 +7,6 @@
     extraGroups = [ "networkmanager" "wheel" "video" ];
   };
 
-  # Auto login
-  services.getty.autologinUser = "${username}";
-
   # Enable fish shell
   programs.fish.enable = true;
 }

@@ -64,6 +64,9 @@ in {
   # Hostname
   networking.hostName = "minerva"; # Define your hostname.
 
+  # Auto login
+  services.getty.autologinUser = "${username}";
+
   # Packages
   environment.systemPackages = with pkgs; [
     atool

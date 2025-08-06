@@ -45,6 +45,9 @@ in
   # Hostname
   networking.hostName = "arcadia"; # Define your hostname.
 
+  # Auto login
+  services.getty.autologinUser = "${username}";
+
   # Hardware acceleration
   hardware.graphics = {
     enable = true;
