@@ -32,6 +32,7 @@ in {
     ../common/garbage.nix
     ../common/vnstat.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
+    (import ../common/magnets.nix {inherit pkgs username;})
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
     (import ../common/ssh.nix {inherit username sshkey sshport;})

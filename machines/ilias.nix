@@ -24,7 +24,6 @@ in {
     ../common/flakes.nix
     ../common/garbage.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
-    (import ../common/magnets.nix {inherit pkgs username;})
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain sshport privatekey;})
