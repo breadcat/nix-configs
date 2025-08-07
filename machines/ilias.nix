@@ -99,7 +99,6 @@ in {
     lf
     mnamer
     mp3val
-    ngrok
     nixfmt-rfc-style
     ocrmypdf
     optipng
