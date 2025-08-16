@@ -32,7 +32,7 @@
         image = "ckulka/baikal:nginx";
         labels = { "caddy" = "dav.${domain}"; "caddy.reverse_proxy" = "{{upstreams 80}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/baikal:/var/www/baikal/Specific" ];
+        volumes = [ "/home/${username}/docker/baikal:/var/www/baikal/Specific" "/home/${username}/docker/baikal:/var/www/baikal/config" ];
         };
 
       caddy = {
