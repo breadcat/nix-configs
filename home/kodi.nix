@@ -31,9 +31,9 @@
           "homemenunoradiobutton" = "true";
           "homemenunofavbutton" = "true";
           "homemenunomusicbutton" = "true";
-          "homemenunomusicvideobutton" = "true";          
-          "homemenunovideosbutton" = "true";          
-          "homemenunotvbutton" = "true";          
+          "homemenunomusicvideobutton" = "true";
+          "homemenunovideosbutton" = "true";
+          "homemenunotvbutton" = "true";
           };
         };
       sources = {
