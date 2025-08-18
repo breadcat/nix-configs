@@ -27,7 +27,7 @@
         fi
     done
 
-    jdupes "." "$target_dir" -dN
+    ${pkgs.jdupes}/bin/jdupes -dNO "$target_dir" "."
   '';
 in {
   environment.systemPackages = [duupmove];
