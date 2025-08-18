@@ -30,7 +30,6 @@ let
 	echo "Mounting rclone remote..."
 	if ! ${pkgs.rclone}/bin/rclone mount "$rclone_remote" "$temp_mount" \
 		--vfs-cache-mode writes \
-		--allow-other \
 		--daemon-timeout 10s \
 		--daemon; then
 	  echo "ERROR: Failed to mount rclone remote"
