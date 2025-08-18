@@ -13,7 +13,6 @@
   privatekey,
   ...
 }: let
-  media-sort = import ../common/media-sort.nix {inherit pkgs;};
   # home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz; # Stable
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz; # Unstable
 in {
@@ -94,7 +93,6 @@ in {
     gallery-dl
     imagemagick
     jdupes
-    media-sort
     mmv
     lf
     mnamer

@@ -13,7 +13,6 @@
   privatekey,
   ...
 }: let
-  media-sort = import ../common/media-sort.nix {inherit pkgs;};
   # home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 in {
@@ -72,7 +71,6 @@ in {
   # Packages
   environment.systemPackages = with pkgs; [
     atool
-    media-sort
     brightnessctl
     dos2unix
     firefox
