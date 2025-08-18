@@ -39,7 +39,7 @@ in {
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
     ../common/vnstat.nix
-    ../scripts/stagit-generate.nix
+    (import ../common/stagit-generate.nix {inherit pkgs username;})
     ];
 
   # Home-Manager
