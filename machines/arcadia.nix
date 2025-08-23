@@ -14,6 +14,7 @@ in
       ./${machine}-hardware.nix # Include the results of the hardware scan.
       (import "${home-manager}/nixos") # Home-Manager
       ../common/audio.nix
+      (import ../common/autologin.nix {inherit username;})
       ../common/flakes.nix
       ../common/garbage.nix
       (import ../common/locale.nix {inherit config pkgs timezone;})
@@ -44,9 +45,6 @@ in
 
   # Hostname
   networking.hostName = "arcadia"; # Define your hostname.
-
-  # Auto login
-  services.getty.autologinUser = "${username}";
 
   # Hardware acceleration
   hardware.graphics = {
