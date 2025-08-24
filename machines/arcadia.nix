@@ -1,17 +1,14 @@
 # HTPC
 
-{ config, pkgs, domain, machine, username, fullname, sshkey, sshport, timezone, privatekey, ... }:
+{ config, pkgs, lib, domain, machine, username, fullname, sshkey, sshport, timezone, privatekey, ... }:
 
 let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz; # stable
-  # home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz; # unstable
 in
 
 {
-  # Common OS imports
   imports =
     [
-      ./${machine}-hardware.nix # Include the results of the hardware scan.
       (import "${home-manager}/nixos") # Home-Manager
       ../common/audio.nix
       (import ../common/autologin.nix {inherit username;})
@@ -28,10 +25,9 @@ in
       (import ../common/user.nix {inherit config pkgs username fullname;})
       ../scripts/htpc-launcher.nix
     ];
-
-  # Home-Manager
-  home-manager.backupFileExtension = "hm-bak";
-  home-manager.users.${username} = { pkgs, ... }: {
+  home-manager = {
+    backupFileExtension = "hm-bak";
+    users.${username} = { pkgs, ... }: {
     imports = [
       (import ../home/fish.nix {inherit pkgs domain;})
       ../home/ghostty.nix
@@ -39,25 +35,38 @@ in
       (import ../home/kodi.nix {inherit username;})
       (import ../home/ssh.nix {inherit domain username sshport privatekey;})
     ];
-
-    # The state version is required and should stay at the version you
-    # originally installed.
     home.stateVersion = "24.11";
+    };
   };
 
-  # Hostname
-  networking.hostName = "arcadia"; # Define your hostname.
-
-  # Hardware acceleration
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      libvdpau-va-gl
-      vaapiIntel
-    ];
+  # Hardware and system
+  boot = {
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware = {
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [ intel-media-driver libvdpau-va-gl vaapiIntel ];
+    };
   };
 
+  # Networking
+  networking = {
+    hostName = "arcadia";
+    networkmanager.enable = true;
+    useDHCP = lib.mkDefault true;
+  };
 
   system.stateVersion = "24.11";
 

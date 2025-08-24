@@ -1,37 +1,24 @@
 # NAS
-{
-  config,
-  pkgs,
-  machine,
-  username,
-  email,
-  fullname,
-  domain,
-  sshkey,
-  sshport,
-  timezone,
-  privatekey,
-  ...
-}: let
-  # home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz; # Stable
+
+{ config, pkgs, lib, machine, username, email, fullname, domain, sshkey, sshport, timezone, privatekey, ... }:
+
+let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz; # Unstable
 in {
-  # Core OS imports
   imports = [
-    ./${machine}-hardware.nix # Include the results of the hardware scan.
-    (import "${home-manager}/nixos") # Home-Manager
+    (import "${home-manager}/nixos")
     ../common/flakes.nix
     ../common/garbage.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
     ../common/mount-drives.nix
     ../common/nfs-server.nix
     ../common/packages.nix
-    (import ../common/restic.nix {inherit pkgs username;})
+    (import ../scripts/restic.nix {inherit pkgs;})
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain sshport privatekey;})
     (import ../common/ssh.nix {inherit username sshkey sshport;})
     (import ../common/syncthing.nix {inherit config pkgs username;})
-    (import ../common/tank-log.nix {inherit pkgs username;})
-    (import ../common/tank-sort.nix {inherit pkgs username;})
+    (import ../scripts/tank-log.nix {inherit pkgs username;})
+    (import ../scripts/tank-sort.nix {inherit pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
     (import ../scripts/audiobook-cleaner.nix {inherit pkgs domain;})
     ../scripts/backup-local.nix
@@ -50,26 +37,48 @@ in {
     ../scripts/watchedlist.nix
     ../scripts/youtube-id-rss.nix
   ];
-
-  # Home-Manager
-  home-manager.backupFileExtension = "hm-bak";
-  home-manager.users.${username} = {pkgs, ...}: {
-    imports = [
-      (import ../home/fish.nix {inherit pkgs domain;})
-      (import ../home/git.nix {inherit fullname email;})
-      ../home/htop.nix
-      ../home/neovim.nix
-      (import ../home/rbw.nix {inherit pkgs domain email;})
-      (import ../home/rclone.nix {inherit domain username sshport privatekey;})
-      (import ../home/ssh.nix {inherit domain username sshport privatekey;})
-    ];
-    # The state version is required and should stay at the version you
-    # originally installed.
-    home.stateVersion = "24.11";
+  home-manager = {
+    backupFileExtension = "hm-bak";
+    users.${username} = {pkgs, ...}: {
+      imports = [
+        (import ../home/fish.nix {inherit pkgs domain;})
+        (import ../home/git.nix {inherit fullname email;})
+        ../home/htop.nix
+        ../home/iamb.nix
+        ../home/neovim.nix
+        (import ../home/rbw.nix {inherit pkgs domain email;})
+        (import ../home/rclone.nix {inherit domain username sshport privatekey;})
+        (import ../home/ssh.nix {inherit domain username sshport privatekey;})
+      ];
+      home.stateVersion = "24.11";
+    };
   };
 
-  # Hostname
-  networking.hostName = "ilias"; # Define your hostname.
+  # Hardware and system
+  boot = {
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
+      kernelModules = [ ];
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/3397e636-91db-44ae-9572-923e4b3acbbe"; }
+  ];
+
+  # Networking
+  networking = {
+    hostName = "ilias";
+    networkmanager.enable = true;
+    useDHCP = lib.mkDefault true;
+  };
 
   # Cron jobs
   services = {
