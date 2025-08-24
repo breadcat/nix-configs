@@ -25,6 +25,7 @@ in {
     ../common/flakes.nix
     ../common/fonts.nix
     ../common/garbage.nix
+    (import ../common/hyprland.nix {inherit username;})
     (import ../common/locale.nix {inherit timezone;})
     ../common/mount-drives.nix
     ../common/nfs.nix
@@ -95,9 +96,6 @@ in {
     yt-dlp
   ];
 
-  programs.hyprland.enable = true;
-  users.users.${username}.extraGroups = ["seat" "video"];
-  services.seatd.enable = true;
 
   system.stateVersion = "24.11"; # Did you read the comment?
 }

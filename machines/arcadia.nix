@@ -17,6 +17,7 @@ in
       (import ../common/autologin.nix {inherit username;})
       ../common/flakes.nix
       ../common/garbage.nix
+      (import ../common/hyprland.nix {inherit username;})
       (import ../common/locale.nix {inherit config pkgs timezone;})
       ../common/mount-drives.nix
       ../common/nfs.nix
@@ -56,8 +57,6 @@ in
     ];
   };
 
-  # Enable programs
-  programs.hyprland.enable = true;
 
   # Packages
   environment.systemPackages = with pkgs; [
