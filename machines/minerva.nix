@@ -25,7 +25,7 @@ in {
     ../common/flakes.nix
     ../common/fonts.nix
     ../common/garbage.nix
-    (import ../common/hyprland.nix {inherit username;})
+    (import ../common/hyprland.nix {inherit pkgs username;})
     (import ../common/locale.nix {inherit timezone;})
     ../common/mount-drives.nix
     ../common/nfs.nix
@@ -76,9 +76,6 @@ in {
     fzf
     gallery-dl
     glib
-    hyprcursor
-    hypridle
-    hyprland
     imagemagick
     jre8
     lf

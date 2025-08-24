@@ -17,7 +17,7 @@ in
       (import ../common/autologin.nix {inherit username;})
       ../common/flakes.nix
       ../common/garbage.nix
-      (import ../common/hyprland.nix {inherit username;})
+      (import ../common/hyprland.nix {inherit pkgs username;})
       (import ../common/locale.nix {inherit config pkgs timezone;})
       ../common/mount-drives.nix
       ../common/nfs.nix
@@ -61,7 +61,6 @@ in
   # Packages
   environment.systemPackages = with pkgs; [
     # duckstation
-    hyprland
     kodiPackages.inputstream-adaptive
     kodi-wayland
     moonlight-qt
