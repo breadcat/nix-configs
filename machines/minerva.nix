@@ -30,6 +30,7 @@ in {
     users.${username} = {pkgs, ...}: {
       imports = [
         ../home/cursor.nix
+        ../home/espanso.nix
         ../home/firefox.nix
         (import ../home/fish.nix {inherit pkgs domain;})
         ../home/ghostty.nix
