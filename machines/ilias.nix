@@ -24,6 +24,7 @@ in {
     ../common/garbage.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
     ../common/mount-drives.nix
+    ../common/nfs-server.nix
     ../common/packages.nix
     (import ../common/restic.nix {inherit pkgs username;})
     (import ../common/ssh-tunnel.nix {inherit config pkgs username domain sshport privatekey;})
@@ -70,12 +71,6 @@ in {
   # Hostname
   networking.hostName = "ilias"; # Define your hostname.
 
-  # NFS server
-  services.nfs.server = {
-    enable = true;
-    exports = ''
-      /tank    192.168.1.0/24(rw)
-    '';
   };
   # Firewall and NFS server ports
   networking.firewall.enable = true;
