@@ -82,11 +82,6 @@ in {
       ];
     };
   };
-  # Firewall and NFS server ports
-  networking.firewall.enable = true;
-  networking.firewall.allowPing = true;
-  networking.firewall.allowedTCPPorts = [111 2049];
-  networking.firewall.allowedUDPPorts = [111 2049];
 
   # Packages
   environment.systemPackages = with pkgs; [
