@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 
 let
   backup-cloud = pkgs.writeShellScriptBin "backup-cloud" ''
@@ -18,25 +18,4 @@ let
   '';
 in {
   environment.systemPackages = [ backup-cloud ];
-
-  systemd.timers.restic-backup = {
-    description = "Timer to run Restic backup";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "0/12:00:00";
-      RandomizedDelaySec = "30min";
-      Persistent = true;
-    };
-  };
-
-  systemd.services.restic-backup = {
-    description = "Backup specific directories to BorgBase";
-    script = "backup-cloud";
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
-    };
-  };
-
 }

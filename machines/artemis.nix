@@ -60,5 +60,17 @@ in {
   networking.hostName = "artemis"; # Define your hostname.
 
   system.stateVersion = "25.05"; # Did you read the comment?
+  # Cron jobs
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "*/10 * * * *	${username}	blog-status"
+      "*/10 * * * *	${username}	magnets"
+      "*/10 * * * *	${username}	stagit-generate"
+      "55 23 * * SUN	${username}	blog-duolingo"
+      "0 */12 * * *	${username}	backup-cloud"
+    ];
+  };
+
 
 }

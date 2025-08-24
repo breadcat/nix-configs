@@ -1,4 +1,4 @@
-{ pkgs, username, ...}: let
+{ pkgs, ...}: let
   css = ''
     body,pre{font-family:monospace}
     #blob,article img{max-width:100%}
@@ -116,25 +116,4 @@ EOF
   '';
 in {
   environment.systemPackages = [stagit-generate];
-
-  # Systemd service and timer configuration
-  systemd.services.stagit-generate = {
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
-      ExecStart = "${stagit-generate}/bin/stagit-generate";
-      StandardOutput = "journal";
-      StandardError = "journal";
-    };
-  };
-
-  systemd.timers.stagit-generate = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "*-*-* 00,04,08,12,16,20:00:00";
-      RandomizedDelaySec = "15m";
-      Persistent = true;
-      AccuracySec = "1m";
-    };
-  };
 }

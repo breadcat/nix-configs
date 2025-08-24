@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 
 let
   tank-log = pkgs.writeShellScriptBin "tank-log" ''
@@ -45,22 +45,4 @@ let
   '';
 in {
   environment.systemPackages = [tank-log];
-
-  systemd.timers.tank-log = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = [ "0/12:20:00" ];
-      RandomizedDelaySec = "10min";
-      Persistent = true;
-    };
-  };
-
-  systemd.services.tank-log = {
-    script = "tank-log";
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
-    };
-  };
 }

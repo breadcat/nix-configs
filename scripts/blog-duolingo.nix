@@ -1,4 +1,4 @@
-{ pkgs, username, domain, ... }:
+{ pkgs, domain, ... }:
 
 let
   blog-duolingo = pkgs.writeShellScriptBin "blog-duolingo" ''
@@ -26,20 +26,4 @@ let
   '';
 in {
   environment.systemPackages = [blog-duolingo];
-
-  systemd.timers.blog-duolingo = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "Sun 23:59";
-      Persistent = true;
-    };
-  };
-  systemd.services.blog-duolingo = {
-    script = "blog-duolingo";
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
-    };
-  };
 }

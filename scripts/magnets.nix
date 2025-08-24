@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 
 let
   magnets = pkgs.writeShellScriptBin "magnets" ''
@@ -81,21 +81,4 @@ let
   '';
 in {
   environment.systemPackages = [ magnets ];
-
-  systemd.timers.magnet-watcher = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "*:0/10";
-      Persistent = true;
-    };
-  };
-
-  systemd.services.magnet-watcher = {
-    script = "magnets";
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
-    };
-  };
 }

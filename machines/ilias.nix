@@ -71,6 +71,16 @@ in {
   # Hostname
   networking.hostName = "ilias"; # Define your hostname.
 
+  # Cron jobs
+  services = {
+    cron = {
+      enable = true;
+      systemCronJobs = [
+        "0 */4 * * *	${username}	tank-sort"
+        "5 */4 * * *	${username}	tank-log"
+        "0 */12 * * *	${username}	backup-cloud"
+      ];
+    };
   };
   # Firewall and NFS server ports
   networking.firewall.enable = true;

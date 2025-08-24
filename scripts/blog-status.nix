@@ -1,4 +1,4 @@
-{ pkgs, username, domain, ... }:
+{ pkgs, domain, ... }:
 
 let
   blog-status = pkgs.writeShellScriptBin "blog-status" ''
@@ -24,20 +24,4 @@ let
   '';
 in {
   environment.systemPackages = [blog-status];
-
-  systemd.timers.blog-status = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "*:0/10";
-      Persistent = true;
-    };
-  };
-  systemd.services.blog-status = {
-    script = "blog-status";
-    path = [ "/run/current-system/sw" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
-    };
-  };
 }

@@ -1,7 +1,7 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 
 let
-  media-sort = pkgs.callPackage ./media-sort.nix {};
+  media-sort = pkgs.callPackage ../common/media-sort.nix {};
 
   tank-sort = pkgs.writeShellScriptBin "tank-sort" ''
 	set -euo pipefail  # Exit on any error
@@ -69,27 +69,4 @@ let
   '';
 in {
   environment.systemPackages = [tank-sort media-sort];
-
-  systemd.timers.tank-sort = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "0/12:00:00";
-      RandomizedDelaySec = "5min";
-      Persistent = true;
-    };
-  };
-
-  systemd.services.tank-sort = {
-    script = "tank-sort";
-    path = with pkgs; [ "/run/current-system/sw" rclone fuse util-linux media-sort ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
-      Restart = "no";
-      RestartSec = "30s";
-      SupplementaryGroups = [ "fuse" ];
-      WorkingDirectory = "/tmp";
-      TimeoutStartSec = "300s";
-    };
-  };
 }
