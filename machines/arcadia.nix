@@ -18,6 +18,7 @@ in
       ../common/flakes.nix
       ../common/garbage.nix
       (import ../common/hyprland.nix {inherit pkgs username;})
+      (import ../common/kodi.nix {inherit pkgs username;})
       (import ../common/locale.nix {inherit config pkgs timezone;})
       ../common/mount-drives.nix
       ../common/nfs.nix
@@ -57,25 +58,6 @@ in
     ];
   };
 
-
-  # Packages
-  environment.systemPackages = with pkgs; [
-    # duckstation
-    kodiPackages.inputstream-adaptive
-    kodi-wayland
-    moonlight-qt
-    mpv
-    # spotify
-    yt-dlp
-  ];
-
-  # Kodi settings
-  # HDMI CEC input groups
-  users.users.${username}.extraGroups = [ "networkmanager" "wheel" "input" "dialout" "video" ]; # Extra groups for Kodi CEC input
-
-  # Web UI firewall rules
-  networking.firewall.allowedTCPPorts = [ 8080 ];
-  networking.firewall.allowedUDPPorts = [ 8080 ];
 
   system.stateVersion = "24.11";
 
