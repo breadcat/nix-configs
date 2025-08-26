@@ -3,7 +3,7 @@
 { config, pkgs, lib, machine, username, email, fullname, domain, sshkey, sshport, timezone, privatekey, ... }:
 
 let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz; # Unstable
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
 in {
   imports = [
     (import "${home-manager}/nixos")
