@@ -4,11 +4,17 @@
 
 let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
-in {
+in
+
+{
+
+  networking.hostName = "minerva";
+
   imports = [
     (import "${home-manager}/nixos")
     ../common/audio.nix
     (import ../common/autologin.nix {inherit username;})
+    ../common/dhcp.nix
     ../common/flakes.nix
     ../common/fonts.nix
     ../common/garbage.nix
@@ -66,13 +72,6 @@ in {
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # Networking
-  networking = {
-    hostName = "minerva";
-    networkmanager.enable = true;
-    useDHCP = lib.mkDefault true;
-  };
 
   # Packages
   environment.systemPackages = with pkgs; [

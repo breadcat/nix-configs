@@ -4,9 +4,15 @@
 
 let
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
-in {
+in
+
+{
+
+  networking.hostName = "ilias";
+
   imports = [
     (import "${home-manager}/nixos")
+    ../common/dhcp.nix
     ../common/flakes.nix
     ../common/garbage.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
@@ -44,7 +50,6 @@ in {
         (import ../home/fish.nix {inherit pkgs domain;})
         (import ../home/git.nix {inherit fullname email;})
         ../home/htop.nix
-        ../home/iamb.nix
         ../home/neovim.nix
         (import ../home/rbw.nix {inherit pkgs domain email;})
         (import ../home/rclone.nix {inherit domain username sshport privatekey;})
@@ -72,13 +77,6 @@ in {
   swapDevices = [
     { device = "/dev/disk/by-uuid/3397e636-91db-44ae-9572-923e4b3acbbe"; }
   ];
-
-  # Networking
-  networking = {
-    hostName = "ilias";
-    networkmanager.enable = true;
-    useDHCP = lib.mkDefault true;
-  };
 
   # Cron jobs
   services = {

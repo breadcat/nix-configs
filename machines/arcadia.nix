@@ -7,11 +7,15 @@ let
 in
 
 {
+
+  networking.hostName = "arcadia";
+
   imports =
     [
       (import "${home-manager}/nixos") # Home-Manager
       ../common/audio.nix
       (import ../common/autologin.nix {inherit username;})
+      ../common/dhcp.nix
       ../common/flakes.nix
       ../common/garbage.nix
       (import ../common/hyprland.nix {inherit pkgs username;})
@@ -59,13 +63,6 @@ in
       enable = true;
       extraPackages = with pkgs; [ intel-media-driver libvdpau-va-gl vaapiIntel ];
     };
-  };
-
-  # Networking
-  networking = {
-    hostName = "arcadia";
-    networkmanager.enable = true;
-    useDHCP = lib.mkDefault true;
   };
 
   system.stateVersion = "24.11";

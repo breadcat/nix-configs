@@ -7,11 +7,15 @@ let
 in
 
 {
+
+  networking.hostName = "artemis";
+
   imports = [
     (import "${home-manager}/nixos")
     (import ../scripts/blog-duolingo.nix {inherit pkgs domain username;})
     (import ../scripts/blog-status.nix {inherit pkgs domain;})
     (import ../common/docker.nix {inherit config pkgs username domain timezone htpasswd todosecret vpnusername vpnpassword;})
+    ../common/dhcp.nix
     ../common/flakes.nix
     ../common/garbage.nix
     (import ../common/locale.nix {inherit pkgs timezone;})
@@ -55,10 +59,6 @@ in
     };
   };
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-  networking = {
-    hostName = "artemis";
-    useDHCP = lib.mkDefault true;
-  };
 
   # Cron jobs
   services.cron = {
