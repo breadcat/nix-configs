@@ -8,6 +8,7 @@
     git
     htop
     jdupes
+    lf
     neovim
     rclone
     rsync
