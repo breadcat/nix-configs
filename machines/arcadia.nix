@@ -37,6 +37,7 @@ in
       ../home/ghostty.nix
       ../home/hyprland.nix
       (import ../home/kodi.nix {inherit username;})
+      (import ../home/rclone.nix {inherit domain username sshport privatekey;})
       (import ../home/ssh.nix {inherit domain username sshport privatekey;})
     ];
     home.stateVersion = "24.11";
