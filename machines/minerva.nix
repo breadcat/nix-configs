@@ -43,7 +43,7 @@ in
         (import ../home/git.nix {inherit fullname email;})
         ../home/htop.nix
         ../home/hyprland.nix
-        ../home/iamb.nix
+        (import ../home/iamb.nix {inherit matrixuser matrixserver;})
         ../home/lf.nix
         ../home/mpv.nix
         ../home/neovim.nix

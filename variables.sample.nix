@@ -13,6 +13,8 @@ let
   vpnpassword = "";
   todosecret = "JWTtoken";
   privatekey = "path/to/private.key";
+  matrixuser = "";
+  matrixserver = "";
 in {
-  inherit fullname username domain email sshkey sshport timezone vpnusername vpnpassword todosecret privatekey;
+  inherit fullname username domain email sshkey sshport timezone vpnusername vpnpassword todosecret privatekey matrixuser matrixserver;
 }
