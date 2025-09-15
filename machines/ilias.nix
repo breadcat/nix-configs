@@ -112,7 +112,6 @@ in
     python3
     qpdf
     rbw
-    rclone
     shellcheck-minimal
     shfmt
     sqlite
