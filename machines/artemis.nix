@@ -3,7 +3,7 @@
 { config, pkgs, lib, machine, username, email, fullname, domain, sshkey, sshport, timezone, htpasswd, todosecret, vpnusername, vpnpassword, privatekey, ... }:
 
 let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
 in
 
 {
