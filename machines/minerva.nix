@@ -77,25 +77,13 @@ in
   # Packages
   environment.systemPackages = with pkgs; [
     brightnessctl
-    dos2unix
-    firefox
     fzf
     gallery-dl
     glib
     imagemagick
     jre8
     lf
-    mpv
-    newsboat
-    pinentry-tty
-    posy-cursors
-    rbw
-    seatd
-    shellcheck-minimal
-    swayimg
     tofi
-    unzip
-    wl-clipboard
     yt-dlp
   ];
 
