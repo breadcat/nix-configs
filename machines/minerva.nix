@@ -14,6 +14,7 @@ in
     (import "${home-manager}/nixos")
     ../common/audio.nix
     (import ../common/autologin.nix {inherit username;})
+    (import ../common/devel.nix {inherit pkgs;})
     ../common/dhcp.nix
     ../common/flakes.nix
     ../common/fonts.nix

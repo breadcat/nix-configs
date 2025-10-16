@@ -15,6 +15,7 @@ in
     ../common/dhcp.nix
     ../common/flakes.nix
     ../common/garbage.nix
+    (import ../common/devel.nix {inherit pkgs;})
     (import ../common/locale.nix {inherit pkgs timezone;})
     ../common/mount-drives.nix
     ../common/nfs-server.nix
