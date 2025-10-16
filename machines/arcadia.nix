@@ -18,6 +18,7 @@ in
       ../common/dhcp.nix
       ../common/flakes.nix
       ../common/garbage.nix
+      (import ../common/emulators.nix {inherit pkgs;})
       (import ../common/hyprland.nix {inherit pkgs username;})
       (import ../common/kodi.nix {inherit pkgs username;})
       (import ../common/locale.nix {inherit config pkgs timezone;})
