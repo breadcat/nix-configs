@@ -23,10 +23,10 @@
       set -gx VISUAL $EDITOR
     '';
     shellAliases = {
-      extract = "aunpack";
       jdupes = "jdupes -A"; # exclude hidden files
       empties = "find . -maxdepth 3 -mount -not -path \"*/\.*\" -empty -print";
       vaultedit = "find \"$SYNCDIR\" -maxdepth 5 -type f | ${pkgs.fzf}/bin/fzf --preview \"cat {}\" --layout reverse | xargs -r -I{} \"$EDITOR\" {}";
+      extract = "${pkgs.atool}/bin/aunpack";
       week = "date +%V";
     };
     #    binds = {

@@ -76,7 +76,6 @@ in
 
   # Packages
   environment.systemPackages = with pkgs; [
-    atool
     brightnessctl
     dos2unix
     firefox
