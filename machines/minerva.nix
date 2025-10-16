@@ -30,6 +30,7 @@ in
     (import ../common/ydotool.nix {inherit pkgs username;})
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
+    (import ../scripts/vidyascape.nix {inherit pkgs;})
     (import ../scripts/restic.nix {inherit pkgs;})
   ];
   home-manager = {
@@ -81,7 +82,6 @@ in
     gallery-dl
     glib
     imagemagick
-    jre8
     lf
     tofi
     yt-dlp
