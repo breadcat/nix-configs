@@ -40,8 +40,8 @@
         video = {
           default = "movies";
           source = [
-            { name = "television"; path = "/mnt/media/videos/television"; allowsharing = "true"; }
-            { name = "movies"; path = "/mnt/media/videos/movies"; allowsharing = "true"; }
+            { name = "television"; path = "/tank/media/videos/television"; allowsharing = "true"; }
+            { name = "movies"; path = "/tank/media/videos/movies"; allowsharing = "true"; }
             { name = "${username}"; path = "/home/${username}"; allowsharing = "true"; }
             ];
 		  };
