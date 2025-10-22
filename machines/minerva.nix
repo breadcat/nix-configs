@@ -37,11 +37,11 @@ in
     backupFileExtension = "hm-bak";
     users.${username} = {pkgs, ...}: {
       imports = [
+        ../home/alacritty.nix
         ../home/cursor.nix
         ../home/espanso.nix
         ../home/firefox.nix
         (import ../home/fish.nix {inherit pkgs domain;})
-        ../home/ghostty.nix
         (import ../home/git.nix {inherit fullname email;})
         ../home/htop.nix
         ../home/hyprland.nix

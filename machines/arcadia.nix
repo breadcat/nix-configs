@@ -34,8 +34,8 @@ in
     backupFileExtension = "hm-bak";
     users.${username} = { pkgs, ... }: {
     imports = [
+      ../home/alacritty.nix
       (import ../home/fish.nix {inherit pkgs domain;})
-      ../home/ghostty.nix
       ../home/hyprland.nix
       (import ../home/kodi.nix {inherit username;})
       (import ../home/rclone.nix {inherit domain username sshport privatekey;})
