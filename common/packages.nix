@@ -5,8 +5,10 @@
     ffmpeg
     file
     fish
+    fzf
     git
     htop
+    imagemagick
     jdupes
     lf
     neovim

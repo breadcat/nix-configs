@@ -7,6 +7,7 @@
     hyprland
     seatd
     swayimg
+    tofi
     wl-clipboard
     ];
   programs.hyprland.enable = true;

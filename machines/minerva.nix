@@ -78,12 +78,8 @@ in
   # Packages
   environment.systemPackages = with pkgs; [
     brightnessctl
-    fzf
     gallery-dl
     glib
-    imagemagick
-    lf
-    tofi
     yt-dlp
   ];
 
