@@ -6,6 +6,7 @@
     file
     fish
     fzf
+    gallery-dl
     git
     htop
     imagemagick
@@ -17,5 +18,6 @@
     syncthing
     tmux
     unzip
+    yt-dlp
   ];
 }

@@ -78,9 +78,6 @@ in
   # Packages
   environment.systemPackages = with pkgs; [
     brightnessctl
-    gallery-dl
-    glib
-    yt-dlp
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?

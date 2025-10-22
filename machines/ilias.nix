@@ -93,31 +93,18 @@ in
 
   # Packages
   environment.systemPackages = with pkgs; [
-    czkawka
-    atool
-    dos2unix
-    fzf
-    gallery-dl
-    imagemagick
-    jdupes
-    mmv
-    lf
-    mnamer
-    mp3val
+    czkawka # duplicate file finder
+    jdupes # duplicate file finder
+    mmv # mass renamer
     nixfmt-rfc-style
     ocrmypdf
     optipng
-    opustags
     pciutils
     powertop
     python3
     qpdf
-    rbw
-    shellcheck-minimal
-    shfmt
     sqlite
     unrar
-    yt-dlp
   ];
 
   system.stateVersion = "24.11";
