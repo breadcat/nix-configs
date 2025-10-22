@@ -116,7 +116,7 @@
       };
 
       bind = [
-        "SUPER, R, exec, tofi-drun | xargs hyprctl dispatch exec --"
+        "SUPER, R, exec, tofi-run | xargs hyprctl dispatch exec --"
         "SUPER, W, exec, firefox"
         "SUPER, T, exec, alacritty"
         "SUPER_SHIFT, W, exec, firefox -private-window"
