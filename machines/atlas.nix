@@ -46,6 +46,7 @@ in
         (import ../home/fish.nix {inherit pkgs domain;})
         (import ../home/git.nix {inherit fullname email;})
         ../home/htop.nix
+        ../home/hyprland-numlock.nix
         ../home/hyprland.nix
         (import ../home/iamb.nix {inherit matrixuser matrixserver;})
         ../home/lf.nix
