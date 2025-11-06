@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    # ide
+    geany
     # bash
     shellcheck-minimal
     shfmt
