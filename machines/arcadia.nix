@@ -17,6 +17,7 @@ in
       (import ../common/autologin.nix {inherit username;})
       ../common/dhcp.nix
       ../common/flakes.nix
+      ../common/fonts.nix
       ../common/garbage.nix
       (import ../common/emulators.nix {inherit pkgs;})
       (import ../common/hyprland.nix {inherit pkgs username;})

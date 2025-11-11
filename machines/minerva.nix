@@ -18,6 +18,7 @@ in
     ../common/dhcp.nix
     ../common/flakes.nix
     ../common/fonts.nix
+    ../common/fonts.nix
     ../common/garbage.nix
     (import ../common/hyprland.nix {inherit pkgs username;})
     (import ../common/locale.nix {inherit timezone;})
