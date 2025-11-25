@@ -48,6 +48,7 @@ in
         ../home/htop.nix
         ../home/hyprland-numlock.nix
         ../home/hyprland.nix
+        ../home/hypridle.nix
         (import ../home/iamb.nix {inherit matrixuser matrixserver;})
         ../home/lf.nix
         ../home/mpv.nix
