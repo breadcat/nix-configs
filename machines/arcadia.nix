@@ -3,7 +3,7 @@
 { config, pkgs, lib, domain, machine, username, fullname, sshkey, sshport, timezone, privatekey, ... }:
 
 let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/master.tar.gz;
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
 in
 
 {
@@ -64,7 +64,7 @@ in
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     graphics = {
       enable = true;
-      extraPackages = with pkgs; [ intel-media-driver libvdpau-va-gl vaapiIntel ];
+      extraPackages = with pkgs; [ intel-media-driver libvdpau-va-gl intel-vaapi-driver ];
     };
   };
 
