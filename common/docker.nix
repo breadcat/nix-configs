@@ -173,6 +173,13 @@
         volumes = [ "/home/${username}/docker/vikunja:/db" ];
         };
 
+      watchtower = {
+        autoStart = true;
+        image = "containrrr/watchtower";
+        environment = { WATCHTOWER_CLEANUP = "true"; WATCHTOWER_INCLUDE_RESTARTING = "true"; WATCHTOWER_SCHEDULE = "0 0 4 * * *"; };
+        volumes = [ "/var/run/docker.sock:/var/run/docker.sock" ];
+        };
+
     };
   };
 }
