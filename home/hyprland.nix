@@ -7,6 +7,7 @@
 
       ecosystem = {
         "no_update_news" = true;
+        "no_donation_nag" = true;
       };
 
       monitor = ",preferred,auto,auto";
@@ -109,10 +110,6 @@
         touchpad = {
           natural_scroll = false;
         };
-      };
-
-      gestures = {
-        workspace_swipe = false;
       };
 
       bind = [
