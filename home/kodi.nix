@@ -52,10 +52,10 @@
 		    };
 		  };
 		};
-  # Launch Kodi (and fix fullscreen issue) via Hyprland
+  # Launch Kodi via Hyprland
   wayland.windowManager.hyprland = {
     settings = {
-      "exec-once" = "htpc-launcher";
+      "exec-once" = "kodi";
     };
   };
 }

@@ -23,7 +23,6 @@ let machine = "arcadia"; in {
     ../common/ssh.nix
     ../common/syncthing.nix
     ../common/user.nix
-    ../scripts/htpc-launcher.nix
     ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
       ../home/alacritty.nix

@@ -1,8 +1,16 @@
 { pkgs, username, ... }:
 
 {
-  # Package
-  environment.systemPackages = with pkgs; [ kodi-wayland ];
+  # Package and Addons
+  environment.systemPackages = with pkgs; [
+    (kodi-wayland.withPackages (kodiPkgs: with kodiPkgs; [
+      a4ksubtitles
+      inputstream-adaptive
+      somafm
+      upnext
+      youtube
+    ]))
+  ];
 
   # Firewall rules
   networking.firewall = {
