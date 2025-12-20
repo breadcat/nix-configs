@@ -4,7 +4,7 @@
     isNormalUser = true;
     description = "${fullname}";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" ];
   };
 
   # Enable fish shell
