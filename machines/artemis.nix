@@ -8,33 +8,33 @@ let machine = "artemis"; in {
     (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     ../common/dhcp.nix
+    ../common/docker.nix
     ../common/flakes.nix
     ../common/garbage.nix
-    (import ../common/locale.nix {inherit pkgs timezone;})
-    (import ../scripts/magnets.nix {inherit pkgs;})
+    ../common/locale.nix
     ../common/mount-drives.nix
     ../common/packages.nix
-    (import ../scripts/restic.nix {inherit pkgs;})
-    (import ../common/ssh.nix {inherit username sshkey sshport;})
-    (import ../common/syncthing.nix {inherit config pkgs username;})
-    (import ../common/user.nix {inherit config pkgs username fullname;})
+    ../common/ssh.nix
+    ../common/syncthing.nix
+    ../common/user.nix
     ../common/vnstat.nix
-    (import ../scripts/stagit-generate.nix {inherit pkgs;})
+    ../scripts/blog-duolingo.nix
+    ../scripts/blog-status.nix
+    ../scripts/magnets.nix
+    ../scripts/restic.nix
+    ../scripts/stagit-generate.nix
   ];
-  home-manager = {
-    backupFileExtension = "hm-bak";
-    users.${username} = {pkgs, ...}: {
-      imports = [
-        (import ../home/fish.nix {inherit pkgs domain;})
-        (import ../home/git.nix {inherit fullname email;})
+  home-manager.users.${username} = {pkgs, ...}: { imports = [
+        ../home/fish.nix
+        ../home/git.nix
         ../home/htop.nix
         ../home/neovim.nix
-        (import ../home/rbw.nix {inherit pkgs domain email;})
-        (import ../home/rclone.nix {inherit domain username sshport privatekey;})
-        (import ../home/ssh.nix {inherit domain username sshport privatekey;})
+        ../home/rbw.nix
+        ../home/rclone.nix
+        ../home/ssh.nix
+        ../home/yt-dlp.nix
       ];
       home.stateVersion = "25.05";
-    };
   };
 
   # Hardware and system
@@ -56,11 +56,11 @@ let machine = "artemis"; in {
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "*/10 * * * *	${username}	blog-status"
-      "*/10 * * * *	${username}	magnets"
-      "*/10 * * * *	${username}	stagit-generate"
-      "55 23 * * SUN	${username}	blog-duolingo"
-      "0 */12 * * *	${username}	backup-cloud"
+      "*/10 * * * * ${username} blog-status"
+      "*/10 * * * * ${username} magnets"
+      "*/10 * * * * ${username} stagit-generate"
+      "55 23 * * SUN  ${username} blog-duolingo"
+      "0 */12 * * * ${username} backup-cloud"
     ];
   };
 
