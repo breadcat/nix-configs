@@ -39,12 +39,7 @@ let machine = "artemis"; in {
 
   # Hardware and system
   boot = {
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" ];
-      kernelModules = [ ];
-    };
-    kernelModules = [ ];
-    extraModulePackages = [ ];
+    initrd = { availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" ]; };
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

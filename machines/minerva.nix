@@ -57,12 +57,8 @@ let machine = "minerva"; in {
 
   # Hardware and system
   boot = {
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" ];
-      kernelModules = [ ];
-    };
+    initrd = { availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" ]; };
     kernelModules = [ "kvm-intel" ];
-    extraModulePackages = [ ];
     loader.grub = {
       enable = true;
       device = "/dev/sda";

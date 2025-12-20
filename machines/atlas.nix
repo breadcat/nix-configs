@@ -62,12 +62,8 @@ let machine = "atlas"; in {
 
   # Hardware and system
   boot = {
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-      kernelModules = [ ];
-    };
+    initrd = { availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; };
     kernelModules = [ "kvm-intel" ];
-    extraModulePackages = [ ];
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
