@@ -7,12 +7,12 @@ let machine = "artemis"; in {
   imports = [
     (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
-    ../common/dhcp.nix
     ../common/docker.nix
     ../common/flakes.nix
     ../common/garbage.nix
     ../common/locale.nix
     ../common/mount-drives.nix
+    ../common/networking.nix
     ../common/packages.nix
     ../common/ssh.nix
     ../common/syncthing.nix

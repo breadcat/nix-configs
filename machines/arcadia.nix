@@ -9,7 +9,6 @@ let machine = "arcadia"; in {
     (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     ../common/audio.nix
     ../common/autologin.nix
-    ../common/dhcp.nix
     ../common/emulators.nix
     ../common/flakes.nix
     ../common/fonts.nix
@@ -18,6 +17,7 @@ let machine = "arcadia"; in {
     ../common/kodi.nix
     ../common/locale.nix
     ../common/mount-drives.nix
+    ../common/networking.nix
     ../common/nfs.nix
     ../common/packages.nix
     ../common/ssh.nix

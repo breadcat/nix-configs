@@ -10,13 +10,13 @@ let machine = "minerva"; in {
     ../common/audio.nix
     ../common/autologin.nix
     ../common/devel.nix
-    ../common/dhcp.nix
     ../common/flakes.nix
     ../common/fonts.nix
     ../common/garbage.nix
     ../common/hyprland.nix
     ../common/locale.nix
     ../common/mount-drives.nix
+    ../common/networking.nix
     ../common/nfs.nix
     ../common/nur.nix
     ../common/packages.nix
