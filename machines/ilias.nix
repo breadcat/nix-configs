@@ -1,63 +1,57 @@
 # NAS
 
-{ config, pkgs, lib, machine, username, email, fullname, domain, sshkey, sshport, timezone, privatekey, ... }:
+{ config, pkgs, lib, fullname, username, domain, email, sshkey, sshport, timezone, postcode, address, htpasswd, vpnusername, vpnpassword, todosecret, privatekey, matrixuser, matrixserver, ... }:
 
-let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
-in
-
-{
-
-  networking.hostName = "ilias";
+let machine = "ilias"; in {
 
   imports = [
-    (import "${home-manager}/nixos")
-    ../common/dhcp.nix
+    (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    ../common/devel.nix
     ../common/flakes.nix
     ../common/garbage.nix
-    (import ../common/devel.nix {inherit pkgs;})
-    (import ../common/locale.nix {inherit pkgs timezone;})
+    ../common/locale.nix
     ../common/mount-drives.nix
+    ../common/networking.nix
     ../common/nfs-server.nix
     ../common/packages.nix
-    (import ../scripts/restic.nix {inherit pkgs;})
-    (import ../common/ssh-tunnel.nix {inherit config pkgs username domain sshport privatekey;})
-    (import ../common/ssh.nix {inherit username sshkey sshport;})
-    (import ../common/syncthing.nix {inherit config pkgs username;})
-    (import ../scripts/tank-log.nix {inherit pkgs username;})
-    (import ../scripts/tank-sort.nix {inherit pkgs username;})
-    (import ../common/user.nix {inherit config pkgs username fullname;})
-    (import ../scripts/audiobook-cleaner.nix {inherit pkgs domain;})
+    ../common/ssh.nix
+    ../common/ssh-tunnel.nix
+    ../common/syncthing.nix
+    ../common/user.nix
+    ../common/zram.nix
+    ../scripts/audiobook-cleaner.nix
     ../scripts/backup-local.nix
-    (import ../scripts/blog-music.nix {inherit pkgs domain;})
-    (import ../scripts/blog-sort-archives.nix {inherit pkgs domain;})
-    (import ../scripts/blog-sort-languages.nix {inherit pkgs domain;})
-    (import ../scripts/blog-sort-quotes.nix {inherit pkgs domain;})
-    (import ../scripts/blog-weight.nix {inherit pkgs domain;})
+    ../scripts/blog-music.nix
+    ../scripts/blog-sort-archives.nix
+    ../scripts/blog-sort-languages.nix
+    ../scripts/blog-sort-quotes.nix
+    ../scripts/blog-weight.nix
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
-    (import ../scripts/overtid.nix {inherit pkgs;})
+    ../scripts/overtid.nix
     ../scripts/payslips.nix
     ../scripts/phone-dump.nix
+    ../scripts/restic.nix
     ../scripts/seedy.nix
     ../scripts/startpage-sort.nix
+    ../scripts/tank-log.nix
+    ../scripts/tank-sort.nix
     ../scripts/watchedlist.nix
+    ../scripts/xdb.nix
     ../scripts/youtube-id-rss.nix
   ];
-  home-manager = {
-    backupFileExtension = "hm-bak";
-    users.${username} = {pkgs, ...}: {
-      imports = [
-        (import ../home/fish.nix {inherit pkgs domain;})
-        (import ../home/git.nix {inherit fullname email;})
+  home-manager.users.${username} = {pkgs, ...}: { imports = [
+        ../home/fish.nix
+        ../home/git.nix
         ../home/htop.nix
         ../home/neovim.nix
-        (import ../home/rbw.nix {inherit pkgs domain email;})
-        (import ../home/rclone.nix {inherit domain username sshport privatekey;})
-        (import ../home/ssh.nix {inherit domain username sshport privatekey;})
+        ../home/rbw.nix
+        ../home/rclone.nix
+        ../home/ssh.nix
+        ../home/yt-dlp.nix
       ];
       home.stateVersion = "24.11";
-    };
   };
 
   # Hardware and system

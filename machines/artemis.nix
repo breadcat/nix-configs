@@ -1,20 +1,12 @@
 # Server
 
-{ config, pkgs, lib, machine, username, email, fullname, domain, sshkey, sshport, timezone, htpasswd, todosecret, vpnusername, vpnpassword, privatekey, ... }:
+{ config, pkgs, lib, fullname, username, domain, email, sshkey, sshport, timezone, postcode, address, htpasswd, vpnusername, vpnpassword, todosecret, privatekey, matrixuser, matrixserver, ... }:
 
-let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
-in
-
-{
-
-  networking.hostName = "artemis";
+let machine = "artemis"; in {
 
   imports = [
-    (import "${home-manager}/nixos")
-    (import ../scripts/blog-duolingo.nix {inherit pkgs domain username;})
-    (import ../scripts/blog-status.nix {inherit pkgs domain;})
-    (import ../common/docker.nix {inherit config pkgs username domain timezone htpasswd todosecret vpnusername vpnpassword;})
+    (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     ../common/dhcp.nix
     ../common/flakes.nix
     ../common/garbage.nix

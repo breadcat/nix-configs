@@ -1,63 +1,57 @@
 # Laptop
 
-{ config, pkgs, lib, machine, username, fullname, domain, email, sshkey, timezone, sshport, privatekey, ... }:
+{ config, pkgs, lib, fullname, username, domain, email, sshkey, sshport, timezone, postcode, address, htpasswd, vpnusername, vpnpassword, todosecret, privatekey, matrixuser, matrixserver, ... }:
 
-let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
-in
-
-{
-
-  networking.hostName = "minerva";
+let machine = "minerva"; in {
 
   imports = [
-    (import "${home-manager}/nixos")
+    (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     ../common/audio.nix
-    (import ../common/autologin.nix {inherit username;})
-    (import ../common/devel.nix {inherit pkgs;})
+    ../common/autologin.nix
+    ../common/devel.nix
     ../common/dhcp.nix
     ../common/flakes.nix
     ../common/fonts.nix
-    ../common/fonts.nix
     ../common/garbage.nix
-    (import ../common/hyprland.nix {inherit pkgs username;})
-    (import ../common/locale.nix {inherit timezone;})
+    ../common/hyprland.nix
+    ../common/locale.nix
     ../common/mount-drives.nix
     ../common/nfs.nix
+    ../common/nur.nix
     ../common/packages.nix
-    (import ../common/ssh.nix {inherit username sshkey sshport;})
-    (import ../common/syncthing.nix {inherit config pkgs username;})
-    (import ../common/user.nix {inherit config pkgs username fullname;})
-    (import ../common/ydotool.nix {inherit pkgs username;})
     ../common/packages-unfree.nix
+    ../common/ssh.nix
+    ../common/syncthing.nix
+    ../common/user.nix
+    ../common/ydotool.nix
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
-    (import ../scripts/vidyascape.nix {inherit pkgs;})
-    (import ../scripts/restic.nix {inherit pkgs;})
+    ../scripts/restic.nix
+    ../scripts/vidyascape.nix
+    ../scripts/xdb.nix
   ];
-  home-manager = {
-    backupFileExtension = "hm-bak";
-    users.${username} = {pkgs, ...}: {
-      imports = [
+  home-manager.users.${username} = {pkgs, ...}: { imports = [
         ../home/alacritty.nix
+        ../home/clipse.nix
         ../home/cursor.nix
         ../home/espanso.nix
         ../home/firefox.nix
-        (import ../home/fish.nix {inherit pkgs domain;})
-        (import ../home/git.nix {inherit fullname email;})
+        ../home/fish.nix
+        ../home/git.nix
         ../home/htop.nix
         ../home/hyprland.nix
-        (import ../home/iamb.nix {inherit matrixuser matrixserver;})
+        ../home/iamb.nix
         ../home/lf.nix
         ../home/mpv.nix
         ../home/neovim.nix
-        (import ../home/newsboat.nix {inherit pkgs domain username;})
-        (import ../home/rbw.nix {inherit pkgs domain email;})
-        (import ../home/ssh.nix {inherit domain username sshport privatekey;})
+        ../home/newsboat.nix
+        ../home/rbw.nix
+        ../home/ssh.nix
         ../home/tofi.nix
+        ../home/yt-dlp.nix
       ];
       home.stateVersion = "24.11";
-    };
   };
 
   # Hardware and system

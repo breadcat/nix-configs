@@ -1,49 +1,40 @@
 # HTPC
 
-{ config, pkgs, lib, domain, machine, username, fullname, sshkey, sshport, timezone, privatekey, ... }:
+{ config, pkgs, lib, fullname, username, domain, email, sshkey, sshport, timezone, postcode, address, htpasswd, vpnusername, vpnpassword, todosecret, privatekey, matrixuser, matrixserver, ... }:
 
-let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
-in
+let machine = "arcadia"; in {
 
-{
-
-  networking.hostName = "arcadia";
-
-  imports =
-    [
-      (import "${home-manager}/nixos") # Home-Manager
-      ../common/audio.nix
-      (import ../common/autologin.nix {inherit username;})
-      ../common/dhcp.nix
-      ../common/flakes.nix
-      ../common/fonts.nix
-      ../common/garbage.nix
-      (import ../common/emulators.nix {inherit pkgs;})
-      (import ../common/hyprland.nix {inherit pkgs username;})
-      (import ../common/kodi.nix {inherit pkgs username;})
-      (import ../common/locale.nix {inherit config pkgs timezone;})
-      ../common/mount-drives.nix
-      ../common/nfs.nix
-      ../common/packages.nix
-      (import ../common/ssh.nix {inherit username sshkey sshport privatekey;})
-      (import ../common/syncthing.nix {inherit config pkgs username;})
-      (import ../common/user.nix {inherit config pkgs username fullname;})
-      ../scripts/htpc-launcher.nix
+  imports = [
+    (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    ../common/audio.nix
+    ../common/autologin.nix
+    ../common/dhcp.nix
+    ../common/emulators.nix
+    ../common/flakes.nix
+    ../common/fonts.nix
+    ../common/garbage.nix
+    ../common/hyprland.nix
+    ../common/kodi.nix
+    ../common/locale.nix
+    ../common/mount-drives.nix
+    ../common/nfs.nix
+    ../common/packages.nix
+    ../common/ssh.nix
+    ../common/syncthing.nix
+    ../common/user.nix
+    ../scripts/htpc-launcher.nix
     ];
-  home-manager = {
-    backupFileExtension = "hm-bak";
-    users.${username} = { pkgs, ... }: {
-    imports = [
+  home-manager.users.${username} = {pkgs, ...}: { imports = [
       ../home/alacritty.nix
-      (import ../home/fish.nix {inherit pkgs domain;})
+      ../home/fish.nix
       ../home/hyprland.nix
-      (import ../home/kodi.nix {inherit username;})
-      (import ../home/rclone.nix {inherit domain username sshport privatekey;})
-      (import ../home/ssh.nix {inherit domain username sshport privatekey;})
+      ../home/kodi.nix
+      ../home/rclone.nix
+      ../home/ssh.nix
+      ../home/yt-dlp.nix
     ];
     home.stateVersion = "24.11";
-    };
   };
 
   # Hardware and system
