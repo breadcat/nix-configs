@@ -2,3 +2,4 @@ research
 
 # see variables.sample.nix
 variables.nix
+!common/variables.nix
