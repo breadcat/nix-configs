@@ -40,6 +40,7 @@ let machine = "minerva"; in {
         ../home/fish.nix
         ../home/git.nix
         ../home/htop.nix
+        ../home/hypridle.nix
         ../home/hyprland.nix
         ../home/iamb.nix
         ../home/lf.nix
