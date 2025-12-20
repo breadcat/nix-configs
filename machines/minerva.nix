@@ -29,6 +29,7 @@ in
     (import ../common/syncthing.nix {inherit config pkgs username;})
     (import ../common/user.nix {inherit config pkgs username fullname;})
     (import ../common/ydotool.nix {inherit pkgs username;})
+    ../common/packages-unfree.nix
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
     (import ../scripts/vidyascape.nix {inherit pkgs;})

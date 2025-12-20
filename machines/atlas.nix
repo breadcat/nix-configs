@@ -23,6 +23,7 @@ in
     (import ../common/locale.nix {inherit timezone;})
     ../common/mount-drives.nix
     ../common/nfs.nix
+    ../common/packages-unfree.nix
     ../common/packages.nix
     ../common/steam.nix
     (import ../common/ssh.nix {inherit username sshkey sshport;})
