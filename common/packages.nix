@@ -18,6 +18,5 @@
     syncthing
     tmux
     unzip
-    yt-dlp
   ];
 }
