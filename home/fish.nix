@@ -1,8 +1,4 @@
-{
-  pkgs,
-  domain,
-  ...
-}:
+{ pkgs, domain, ... }:
 
 {
   programs.fish = {
@@ -15,10 +11,10 @@
       mcd = "mkdir -p $argv[1] && cd $argv[1]";
       mergeinto = "rsync --progress --remove-source-files -av \"$argv[1]\" \"$argv[2]\" && find \"$argv[1]\" -empty -delete";
       vat = "math $argv + \"($argv * 0.2)\"";
+      ncdu = ''set arg (count $argv); if test $arg -eq 0; set argv .; end; "${pkgs.rclone}/bin/rclone" ncdu $argv'';
     };
-    loginShellInit = ''
+    shellInit = ''
       set fish_greeting # Disable greeting
-      set --erase fish_greeting # Disable greeting
       set -gx DOMAIN ${domain}
       set -gx EDITOR nvim
       set -gx EMAIL (whoami)@${domain}
@@ -30,11 +26,22 @@
       empties = "find . -maxdepth 3 -mount -not -path \"*/\.*\" -empty -print";
       extract = "${pkgs.atool}/bin/aunpack";
       jdupes = "jdupes -A"; # exclude hidden files
-      ncdu = "${pkgs.rclone}/bin/rclone ncdu";
       vaultedit = "find \"$SYNCDIR\" -maxdepth 5 -type f -not -path \"\*/\.git\" | ${pkgs.fzf}/bin/fzf --preview \"cat {}\" --layout reverse | xargs -r -I{} \"$EDITOR\" {}";
       week = "date +%V";
     };
-    #    binds = {
+    interactiveShellInit = ''
+      set -g fish_greeting
+      function fish_prompt
+      echo
+      set_color green
+      echo (dirs)
+      set_color normal
+      printf "❯ "
+      end
+    '';
+
+
+#    binds = {
     #      "ctrl-h".command = "backward-kill-path-component";
     #      "ctrl-backspace".command = "kill-word";
     #    };
