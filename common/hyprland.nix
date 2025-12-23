@@ -9,6 +9,7 @@
     swayimg
     tofi
     wl-clipboard
+    xdg-utils
   ];
   programs.hyprland.enable = true;
   users.users.${username}.extraGroups = ["seat" "video"];
