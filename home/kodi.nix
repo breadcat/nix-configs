@@ -35,6 +35,11 @@
           "homemenunovideosbutton" = "true";
           "homemenunotvbutton" = "true";
           };
+	"service.subtitles.a4ksubtitles" = { # all require API keys
+	  "opensubtitles.enabled" = "false";
+	  "subsource.enabled" = "false";
+	  "subdl.enabled" = "false";
+	  };
         };
       sources = {
         video = {
