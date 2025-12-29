@@ -1,54 +1,56 @@
 { config, pkgs, ... }:
 
-let
-  nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { inherit pkgs; };
-in
 {
-  # Enable Firefox via Home Manager
   programs.firefox = {
     enable = true;
-    languagePacks = [ "en-GB" ];
 
-    profiles.default = {
-      name = "default";
-      isDefault = true;
+    profiles = {
+      default = {
+        id = 0;
+        name = "default";
+        isDefault = true;
 
-      extensions.packages = with nur.repos.rycee.firefox-addons; [
-        ublock-origin
-        cookie-autodelete
-        new-tab-override
-      ];
+        settings = {
+          "browser.aboutConfig.showWarning" = false;
+          "browser.ml.linkPreview.enabled" = false; # long press link previews
+          "browser.newtab.extensionControlled" = true; # don't warn new tab page has changed
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false; # recommend extensions while I browse
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false; # recommend features while I browse
+          "browser.startup.homepage" = "https://breadcat.github.io/startpage/";
+          "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+          "general:autoScroll" = true; # middle mouse page scroll instead of paste
+        };
 
-      settings = {
-        "browser.aboutConfig.showWarning" = false;
-        "browser.gesture.swipe.left" = "cmd_scrollLeft";
-        "browser.gesture.swipe.right" = "cmd_scrollRight";
-        "browser.startup.homepage" = "https://breadcat.github.io/startpage/";
-        "browser.theme.content-theme" = "0"; # Dark theme
-        "browser.theme.toolbar-theme" = "0"; # Dark theme
-        "browser.toolbars.bookmarks.visibility" = "never";
-        "extensions.pocket.enabled" = false;
-        "general:autoScroll" = true;
-        "layout.css.prefers-color-scheme.content-override" = "0"; # Dark CSS themes
-        "network.cookie.cookieBehavior" = 1; # Block third-party cookies
-        "privacy.donottrackheader.enabled" = true;
+        extensions = {
+          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            cookie-autodelete
+            new-tab-override
+            ublock-origin
+          ];
+
+        };
+
       };
     };
 
     policies = {
-      DisableTelemetry = true;
+      DisableFirefoxAccounts = true;
+      DisableFirefoxStudies = true;
       DisablePocket = true;
-      EnableTrackingProtection = {
-        Value = true;
-        Locked = true;
-        Cryptomining = true;
-        Fingerprinting = true;
-      };
+      DisableTelemetry = true;
     };
   };
 
-home.sessionVariables = {
-	BROWSER = "firefox";
-	MOZ_ENABLE_WAYLAND = 1;
-};
+  home.sessionVariables = {
+    BROWSER = "firefox";
+    MOZ_ENABLE_WAYLAND = 1;
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = ["firefox.desktop"];
+    "text/xml" = ["firefox.desktop"];
+    "x-scheme-handler/http" = ["firefox.desktop"];
+    "x-scheme-handler/https" = ["firefox.desktop"];
+  };
+
 }
