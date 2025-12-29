@@ -94,7 +94,6 @@ let machine = "ilias"; in {
     python3
     qpdf
     sqlite
-    unrar
   ];
 
   system.stateVersion = "24.11";
