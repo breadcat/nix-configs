@@ -22,7 +22,7 @@
 	printf "Drawing graph... "
 	weight_rawdata="$(awk '/<pre>/{flag=1; next} /<\/pre>/{flag=0} flag' "$weight_filename" | sort -u)"
 	weight_dateinit="$(awk '/date:/ {print $2}' "$weight_filename")"
-	grep "^$(date +%Y)-" <<<"$weight_rawdata" >temp.dat
+	grep "^2[0-9]\{3\}-" <<<"$weight_rawdata" >temp.dat
 	${pkgs.gnuplot}/bin/gnuplot <<-EOF
 		set grid
 		set datafile separator comma
