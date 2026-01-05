@@ -13,6 +13,7 @@ let machine = "ilias"; in {
     ../common/locale.nix
     ../common/mount-drives.nix
     ../common/networking.nix
+    ../common/taggart.nix
     ../common/nfs-server.nix
     ../common/packages.nix
     ../common/ssh.nix

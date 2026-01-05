@@ -13,5 +13,4 @@
     # web
     hugo
   ];
-  # networking.firewall.allowedTCPPorts = [ 8080 ]; # nixos-firewall-tool open tcp 8080
 }
