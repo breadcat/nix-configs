@@ -18,11 +18,17 @@
 
     environment = {
       HOME = "/home/${username}";
-      # PATH = "${pkgs.go}/bin:${pkgs.git}/bin:/run/current-system/sw/bin";
       GOPATH = "/home/${username}/go";
     };
 
-    path = [ pkgs.go pkgs.git pkgs.gcc ];
+    path = with pkgs; [
+      ffmpeg
+      gcc
+      git
+      go
+      yt-dlp
+    ];
+
   };
 
   # Open firewall port
