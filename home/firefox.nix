@@ -16,8 +16,10 @@
           "browser.newtab.extensionControlled" = true; # don't warn new tab page has changed
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false; # recommend extensions while I browse
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false; # recommend features while I browse
+          "browser.startup.couldRestoreSession.count" = "-1" # restore tabs on startup banner
           "browser.startup.homepage" = "https://breadcat.github.io/startpage/";
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+          "extensions.autoDisableScopes" = 0; # enable extensions by default
           "general:autoScroll" = true; # middle mouse page scroll instead of paste
         };
 
