@@ -9,6 +9,7 @@ let machine = "minerva"; in {
     (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     ../common/audio.nix
     ../common/autologin.nix
+    ../common/boot-grub.nix
     ../common/devel.nix
     ../common/flakes.nix
     ../common/fonts.nix
@@ -56,15 +57,8 @@ let machine = "minerva"; in {
   };
 
   # Hardware and system
-  boot = {
-    initrd = { availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" ]; };
-    kernelModules = [ "kvm-intel" ];
-    loader.grub = {
-      enable = true;
-      device = "/dev/sda";
-      useOSProber = true;
-    };
-  };
+  boot.initrd = { availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" ]; };
+  boot.kernelModules = [ "kvm-intel" ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

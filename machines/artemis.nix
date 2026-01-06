@@ -7,6 +7,7 @@ let machine = "artemis"; in {
   imports = [
     (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    ../common/boot-systemd.nix
     ../common/docker.nix
     ../common/flakes.nix
     ../common/garbage.nix
@@ -38,13 +39,7 @@ let machine = "artemis"; in {
   };
 
   # Hardware and system
-  boot = {
-    initrd = { availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" ]; };
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-  };
+  boot.initrd = { availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" ]; };
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
   # Cron jobs

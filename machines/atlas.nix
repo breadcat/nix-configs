@@ -9,6 +9,7 @@ let machine = "atlas"; in {
     (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     ../common/audio.nix
     ../common/autologin.nix
+    ../common/boot-systemd.nix
     ../common/devel.nix
     ../common/flakes.nix
     ../common/fonts.nix
@@ -61,14 +62,7 @@ let machine = "atlas"; in {
     };
 
   # Hardware and system
-  boot = {
-    initrd = { availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; };
-    kernelModules = [ "kvm-intel" ];
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-  };
+  boot.initrd = { availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; };
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

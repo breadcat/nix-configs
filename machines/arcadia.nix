@@ -9,6 +9,7 @@ let machine = "arcadia"; in {
     (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     ../common/audio.nix
     ../common/autologin.nix
+    ../common/boot-systemd.nix
     ../common/emulators.nix
     ../common/flakes.nix
     ../common/fonts.nix
@@ -37,14 +38,7 @@ let machine = "arcadia"; in {
   };
 
   # Hardware and system
-  boot = {
-    initrd = { availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; };
-    kernelModules = [ "kvm-intel" ];
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-  };
+  boot.initrd = { availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
