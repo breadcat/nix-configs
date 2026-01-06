@@ -6,7 +6,7 @@
     enable = true;
     ports = [ sshport ];
     settings.PasswordAuthentication = false;
-    };
+  };
   # Fail2ban service
   services.fail2ban.enable = true;
   # Import SSH key
