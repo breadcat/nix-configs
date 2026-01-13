@@ -21,7 +21,6 @@ let machine = "minerva"; in {
     ../common/nfs.nix
     ../common/nur.nix
     ../common/packages.nix
-    ../common/packages-unfree.nix
     ../common/ssh.nix
     ../common/syncthing.nix
     ../common/user.nix
