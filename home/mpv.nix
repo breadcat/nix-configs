@@ -10,19 +10,16 @@
       ytdl-raw-options = "sub-format=en,write-srt=";
       ytdl-format = "bestvideo[height<=?480][fps<=?30]+bestaudio/best";
     };
-    scripts = with pkgs.mpvScripts; [
-      sponsorblock-minimal
-    ];
+    scripts = with pkgs.mpvScripts; [ sponsorblock-minimal ];
 
-    profiles = {
-      "extension.gif" = { loop-file = "inf"; };
-      "extension.webm" = { loop-file = "inf"; };
-      "extension.jpg" = { pause = "yes"; };
-      "extension.jpeg" = { pause = "yes"; };
-      "extension.webp" = { pause = "yes"; };
-      "extension.png" = { pause = "yes"; };
-      "extension.avif" = { pause = "yes"; };
-      };
+    profiles = builtins.listToAttrs (
+      map (ext: { name = "extension.${ext}"; value = { loop-file = "inf"; }; })
+      [ "gif" "webm" ]
+      ++
+      map (ext: { name = "extension.${ext}"; value = { pause = "yes"; }; })
+      [ "jpg" "jpeg" "webp" "png" "avif" ]
+    );
+
     bindings = {
       "-" = "add volume -5";
       "=" = "add volume 5";
