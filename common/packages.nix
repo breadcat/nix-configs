@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
+
   environment.systemPackages = with pkgs; [
     fastfetch
     ffmpeg
@@ -18,4 +19,13 @@
     tmux
     unzip
   ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "posy-cursors"
+    "spotify"
+    "steam"
+    "steam-unwrapped"
+    "unrar"
+  ];
+
 }
