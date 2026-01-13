@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   retroarchWithCores = (
@@ -30,4 +30,9 @@ let
 in
 {
   environment.systemPackages = [ retroarchWithCores ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "libretro-genesis-plus-gx"
+    "libretro-snes9x"
+  ];
 }
