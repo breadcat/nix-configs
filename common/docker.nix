@@ -179,7 +179,7 @@
         image = "vikunja/vikunja";
         labels = { "caddy" = "todo.${domain}"; "caddy.reverse_proxy" = "{{upstreams 3456}}"; };
         networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/vikunja:/db" ];
+        volumes = [ "/home/${username}/docker/vikunja/db:/db" "/home/${username}/docker/vikunja/files:/app/vikunja/files" ];
         };
 
       watchtower = {
