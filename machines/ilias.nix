@@ -31,6 +31,7 @@ let machine = "ilias"; in {
     ../scripts/blog-weight.nix
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
+    ../scripts/duplicate-filenames.nix
     ../scripts/overtid.nix
     ../scripts/payslips.nix
     ../scripts/phone-dump.nix
