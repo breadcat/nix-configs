@@ -7,6 +7,9 @@
     extraGroups = [ "networkmanager" "wheel" "video" "input" ];
   };
 
-  # Enable fish shell
+  # Enable fish shell, and for nix-shell
   programs.fish.enable = true;
+  programs.fish.interactiveShellInit = ''
+    ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+  '';
 }
