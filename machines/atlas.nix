@@ -22,6 +22,7 @@ let machine = "atlas"; in {
     ../common/nur.nix
     ../common/packages-unfree.nix
     ../common/packages.nix
+    ../common/scanning.nix
     ../common/ssh.nix
     ../common/steam.nix
     ../common/syncthing.nix
