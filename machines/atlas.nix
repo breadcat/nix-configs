@@ -20,7 +20,6 @@ let machine = "atlas"; in {
     ../common/networking.nix
     ../common/nfs.nix
     ../common/nur.nix
-    ../common/packages-unfree.nix
     ../common/packages.nix
     ../common/scanning.nix
     ../common/ssh.nix
@@ -77,7 +76,6 @@ let machine = "atlas"; in {
   # Packages
   environment.systemPackages = with pkgs; [
     ntfs3g
-    glib
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
