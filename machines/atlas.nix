@@ -37,30 +37,31 @@ let machine = "atlas"; in {
     ../scripts/xdb.nix
   ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
-        ../home/alacritty.nix
-        ../home/clipse.nix
-        ../home/cursor.nix
-        ../home/espanso.nix
-        ../home/firefox.nix
-        ../home/fish.nix
-        ../home/git.nix
-        ../home/htop.nix
-        ../home/hypridle.nix
-        ../home/hyprland.nix
-        ../home/hyprland-numlock.nix
-        ../home/iamb.nix
-        ../home/lf.nix
-        ../home/mpv.nix
-        ../home/neovim.nix
-        ../home/newsboat.nix
-        ../home/rbw.nix
-        ../home/rclone.nix
-        ../home/ssh.nix
-        ../home/tofi.nix
-        ../home/yt-dlp.nix
-      ];
-      home.stateVersion = "24.11";
-    };
+    ../home/alacritty.nix
+    ../home/clipse.nix
+    ../home/cursor.nix
+    ../home/espanso.nix
+    ../home/firefox.nix
+    ../home/fish.nix
+    ../home/git.nix
+    ../home/htop.nix
+    ../home/hypridle.nix
+    ../home/hyprland-numlock.nix
+    ../home/hyprland.nix
+    ../home/iamb.nix
+    ../home/keyring.nix
+    ../home/lf.nix
+    ../home/mpv.nix
+    ../home/neovim.nix
+    ../home/newsboat.nix
+    ../home/rbw.nix
+    ../home/rclone.nix
+    ../home/ssh.nix
+    ../home/tofi.nix
+    ../home/yt-dlp.nix
+  ];
+  home.stateVersion = "24.11";
+};
 
   # Hardware and system
   boot.initrd = { availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; };
