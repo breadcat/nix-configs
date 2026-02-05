@@ -26,15 +26,6 @@
     backend = "docker";
     containers = {
 
-      anchor = {
-        autoStart = true;
-        dependsOn = [ "caddy" ];
-        image = "ghcr.io/zhfahim/anchor";
-        labels = { "caddy" = "notes.${domain}"; "caddy.reverse_proxy" = "{{upstreams 3000}}"; };
-        networks = [ "proxy" ];
-        volumes = [ "/home/${username}/docker/anchor:/data" ];
-        };
-
       baikal = {
         autoStart = true;
         dependsOn = [ "caddy" ];
