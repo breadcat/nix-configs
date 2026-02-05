@@ -14,12 +14,13 @@ let machine = "ilias"; in {
     ../common/locale.nix
     ../common/mount-drives.nix
     ../common/networking.nix
-    ../common/taggart.nix
     ../common/nfs-server.nix
     ../common/packages.nix
     ../common/ssh.nix
     ../common/ssh-tunnel.nix
+    ../common/stromboli.nix
     ../common/syncthing.nix
+    ../common/taggart.nix
     ../common/user.nix
     ../common/zram.nix
     ../scripts/audiobook-cleaner.nix
