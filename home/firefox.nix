@@ -20,7 +20,7 @@
           "browser.startup.homepage" = "https://breadcat.github.io/startpage/";
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
           "extensions.autoDisableScopes" = 0; # enable extensions by default
-          "general:autoScroll" = true; # middle mouse page scroll instead of paste
+          "general.autoScroll" = true; # middle mouse page scroll instead of paste
           "media.videocontrols.picture-in-picture.enabled" = false; # disable pip entirely
           "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # disable pip popup
         };
