@@ -43,12 +43,12 @@ let machine = "atlas"; in {
     ../home/firefox.nix
     ../home/fish.nix
     ../home/git.nix
+    ../home/github-desktop.nix
     ../home/htop.nix
     ../home/hypridle.nix
     ../home/hyprland-numlock.nix
     ../home/hyprland.nix
     ../home/iamb.nix
-    ../home/keyring.nix
     ../home/lf.nix
     ../home/mpv.nix
     ../home/neovim.nix
