@@ -31,6 +31,7 @@ let machine = "atlas"; in {
     ../scripts/duupmove.nix
     ../scripts/restic.nix
     ../scripts/seedy.nix
+    ../scripts/taudiobooker.nix
     ../scripts/vidyascape.nix
     ../scripts/xdb.nix
   ];

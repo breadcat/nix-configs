@@ -40,6 +40,7 @@ let machine = "ilias"; in {
     ../scripts/startpage-sort.nix
     ../scripts/tank-log.nix
     ../scripts/tank-sort.nix
+    ../scripts/taudiobooker.nix
     ../scripts/watchedlist.nix
     ../scripts/xdb.nix
     ../scripts/youtube-id-rss.nix
