@@ -20,7 +20,7 @@ let machine = "ilias"; in {
     ../common/ssh-tunnel.nix
     ../common/stromboli.nix
     ../common/syncthing.nix
-    ../common/taggart.nix
+    ../common/tagliatelle.nix
     ../common/user.nix
     ../common/zram.nix
     ../scripts/audiobook-cleaner.nix

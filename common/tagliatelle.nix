@@ -2,15 +2,15 @@
 
 {
   # Systemd service
-  systemd.services.taggart = {
-    description = "Taggart Go Application";
+  systemd.services.tagliatelle = {
+    description = "Tagliatelle Go Application";
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
 
     serviceConfig = {
       Type = "simple";
       User = "${username}";
-      WorkingDirectory = "/home/${username}/vault/src/taggart";
+      WorkingDirectory = "/home/${username}/vault/src/tagliatelle";
       ExecStart = "${pkgs.go}/bin/go run .";
       Restart = "on-failure";
       RestartSec = "5s";
