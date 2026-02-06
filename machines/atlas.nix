@@ -27,7 +27,6 @@ let machine = "atlas"; in {
     ../common/syncthing.nix
     ../common/user.nix
     ../common/ydotool.nix
-    ../common/zram.nix
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
     ../scripts/restic.nix

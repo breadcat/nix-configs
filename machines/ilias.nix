@@ -22,7 +22,6 @@ let machine = "ilias"; in {
     ../common/syncthing.nix
     ../common/tagliatelle.nix
     ../common/user.nix
-    ../common/zram.nix
     ../scripts/audiobook-cleaner.nix
     ../scripts/backup-local.nix
     ../scripts/blog-music.nix
