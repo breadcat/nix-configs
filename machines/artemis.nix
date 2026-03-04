@@ -24,6 +24,7 @@ let machine = "artemis"; in {
     ../scripts/magnets.nix
     ../scripts/restic.nix
     ../scripts/stagit-generate.nix
+    ../scripts/taudiobooker.nix
   ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
         ../home/fish.nix
