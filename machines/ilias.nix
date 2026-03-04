@@ -14,14 +14,14 @@ let machine = "ilias"; in {
     ../common/locale.nix
     ../common/mount-drives.nix
     ../common/networking.nix
-    ../common/nfs-server.nix
     ../common/packages.nix
     ../common/roles/navidrome.nix
+    ../common/roles/nfs-server.nix
+    ../common/roles/stromboli.nix
+    ../common/roles/tagliatelle.nix
     ../common/ssh.nix
     ../common/ssh-tunnel.nix
-    ../common/stromboli.nix
     ../common/syncthing.nix
-    ../common/tagliatelle.nix
     ../common/user.nix
     ../scripts/audiobook-cleaner.nix
     ../scripts/backup-local.nix
