@@ -4,7 +4,7 @@ let
   backup-cloud = pkgs.writeShellScriptBin "backup-cloud" ''
       # variables
       directories=( "$HOME/docker/" "$HOME/vault/" )
-      excludes=( "*.jpg" "*.jpeg" "*.mp4" "*.webm" "*.mkv" )
+      excludes=( "*.flac" "*.jpg" "*.jpeg" "*.mp4" "*.webm" "*.mkv")
       exclude_args=()
       for ext in "''${excludes[@]}"; do
         exclude_args+=("--exclude=$ext")
