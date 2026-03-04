@@ -15,6 +15,7 @@ let machine = "ilias"; in {
     ../common/mount-drives.nix
     ../common/networking.nix
     ../common/packages.nix
+    ../common/roles/gnocchi.nix
     ../common/roles/navidrome.nix
     ../common/roles/nfs-server.nix
     ../common/roles/stromboli.nix
