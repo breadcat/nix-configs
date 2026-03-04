@@ -16,6 +16,7 @@ let machine = "ilias"; in {
     ../common/networking.nix
     ../common/nfs-server.nix
     ../common/packages.nix
+    ../common/roles/navidrome.nix
     ../common/ssh.nix
     ../common/ssh-tunnel.nix
     ../common/stromboli.nix
@@ -46,6 +47,7 @@ let machine = "ilias"; in {
     ../scripts/youtube-id-rss.nix
   ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
+        ../home/beets.nix
         ../home/fish.nix
         ../home/git.nix
         ../home/htop.nix
