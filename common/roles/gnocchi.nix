@@ -22,7 +22,7 @@
     };
 
     path = with pkgs; [
-      ffmpeg
+      "/run/current-system/sw" # find blog-weight script here
       gcc
       go
     ];
