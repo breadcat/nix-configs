@@ -5,6 +5,7 @@
     enable = true;
     config = {
       volume = 50; # initial volume
+      target-colorspace-hint = "no"; # fullscreen/windowed brightness issues
       audio-display = "no";
       sub-auto = "fuzzy";
       ytdl-raw-options = "sub-format=en,write-srt=";
