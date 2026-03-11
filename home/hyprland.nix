@@ -153,6 +153,8 @@
           "SUPER SHIFT, 0, movetoworkspace, 10"
           "SUPER, mouse_down, workspace, e+1"
           "SUPER, mouse_up, workspace, e-1"
+          ", Print, exec, grim"
+          "ALT, Print, exec, grim -g ''\"$(slurp)\""
         ];
 
         bindm = [

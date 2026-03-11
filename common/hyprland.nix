@@ -2,10 +2,12 @@
 
 {
   environment.systemPackages = with pkgs; [
+    grim
     hyprcursor
     hypridle
     hyprland
     seatd
+    slurp
     swayimg
     tofi
     wl-clipboard
