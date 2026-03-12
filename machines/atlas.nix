@@ -53,6 +53,7 @@ let machine = "atlas"; in {
     ../home/mpv.nix
     ../home/neovim.nix
     ../home/newsboat.nix
+    ../home/qutebrowser.nix
     ../home/rbw.nix
     ../home/rclone.nix
     ../home/ssh.nix
