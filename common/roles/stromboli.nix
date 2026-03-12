@@ -11,11 +11,11 @@
       Type = "simple";
       User = "${username}";
       WorkingDirectory = "/home/${username}/vault/src/stromboli";
-      ExecStart = "${pkgs.go}/bin/go run . -d /tank/media/videos/ -p 80";
+      ExecStart = "${pkgs.go}/bin/go run . -d /tank/media/videos/ -p 8080";
       Restart = "on-failure";
       RestartSec = "5s";
-      AmbientCapabilities = "cap_net_bind_service";
-      CapabilityBoundingSet = "cap_net_bind_service";
+      # AmbientCapabilities = "cap_net_bind_service";
+      # CapabilityBoundingSet = "cap_net_bind_service";
     };
 
     environment = {
@@ -30,8 +30,5 @@
     ];
 
   };
-
-  # Open firewall port
-  networking.firewall.allowedTCPPorts = [ 80 ];
 
 }

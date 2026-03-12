@@ -29,7 +29,4 @@
 
   };
 
-  # Open firewall port
-  networking.firewall.allowedTCPPorts = [ 9090 ];
-
 }
