@@ -33,7 +33,6 @@ let machine = "atlas"; in {
     ../scripts/seedy.nix
     ../scripts/taudiobooker.nix
     ../scripts/vidyascape.nix
-    ../scripts/xdb.nix
   ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
     ../home/alacritty.nix

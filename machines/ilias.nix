@@ -45,7 +45,6 @@ let machine = "ilias"; in {
     ../scripts/tank-sort.nix
     ../scripts/taudiobooker.nix
     ../scripts/watchedlist.nix
-    ../scripts/xdb.nix
     ../scripts/youtube-id-rss.nix
   ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
