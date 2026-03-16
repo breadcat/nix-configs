@@ -11,7 +11,7 @@
       Type = "simple";
       User = "${username}";
       WorkingDirectory = "/home/${username}/vault/src/tagliatelle";
-      ExecStart = "${pkgs.go}/bin/go run .";
+      ExecStart = "${pkgs.go}/bin/go run . -d /tank/.x/tagliatelle -p 9816";
       Restart = "on-failure";
       RestartSec = "5s";
     };
