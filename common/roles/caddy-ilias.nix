@@ -1,5 +1,11 @@
 { config, lib, pkgs, ... }:
 
+# OpenWRT setup for custom LAN domain names:
+# uci add_list dhcp.@dnsmasq[0].rebind_domain='lan'
+# uci add_list dhcp.@dnsmasq[0].address='/example.lan/192.168.1.3'
+# uci commit dhcp
+# service dnsmasq restart
+
 let
   services = {
     music  = { host = "127.0.0.1"; port = 4533; };
@@ -20,7 +26,7 @@ in
   services.caddy = {
     enable = true;
     virtualHosts = (lib.mapAttrs' mkVirtualHost services) // {
-      "http://192.168.1.3:80" = {
+      "http://192.168.1.3" = {
         extraConfig = ''
           reverse_proxy 127.0.0.1:8080
         '';
