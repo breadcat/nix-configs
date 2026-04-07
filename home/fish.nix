@@ -22,6 +22,7 @@
       set -gx VISUAL $EDITOR
     '';
     shellAliases = {
+      cdv = "cd $HOME/vault/";
       crypto-sum = "${pkgs.rbw}/bin/rbw get 'crypto purchases' | awk '/^20/ {print $2}' | paste -sd+ | math";
       empties = "find . -maxdepth 3 -mount -not -path \"*/\.*\" -empty -print";
       extract = "${pkgs.atool}/bin/aunpack";
