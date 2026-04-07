@@ -42,10 +42,12 @@
 		sed 's/ - .... Remastered Version$//g' |
 		sed 's/ - feat.*$//g' |
 		sed 's/ - Live$//g' |
+		sed 's/ - Single$//g' |
 		sed 's/ - Original Mix$//g' |
 		sed 's/ - Remaster$//g' |
 		sed 's/ - Remastered ....$//g' |
 		sed 's/ - Remastered$//g' |
+		sed 's/ - Radio Version$//g' |
 		sed 's/ - Remastered Version$//g' |
 		sed 's/ (.... Remaster)$//g' |
 		sed 's/ (feat.*)$//g' |
@@ -67,7 +69,6 @@
 	echo -n "Deleting temporary files... "
 	rm temp.{artists,tracks,links}.log
 	echo -e "\e[32mdone\e[39m"
-	
   '';
 in {
   environment.systemPackages = [blog-music];
