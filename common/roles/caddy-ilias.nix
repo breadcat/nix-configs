@@ -8,7 +8,6 @@
 
 let
   services = {
-    music  = { host = "127.0.0.1"; port = 4533; };
     stream = { host = "127.0.0.1"; port = 8080; };
     weight = { host = "127.0.0.1"; port = 9090; };
   };
