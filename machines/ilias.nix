@@ -16,6 +16,7 @@ let machine = "ilias"; in {
     ../common/networking.nix
     ../common/packages.nix
     ../common/roles/caddy-${machine}.nix
+    ../common/roles/bruschetta.nix
     ../common/roles/gnocchi.nix
     ../common/roles/nfs-server.nix
     ../common/roles/stromboli.nix
