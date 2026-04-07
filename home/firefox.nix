@@ -12,6 +12,7 @@
 
         settings = {
           "browser.aboutConfig.showWarning" = false;
+          "browser.toolbars.bookmarks.visibility" = "never";
           "browser.ml.linkPreview.enabled" = false; # long press link previews
           "browser.tabs.groups.enabled" = false;
           "browser.newtab.extensionControlled" = true; # don't warn new tab page has changed
