@@ -9,6 +9,8 @@ let
 	# variables
 	temp_mount="$(mktemp -d)"
 	rclone_remote="seedbox:"
+	extensions="mp4,m4v,mkv"
+	state_file="/tmp/tank-sort.cache"
 	destination_tvshows="/tank/media/videos/television"
 	template_tvshows="{{ .Name }}/{{ .Name }} S{{ printf \"%02d\" .Season }}E{{ printf \"%02d\" .Episode }}{{ if ne .ExtraEpisode -1 }}-{{ printf \"%02d\" .ExtraEpisode }}{{end}}.{{ .Ext }}"
 	destination_movies="/tank/media/videos/movies"
@@ -25,6 +27,26 @@ let
 	  fi
 	}
 	trap cleanup EXIT
+
+	# check for changes on remote
+	current_hash="$(${pkgs.rclone}/bin/rclone lsjson "$rclone_remote" \
+	  --include "*.{''${extensions}}" \
+	  | ${pkgs.jq}/bin/jq -S '.[] | {Path, Size, ModTime}' \
+	  | sort \
+	  | sha256sum | cut -d' ' -f1)"
+	if [ -f "$state_file" ]; then
+	  previous_hash="$(cat "$state_file")"
+	else
+	  previous_hash=""
+	fi
+
+	if [ "$current_hash" = "$previous_hash" ]; then
+	  echo "No changes detected in remote. Exiting."
+	  exit 0
+	fi
+
+	echo "Changes detected. Proceeding..."
+	echo "$current_hash" > "$state_file"
 
 	# mount remote
 	echo "Mounting rclone remote..."
@@ -62,7 +84,7 @@ let
 	  --movie-template "$template_movies" \
 	  --recursive \
 	  --overwrite-if-larger \
-	  --extensions "mp4,m4v,mkv" \
+	  --extensions "$extensions" \
 	  "$temp_mount"
 
 	echo "Media sort completed successfully"
