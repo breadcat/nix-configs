@@ -87,6 +87,9 @@ let
 	  --extensions "$extensions" \
 	  "$temp_mount"
 
+	# git tank logger
+	tank-log
+
 	echo "Media sort completed successfully"
   '';
 in {

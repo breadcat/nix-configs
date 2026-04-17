@@ -76,7 +76,6 @@ let machine = "ilias"; in {
       enable = true;
       systemCronJobs = [
         "0 */4 * * *  ${username} . /etc/profile; tank-sort"
-        "5 */4 * * *  ${username} . /etc/profile; tank-log"
         "0 */12 * * * ${username} backup-cloud"
       ];
     };
