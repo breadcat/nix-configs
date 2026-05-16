@@ -31,10 +31,6 @@
         type = "alias";
         remote = "/tank/media";
         };
-      myrient.config = {
-        type = "http";
-        url = "https://myrient.erista.me/files/";
-        };
       };
     };
 }
