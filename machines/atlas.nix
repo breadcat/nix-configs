@@ -32,7 +32,7 @@ let machine = "atlas"; in {
     ../scripts/restic.nix
     ../scripts/seedy.nix
     ../scripts/taudiobooker.nix
-    ../scripts/vidyascape.nix
+    ../scripts/vidyaplace.nix
   ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
     ../home/alacritty.nix
