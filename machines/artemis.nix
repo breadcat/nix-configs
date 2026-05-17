@@ -9,6 +9,7 @@ let machine = "artemis"; in {
     (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
     ../common/boot-systemd.nix
     ../common/docker.nix
+    ../common/docker-webdev.nix
     ../common/flakes.nix
     ../common/garbage.nix
     ../common/locale.nix
