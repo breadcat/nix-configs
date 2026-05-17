@@ -114,9 +114,9 @@
 
         bind = [
           "SUPER, R, exec, tofi-run | xargs hyprctl dispatch exec --"
-          "SUPER, W, exec, firefox"
+          "SUPER, W, exec, chromium"
           "SUPER, T, exec, alacritty"
-          "SUPER_SHIFT, W, exec, firefox -private-window"
+          "SUPER_SHIFT, W, exec, chromium --incognito"
           "ALT, Tab, cyclenext"
           "ALT SHIFT, Tab, cyclenext, prev"
           "SUPER, RETURN, exec, alacritty"
