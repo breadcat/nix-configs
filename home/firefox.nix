@@ -48,7 +48,7 @@
   };
 
   home.sessionVariables = {
-    BROWSER = "firefox";
+#    BROWSER = "firefox";
     MOZ_ENABLE_WAYLAND = 1;
   };
 
