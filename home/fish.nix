@@ -26,6 +26,7 @@
       crypto-sum = "${pkgs.rbw}/bin/rbw get 'crypto purchases' | awk '/^20/ {print $2}' | paste -sd+ | math";
       empties = "find . -maxdepth 3 -mount -not -path \"*/\.*\" -empty -print";
       extract = "${pkgs.atool}/bin/aunpack";
+      fullpath = "printf '%s\n' $PWD/*";
       jdupes = "jdupes -A"; # exclude hidden files
       vaultedit = "find \"$SYNCDIR\" -maxdepth 5 -type f -not -path \"\*/\.git\" | ${pkgs.fzf}/bin/fzf --preview \"cat {}\" --layout reverse | xargs -r -I{} \"$EDITOR\" {}";
       week = "date +%V";
