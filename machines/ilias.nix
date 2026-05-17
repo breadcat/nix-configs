@@ -48,7 +48,6 @@ let machine = "ilias"; in {
     ../scripts/youtube-id-rss.nix
   ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
-        ../home/beets.nix
         ../home/fish.nix
         ../home/git.nix
         ../home/htop.nix
