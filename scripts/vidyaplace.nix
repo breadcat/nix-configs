@@ -1,16 +1,17 @@
 { pkgs, ... }:
 
 let
-  vidyascape = pkgs.buildFHSEnv {
-    name = "vidyascape";
+  vidyaplace = pkgs.buildFHSEnv {
+    name = "vidyaplace";
     targetPkgs = pkgs: [
       pkgs.jdk8
       pkgs.curl
       pkgs.gnused
     ];
-    runScript = pkgs.writeShellScript "vidyascape-inner" ''
+    runScript = pkgs.writeShellScript "vidyaplace-inner" ''
       # variables
-      launcher_uri="https://vidyascape.org/files/vidyascape_launcher.jar"
+      # launcher_uri="https://vidyaplace.org/files/vidyaplace_launcher.jar"
+      launcher_uri="https://vidyaplace.org/files/client/vidyaplace.jar"
       config_file="$HOME/.vscape2/settings.ini"
       declare -a configs=(
         "dropPosition=2"
@@ -27,6 +28,7 @@ let
         "rememberCredentials=true"
         "rememberWorld=true"
         "sizeMode=RESIZABLE"
+        "disableLoginResize=false"
       )
 
       # launcher binary
@@ -56,5 +58,5 @@ let
   };
 
 in {
-  environment.systemPackages = [ vidyascape ];
+  environment.systemPackages = [ vidyaplace ];
 }

@@ -28,7 +28,7 @@ let machine = "minerva"; in {
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
     ../scripts/restic.nix
-    ../scripts/vidyascape.nix
+    ../scripts/vidyaplace.nix
   ];
   home-manager.users.${username} = {pkgs, ...}: { imports = [
         ../home/alacritty.nix
