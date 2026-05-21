@@ -10,7 +10,6 @@ let machine = "arcadia"; in {
     ../common/audio.nix
     ../common/autologin.nix
     ../common/boot-systemd.nix
-    ../common/emulators.nix
     ../common/flakes.nix
     ../common/fonts.nix
     ../common/garbage.nix
@@ -32,6 +31,7 @@ let machine = "arcadia"; in {
       ../home/hyprland.nix
       ../home/kodi.nix
       ../home/rclone.nix
+      ../home/retroarch.nix
       ../home/ssh.nix
       ../home/yt-dlp.nix
     ];
