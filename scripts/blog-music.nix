@@ -5,30 +5,41 @@
 }: let
   blog-music = pkgs.writeShellScriptBin "blog-music" ''
     # variables
-	post="$HOME/vault/src/blog.${domain}/content/music.md"
-	header="$(grep -v \| "$post")"
 	# functions
     function lastmod {
       echo -n "Amending lastmod value... "
       mod_timestamp="$(date +%FT%H:%M:00)"
       sed -i "s/lastmod: .*/lastmod: $mod_timestamp/g" "$1"
-      echo -e "$i \e[32mdone\e[39m"
+      echo -e "\e[32mdone\e[39m"
     }
-	echo -n "Checking for $(basename "$post")..."
-	if test -f "$post"; then
-		echo -e "$i \e[32mexists\e[39m"
+	post_arg="$1"
+
+	if [ -z "$post_arg" ]; then
+	  echo "No CSV supplied, using default liked.csv to music.md process"
+
+	  source="./liked.csv"
+	  post="$HOME/vault/src/blog.${domain}/content/music.md"
 	else
-		echo -e "$i \e[31mdoes not exist\e[39m. Exiting"
+	  if [ ! -f "$post_arg" ]; then
+		echo "Input file does not exist: $post_arg"
 		exit 1
+	  fi
+
+	  source="$post_arg"
+	  basename="$(basename "$source" .csv)"
+	  post="./''${basename}.md"
 	fi
-	source=liked.csv
-	echo -n "Checking for $source..."
-	if test -f "$source"; then
-		echo -e "$i \e[32mexists\e[39m"
-	else
-		echo -e "$i \e[31mdoes not exist\e[39m. Exiting"
-		exit 1
+
+	echo -n "Checking for output $(basename "$post")..."
+
+	# create file if missing
+	if [ ! -f "$post" ]; then
+	  echo -e "\e[33mcreating new file\e[39m"
+	  touch "$post"
 	fi
+
+	header="$(grep -v \| "$post")"
+
 	echo -n "Processing $source... "
 	tail -n +2 <"$source" |
 		awk -F'\",\"' '{print $4}' |
@@ -62,7 +73,14 @@
 	echo -n "Writing page... "
 	{
 		printf "%s\n\n" "$header"
-		printf "%s" "$(paste temp.artists.log temp.tracks.log temp.links.log | sed 's/\t/ \| /g' | sed 's/^/\| /g' | sed 's/$/ \|/g' | sed 's/\] | (/\](/g')" | sort | uniq -i | sed -e '1i\| ------ \| ----- \|' | sed -e '1i\| Artist \| Title \|'
+		printf "%s" "$(paste temp.artists.log temp.tracks.log temp.links.log \
+			| sed 's/\t/ \| /g' \
+			| sed 's/^/\| /g' \
+			| sed 's/$/ \|/g' \
+			| sed 's/\] | (/\](/g')" \
+			| sort | uniq -i \
+			| sed -e '1i\| ------ \| ----- \|' \
+			| sed -e '1i\| Artist \| Title \|'
 	} >"$post"
 	echo -e "\e[32mdone\e[39m"
 	lastmod "$post"
