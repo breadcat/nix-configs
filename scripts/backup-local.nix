@@ -1,6 +1,5 @@
 {
   pkgs,
-  domain,
   ...
 }: let
   backup-local = pkgs.writeShellScriptBin "backup-local" ''
