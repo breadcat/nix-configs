@@ -8,10 +8,11 @@
       backup = "tar -zcvf (basename \$argv)_backup-(date +%F-%H%M%S).tar.gz \$argv";
       book = "grep -i \"$argv\" \"$SYNCDIR/src/blog.${domain}/content/reading-list.md\"";
       dos2unix = "sed -i 's/\r//' \"$argv\"";
+      fullpath = "set -l dir (test (count \$argv) -gt 0; and echo \$argv[1]; or echo .); realpath \$dir/*";
       mcd = "mkdir -p $argv[1] && cd $argv[1]";
       mergeinto = "rsync --progress --remove-source-files -av \"$argv[1]\" \"$argv[2]\" && find \"$argv[1]\" -empty -delete";
-      vat = "math $argv + \"($argv * 0.2)\"";
       ncdu = ''set arg (count $argv); if test $arg -eq 0; set argv .; end; "${pkgs.rclone}/bin/rclone" ncdu $argv'';
+      vat = "math $argv + \"($argv * 0.2)\"";
     };
     shellInit = ''
       set fish_greeting # Disable greeting
@@ -26,7 +27,6 @@
       crypto-sum = "${pkgs.rbw}/bin/rbw get 'crypto purchases' | awk '/^20/ {print $2}' | paste -sd+ | math";
       empties = "find . -maxdepth 3 -mount -not -path \"*/\.*\" -empty -print";
       extract = "${pkgs.atool}/bin/aunpack";
-      fullpath = "printf '%s\n' $PWD/*";
       jdupes = "jdupes -A"; # exclude hidden files
       vaultedit = "find \"$SYNCDIR\" -maxdepth 5 -type f -not -path \"\*/\.git\" | ${pkgs.fzf}/bin/fzf --preview \"cat {}\" --layout reverse | xargs -r -I{} \"$EDITOR\" {}";
       week = "date +%V";
