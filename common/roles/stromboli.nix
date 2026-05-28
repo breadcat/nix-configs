@@ -14,8 +14,6 @@
       ExecStart = "${pkgs.go}/bin/go run . -d /tank/media/videos/ -p 8080";
       Restart = "on-failure";
       RestartSec = "5s";
-      # AmbientCapabilities = "cap_net_bind_service";
-      # CapabilityBoundingSet = "cap_net_bind_service";
     };
 
     environment = {
