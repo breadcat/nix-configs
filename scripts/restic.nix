@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 
 let
   backup-cloud = pkgs.writeShellScriptBin "backup-cloud" ''
@@ -23,4 +23,23 @@ let
   '';
 in {
   environment.systemPackages = [ backup-cloud ];
+
+  systemd.services.backup-cloud = {
+    description = "Restic cloud backup";
+    serviceConfig = {
+      Type = "oneshot";
+      User = vars.user.username;
+      ExecStart = "${backup-cloud}/bin/backup-cloud";
+    };
+  };
+
+  systemd.timers.backup-cloud = {
+    description = "Run backup-cloud every 12 hours at a random offset";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 00/12:00:00";
+      RandomizedDelaySec = "6h";
+      Persistent = true;
+    };
+  };
 }

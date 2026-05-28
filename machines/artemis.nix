@@ -52,7 +52,6 @@ let machine = "artemis"; in {
       "*/10 * * * * ${vars.user.username} magnets"
       "*/10 * * * * ${vars.user.username} stagit-generate"
       "55 23 * * SUN  ${vars.user.username} blog-duolingo"
-      "0 */12 * * * ${vars.user.username} backup-cloud"
     ];
   };
 

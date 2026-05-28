@@ -69,16 +69,6 @@ let machine = "ilias"; in {
     { device = "/dev/disk/by-uuid/3397e636-91db-44ae-9572-923e4b3acbbe"; }
   ];
 
-  # Cron jobs
-  services = {
-    cron = {
-      enable = true;
-      systemCronJobs = [
-        "0 */12 * * * ${vars.user.username} backup-cloud"
-      ];
-    };
-  };
-
   # Packages
   environment.systemPackages = with pkgs; [
     czkawka # duplicate file finder
