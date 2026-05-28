@@ -1,11 +1,11 @@
 {
   pkgs,
-  domain,
+  vars,
   ...
 }: let
   blog-weight = pkgs.writeShellScriptBin "blog-weight" ''
     # variables
-	weight_filename="$HOME/vault/src/blog.${domain}/content/weight.md"
+	weight_filename="$HOME/vault/src/blog.${vars.user.domain}/content/weight.md"
 	if [ "$1" = "date" ]; then
 		printf "Writing empty dates... "
 		page_source="$(head -n -1 "$weight_filename")"

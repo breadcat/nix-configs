@@ -1,8 +1,8 @@
-{ config, lib, username, ... }:
+{ config, lib, vars, ... }:
 
 let
 
-  webdevDir = "/home/${username}/vault/src/webdev";
+  webdevDir = "/home/${vars.user.username}/vault/src/webdev";
   domainExtensions = [ ".com" ".net" ".org" ".co.uk" ".dev" ];
 
   domains = builtins.attrNames (

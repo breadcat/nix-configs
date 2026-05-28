@@ -14,7 +14,7 @@
     xdg-utils
   ];
   programs.hyprland.enable = true;
-  users.users.${username}.extraGroups = ["seat" "video"];
+  users.users.${vars.user.username}.extraGroups = ["seat" "video"];
   services.seatd.enable = true;
 
   xdg.portal = {

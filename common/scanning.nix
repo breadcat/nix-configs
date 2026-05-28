@@ -1,6 +1,6 @@
-{ username, ... }:
+{ vars, ... }:
 
 {
   hardware.sane.enable = true;
-  users.users."${username}".extraGroups = [ "scanner" ];
+  users.users."${vars.user.username}".extraGroups = [ "scanner" ];
 }

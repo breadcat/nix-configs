@@ -1,4 +1,4 @@
-{ pkgs, pdfpassword, ... }:
+{ pkgs, vars, ... }:
 
 let
   payslips = pkgs.writeShellScriptBin "payslips" ''
@@ -27,7 +27,7 @@ let
             fi
 
             # Remove PDF password protection
-            ${pkgs.qpdf}/bin/qpdf --password=${pdfpassword} --decrypt "$file" "$output_path"
+            ${pkgs.qpdf}/bin/qpdf --password=${vars.secrets.pdfpassword} --decrypt "$file" "$output_path"
 
             if [[ $? -eq 0 ]]; then
                 rm "$file"

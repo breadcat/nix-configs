@@ -1,12 +1,12 @@
-{ username, ... }:
+{ vars, ... }:
 {
 
   services.syncthing = {
     enable = true;
-    user = "${username}";
+    user = "${vars.user.username}";
     group = "users";
-    dataDir = "/home/${username}/";
-    configDir = "/home/${username}/.config/syncthing";
+    dataDir = "/home/${vars.user.username}/";
+    configDir = "/home/${vars.user.username}/.config/syncthing";
     settings = {
       options.urAccepted = 3;
       devices = {
@@ -19,7 +19,7 @@
         windows.id = "6DL2MHG-4WS4B2Q-IAOHURV-XL3CXVZ-EBDXZMH-FZS7WFX-UJAVUJL-UQ2EOAQ";
         };
       folders = {
-        "/home/${username}/vault" = {
+        "/home/${vars.user.username}/vault" = {
       label = "vault";
             id = "vault";
             devices = [ "atlas" "arcadia" "artemis" "ilias" "minerva" "phone" "windows" ];

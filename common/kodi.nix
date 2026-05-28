@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, vars, ... }:
 
 {
   # Package and Addons
@@ -19,5 +19,5 @@
     };
 
   # Extra groups for Kodi CEC input
-  users.users.${username}.extraGroups = [ "networkmanager" "wheel" "input" "dialout" "video" ];
+  users.users.${vars.user.username}.extraGroups = [ "networkmanager" "wheel" "input" "dialout" "video" ];
 }

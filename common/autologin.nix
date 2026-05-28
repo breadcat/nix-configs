@@ -1,5 +1,5 @@
-{ username, ... }:
+{ vars, ... }:
 
 {
-  services.getty.autologinUser = "${username}";
+  services.getty.autologinUser = "${vars.user.username}";
 }

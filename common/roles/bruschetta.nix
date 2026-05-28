@@ -1,4 +1,4 @@
-{ config, pkgs, username, domain, ... }:
+{ config, pkgs, vars, ... }:
 
 {
   # Systemd service
@@ -9,22 +9,19 @@
 
     serviceConfig = {
       Type = "simple";
-      User = "${username}";
-      WorkingDirectory = "/home/${username}/vault/src/bruschetta";
-      ExecStart = "${pkgs.go}/bin/go run . -d /home/${username}/vault/pub -p 9091";
+      User = "${vars.user.username}";
+      WorkingDirectory = "/home/${vars.user.username}/vault/src/bruschetta";
+      ExecStart = "${pkgs.go}/bin/go run . -d /home/${vars.user.username}/vault/pub -p 9091";
       Restart = "on-failure";
       RestartSec = "5s";
     };
 
     environment = {
-      HOME = "/home/${username}";
-      GOPATH = "/home/${username}/go";
+      HOME = "/home/${vars.user.username}";
+      GOPATH = "/home/${vars.user.username}/go";
     };
 
-    path = with pkgs; [
-      gcc
-      go
-    ];
+    path = with pkgs; [ gcc go ];
 
   };
 

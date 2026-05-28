@@ -1,4 +1,4 @@
-{ pkgs, domain, ... }:
+{ pkgs, vars, ... }:
 
 let
   blog-status = pkgs.writeShellScriptBin "blog-status" ''
@@ -20,7 +20,7 @@ let
     printf "* Packages: %s\\n" "$(${pkgs.fastfetch}/bin/fastfetch | awk -F": " '/Packages/ {print $2}')"
     printf "* Monthly Data: %s\\n" "$(vnstat -m --oneline | cut -f11 -d\;)"
     printf "\\nHardware specifications themselves are covered on the [hardware page](/hardware/#server).\\n"
-  } >"$HOME/vault/src/blog.${domain}/content/status.md"
+  } >"$HOME/vault/src/blog.${vars.user.domain}/content/status.md"
   '';
 in {
   environment.systemPackages = [blog-status];

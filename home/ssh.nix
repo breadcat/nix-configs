@@ -1,4 +1,4 @@
-{ domain, username, sshport, privatekey, ... }:
+{ vars, ... }:
 
 {
   programs.ssh = {
@@ -18,26 +18,26 @@
         controlPersist = "no";
       };
       "tunnel" = {
-        hostname = "${domain}";
-        user = "${username}";
-        port = sshport;
-        identityFile = "${privatekey}";
+        hostname = "${vars.user.domain}";
+        user = "${vars.user.username}";
+        port = vars.secrets.sshport;
+        identityFile = "${vars.secrets.privatekey}";
         extraOptions = {
-          RemoteCommand = "ssh -p 55013 ${username}@localhost -i ${privatekey}";
+          RemoteCommand = "ssh -p 55013 ${vars.user.username}@localhost -i ${vars.secrets.privatekey}";
           RequestTTY = "force";
           };
       };
       "arcadia" = {
         hostname = "192.168.1.6";
-        user = "${username}";
-        port = sshport;
-        identityFile = "${privatekey}";
+        user = "${vars.user.username}";
+        port = vars.secrets.sshport;
+        identityFile = "${vars.secrets.privatekey}";
       };
       "ilias" = {
         hostname = "192.168.1.3";
-        user = "${username}";
-        port = sshport;
-        identityFile = "${privatekey}";
+        user = "${vars.user.username}";
+        port = vars.secrets.sshport;
+        identityFile = "${vars.secrets.privatekey}";
       };
       "router" = {
         hostname = "192.168.1.1";
@@ -53,10 +53,10 @@
           };
       };
       "artemis" = {
-        hostname = "${domain}";
-        user = "${username}";
-        port = sshport;
-        identityFile = "${privatekey}";
+        hostname = "${vars.user.domain}";
+        user = "${vars.user.username}";
+        port = vars.secrets.sshport;
+        identityFile = "${vars.secrets.privatekey}";
       };
     };
   };

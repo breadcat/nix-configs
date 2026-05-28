@@ -1,12 +1,12 @@
 # Server
 
-{ config, pkgs, lib, fullname, username, domain, email, sshkey, sshport, timezone, postcode, address, htpasswd, vpnusername, vpnpassword, todosecret, privatekey, matrixuser, matrixserver, ... }:
+{ config, pkgs, lib, vars, ... }:
 
 let machine = "artemis"; in {
 
   imports = [
-    (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
-    (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    (import ../common/variables.nix { inherit machine vars; })
+    (import ../common/home-manager.nix  { inherit machine vars; })
     ../common/boot-systemd.nix
     ../common/docker.nix
     ../common/docker-webdev.nix
@@ -48,11 +48,11 @@ let machine = "artemis"; in {
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "*/10 * * * * ${username} blog-status"
-      "*/10 * * * * ${username} magnets"
-      "*/10 * * * * ${username} stagit-generate"
-      "55 23 * * SUN  ${username} blog-duolingo"
-      "0 */12 * * * ${username} backup-cloud"
+      "*/10 * * * * ${vars.user.username} blog-status"
+      "*/10 * * * * ${vars.user.username} magnets"
+      "*/10 * * * * ${vars.user.username} stagit-generate"
+      "55 23 * * SUN  ${vars.user.username} blog-duolingo"
+      "0 */12 * * * ${vars.user.username} backup-cloud"
     ];
   };
 

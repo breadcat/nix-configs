@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ config, pkgs, vars, ... }:
 
 {
   # Systemd service
@@ -9,8 +9,8 @@
 
     serviceConfig = {
       Type = "simple";
-      User = "${username}";
-      WorkingDirectory = "/home/${username}/vault/src/stromboli";
+      User = "${vars.user.username}";
+      WorkingDirectory = "/home/${vars.user.username}/vault/src/stromboli";
       ExecStart = "${pkgs.go}/bin/go run . -d /tank/media/videos/ -p 8080";
       Restart = "on-failure";
       RestartSec = "5s";
@@ -19,15 +19,11 @@
     };
 
     environment = {
-      HOME = "/home/${username}";
-      GOPATH = "/home/${username}/go";
+      HOME = "/home/${vars.user.username}";
+      GOPATH = "/home/${vars.user.username}/go";
     };
 
-    path = with pkgs; [
-      ffmpeg
-      gcc
-      go
-    ];
+    path = with pkgs; [ ffmpeg gcc go ];
 
   };
 

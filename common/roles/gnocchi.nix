@@ -1,4 +1,4 @@
-{ config, pkgs, username, domain, ... }:
+{ config, pkgs, vars, ... }:
 
 {
   # Systemd service
@@ -9,23 +9,19 @@
 
     serviceConfig = {
       Type = "simple";
-      User = "${username}";
-      WorkingDirectory = "/home/${username}/vault/src/gnocchi";
-      ExecStart = "${pkgs.go}/bin/go run . -f /home/${username}/vault/src/blog.${domain}/content/weight.md -p 9090";
+      User = "${vars.user.username}";
+      WorkingDirectory = "/home/${vars.user.username}/vault/src/gnocchi";
+      ExecStart = "${pkgs.go}/bin/go run . -f /home/${vars.user.username}/vault/src/blog.${vars.user.domain}/content/weight.md -p 9090";
       Restart = "on-failure";
       RestartSec = "5s";
     };
 
     environment = {
-      HOME = "/home/${username}";
-      GOPATH = "/home/${username}/go";
+      HOME = "/home/${vars.user.username}";
+      GOPATH = "/home/${vars.user.username}/go";
     };
 
-    path = with pkgs; [
-      "/run/current-system/sw" # find blog-weight script here
-      gcc
-      go
-    ];
+    path = with pkgs; [ "/run/current-system/sw" gcc go ];
 
   };
 

@@ -1,4 +1,4 @@
-{ username, domain, sshport, privatekey, ... }:
+{ vars, ... }:
 
 {
   programs.rclone = {
@@ -6,10 +6,10 @@
     remotes = {
       artemis.config = {
         type = "sftp";
-        host = "${domain}";
-        port = sshport;
-        user = "${username}";
-        key_file = "${privatekey}";
+        host = "${vars.user.domain}";
+        port = vars.secrets.sshport;
+        user = "${vars.user.username}";
+        key_file = "${vars.secrets.privatekey}";
         shell_type = "cmd";
         };
       seedbox.config = {
@@ -25,7 +25,7 @@
         host = "phone";
         port = "1234";
         user = "ftp";
-        key_file = "${privatekey}";
+        key_file = "${vars.secrets.privatekey}";
         };
       nas.config = {
         type = "alias";

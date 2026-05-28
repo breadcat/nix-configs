@@ -1,4 +1,4 @@
-{ domain, username, ... }:
+{ vars, ... }:
 
 {
   programs.newsboat = {
@@ -16,8 +16,8 @@
       bind-key N prev-unread
       macro m set browser "mpv %u" ; open-in-browser-and-mark-read ; set browser "$BROWSER %u"
       urls-source "freshrss"
-      freshrss-url "https://rss.${domain}/api/greader.php"
-      freshrss-login "${username}"
+      freshrss-url "https://rss.${vars.user.domain}/api/greader.php"
+      freshrss-login "${vars.user.username}"
       freshrss-passwordeval "rbw get 'freshrss api'"
       '';
   };

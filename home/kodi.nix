@@ -1,4 +1,4 @@
-{ username, ... }:
+{ vars, ... }:
 
 {
   programs.kodi = {
@@ -23,7 +23,7 @@
       addonSettings = {
         "service.watchedlist" = {
 	  "extdb" = "true";
-          "dbpath" = "/home/${username}/vault/";
+          "dbpath" = "/home/${vars.user.username}/vault/";
           "dbfilename" = "watchedlist.db";
           };
         "skin.estuary" = {
@@ -47,7 +47,7 @@
           source = [
             { name = "television"; path = "/tank/media/videos/television"; allowsharing = "true"; }
             { name = "movies"; path = "/tank/media/videos/movies"; allowsharing = "true"; }
-            { name = "${username}"; path = "/home/${username}"; allowsharing = "true"; }
+            { name = "${vars.user.username}"; path = "/home/${vars.user.username}"; allowsharing = "true"; }
             ];
 		  };
 		  files = {

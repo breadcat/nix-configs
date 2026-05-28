@@ -1,10 +1,10 @@
-{ pkgs, domain, ... }:
+{ pkgs, vars, ... }:
 
 let
   blog-duolingo = pkgs.writeShellScriptBin "blog-duolingo" ''
     # variables
-    username="$(awk -F'[/()]' '/Duolingo/ {print $5}' "$HOME/vault/src/blog.${domain}/content/about.md")"
-	post_file="$HOME/vault/src/blog.${domain}/content/posts/logging-duolingo-ranks-over-time.md"
+    username="$(awk -F'[/()]' '/Duolingo/ {print $5}' "$HOME/vault/src/blog.${vars.user.domain}/content/about.md")"
+	post_file="$HOME/vault/src/blog.${vars.user.domain}/content/posts/logging-duolingo-ranks-over-time.md"
 	# functions
     function lastmod {
       echo -n "Amending lastmod value... "

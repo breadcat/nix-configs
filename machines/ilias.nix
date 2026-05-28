@@ -1,12 +1,12 @@
 # NAS
 
-{ config, pkgs, lib, fullname, username, domain, email, sshkey, sshport, timezone, postcode, address, htpasswd, vpnusername, vpnpassword, todosecret, pdfpassword, privatekey, matrixuser, matrixserver, ... }:
+{ config, pkgs, lib, vars, ... }:
 
 let machine = "ilias"; in {
 
   imports = [
-    (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret pdfpassword privatekey matrixuser matrixserver; })
-    (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret pdfpassword privatekey matrixuser matrixserver; })
+    (import ../common/variables.nix { inherit machine vars; })
+    (import ../common/home-manager.nix { inherit machine vars; })
     ../common/boot-systemd.nix
     ../common/devel.nix
     ../common/flakes.nix
@@ -47,7 +47,7 @@ let machine = "ilias"; in {
     ../scripts/watchedlist.nix
     ../scripts/youtube-id-rss.nix
   ];
-  home-manager.users.${username} = {pkgs, ...}: { imports = [
+  home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
         ../home/fish.nix
         ../home/git.nix
         ../home/htop.nix
@@ -74,8 +74,8 @@ let machine = "ilias"; in {
     cron = {
       enable = true;
       systemCronJobs = [
-        "0 */4 * * *  ${username} . /etc/profile; tank-sort"
-        "0 */12 * * * ${username} backup-cloud"
+        "0 */4 * * *  ${vars.user.username} . /etc/profile; tank-sort"
+        "0 */12 * * * ${vars.user.username} backup-cloud"
       ];
     };
   };

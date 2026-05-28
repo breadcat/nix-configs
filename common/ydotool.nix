@@ -1,8 +1,8 @@
-{ pkgs, username, ... }:
+{ pkgs, vars, ... }:
 
 {
   boot.kernelModules = [ "uinput" ];
-  users.users.${username}.extraGroups = [ "uinput" ];
+  users.users.${vars.user.username}.extraGroups = [ "uinput" ];
   # Define the uinput group
   users.groups.uinput = {};
 

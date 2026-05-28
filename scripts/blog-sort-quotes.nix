@@ -1,11 +1,11 @@
 {
   pkgs,
-  domain,
+  vars,
   ...
 }: let
   blog-sort-quotes = pkgs.writeShellScriptBin "blog-sort-quotes" ''
     # variables
-	quote_file="$HOME/vault/src/blog.${domain}/content/quotes.md"
+	quote_file="$HOME/vault/src/blog.${vars.user.domain}/content/quotes.md"
 	file_header="$(head -n 8 "$quote_file")"
 	file_body="$(tail -n +8 "$quote_file" | sort | uniq -i | sed G)"
 	# functions

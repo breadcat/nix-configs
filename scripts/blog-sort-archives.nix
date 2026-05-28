@@ -1,12 +1,12 @@
 {
   pkgs,
-  domain,
+  vars,
   ...
 }: let
   blog-sort-archives = pkgs.writeShellScriptBin "blog-sort-archives" ''
     # variables
-    movies_export="$HOME/vault/src/blog.${domain}/content/posts/archived-movies.md"
-    tvshows_export="$HOME/vault/src/blog.${domain}/content/posts/archived-television.md"
+    movies_export="$HOME/vault/src/blog.${vars.user.domain}/content/posts/archived-movies.md"
+    tvshows_export="$HOME/vault/src/blog.${vars.user.domain}/content/posts/archived-television.md"
     # functions
     function lastmod {
       echo -n "Amending lastmod value... "

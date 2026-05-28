@@ -1,8 +1,8 @@
-{ pkgs, username, fullname, ... }:
+{ pkgs, vars, ... }:
 {
-  users.users."${username}" = {
+  users.users."${vars.user.username}" = {
     isNormalUser = true;
-    description = "${fullname}";
+    description = "${vars.user.fullname}";
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "video" "input" ];
   };

@@ -1,6 +1,6 @@
 {
   pkgs,
-  domain,
+  vars,
   ...
 }: let
   blog-sort-languages = pkgs.writeShellScriptBin "blog-sort-languages" ''
@@ -11,7 +11,7 @@
         sed -i "s/lastmod: .*/lastmod: $mod_timestamp/g" "$1"
         echo -e "$i \e[32mdone\e[39m"
       }
-    for i in $HOME/vault/src/blog.${domain}/content/languages/*; do
+    for i in $HOME/vault/src/blog.${vars.user.domain}/content/languages/*; do
       if [[ "$i" = *index.md ]]; then continue; fi # there's probably a better way of doing this, but I can't figure it out
       echo -n "Processing $(basename "$i")... "
       shasum_original="$(sha512sum "$i" | awk '{print $1}')"

@@ -1,4 +1,4 @@
-{ fullname, email, address, ... }:
+{ vars, ... }:
 
 {
   services.espanso = {
@@ -35,10 +35,10 @@
           { trigger = "_date"; replace = "{{date}}"; }
           { trigger = "_time"; replace = "{{time}}"; }
           { trigger = "_dttime"; replace = "{{datetime}}"; }
-          { trigger = "_reg"; replace = "\n\nRegards,\n${fullname}"; }
-          { trigger = "_kreg"; replace = "\n\nKind regards,\n${fullname}"; }
-          { trigger = "_hem"; replace = "${email}"; }
-          { trigger = "_addr"; replace = "${address}"; }
+          { trigger = "_reg"; replace = "\n\nRegards,\n${vars.user.fullname}"; }
+          { trigger = "_kreg"; replace = "\n\nKind regards,\n${vars.user.fullname}"; }
+          { trigger = "_hem"; replace = "${vars.user.email}"; }
+          { trigger = "_addr"; replace = "${vars.user.address}"; }
         ];
          global_vars = [
           { name = "date"; type = "date"; params = { format = "%Y-%m-%d"; }; }

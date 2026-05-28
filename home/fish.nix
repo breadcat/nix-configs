@@ -1,4 +1,4 @@
-{ pkgs, domain, ... }:
+{ pkgs, vars, ... }:
 
 {
   programs.fish = {
@@ -6,7 +6,7 @@
     functions = {
       __fish_command_not_found_handler = { body = "echo fish: Unknown command $argv[1]"; onEvent = "fish_command_not_found"; };
       backup = "tar -zcvf (basename \$argv)_backup-(date +%F-%H%M%S).tar.gz \$argv";
-      book = "grep -i \"$argv\" \"$SYNCDIR/src/blog.${domain}/content/reading-list.md\"";
+      book = "grep -i \"$argv\" \"$SYNCDIR/src/blog.${vars.user.domain}/content/reading-list.md\"";
       dos2unix = "sed -i 's/\r//' \"$argv\"";
       fullpath = "set -l dir (test (count \$argv) -gt 0; and echo \$argv[1]; or echo .); realpath \$dir/*";
       mcd = "mkdir -p $argv[1] && cd $argv[1]";
@@ -16,9 +16,9 @@
     };
     shellInit = ''
       set fish_greeting # Disable greeting
-      set -gx DOMAIN ${domain}
+      set -gx DOMAIN ${vars.user.domain}
       set -gx EDITOR nvim
-      set -gx EMAIL (whoami)@${domain}
+      set -gx EMAIL ${vars.user.email}
       set -gx SYNCDIR $HOME/vault
       set -gx VISUAL $EDITOR
     '';

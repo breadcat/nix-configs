@@ -1,6 +1,6 @@
 {
   pkgs,
-  domain,
+  vars,
   ...
 }: let
   blog-music = pkgs.writeShellScriptBin "blog-music" ''
@@ -18,7 +18,7 @@
 	  echo "No CSV supplied, using default liked.csv to music.md process"
 
 	  source="./liked.csv"
-	  post="$HOME/vault/src/blog.${domain}/content/music.md"
+	  post="$HOME/vault/src/blog.${vars.user.domain}/content/music.md"
 	else
 	  if [ ! -f "$post_arg" ]; then
 		echo "Input file does not exist: $post_arg"

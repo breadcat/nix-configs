@@ -1,4 +1,4 @@
-{ matrixuser, matrixserver, ... }:
+{ vars, ... }:
 
 {
   programs.iamb = {
@@ -6,8 +6,8 @@
 		settings = {
 		  "default_profile" = "user";
 		  profiles.user = {
-			  "user_id" = "${matrixuser}";
-				"url" = "${matrixserver}";
+			  "user_id" = "${vars.matrix.user}";
+				"url" = "${vars.matrix.homeserver}";
 				};
 		};
   };

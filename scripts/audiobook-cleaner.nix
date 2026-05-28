@@ -1,11 +1,9 @@
-{
-  pkgs,
-  domain,
-  ...
-}: let
+{ pkgs, vars, ... }:
+
+let
   audiobook-cleaner = pkgs.writeShellScriptBin "audiobook-cleaner" ''
   # variables
-  list_file="$HOME/vault/src/blog.${domain}/content/reading-list.md"
+  list_file="$HOME/vault/src/blog.${vars.user.domain}/content/reading-list.md"
   media_dir="/tank/media/literature/audiobooks"
 
   trim() {

@@ -1,7 +1,7 @@
-{ machine, fullname, username, domain, email, sshkey, sshport, timezone, postcode, address, htpasswd, vpnusername, vpnpassword, todosecret, pdfpassword, privatekey, matrixuser, matrixserver }:
+{ machine, vars }:
 
 let
-  all-variables = { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret pdfpassword privatekey matrixuser matrixserver; };
+  all-variables = { inherit machine vars; };
 in
 
 {

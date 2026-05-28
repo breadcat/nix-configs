@@ -1,12 +1,12 @@
 # Desktop
 
-{ config, pkgs, lib, fullname, username, domain, email, sshkey, sshport, timezone, postcode, address, htpasswd, vpnusername, vpnpassword, todosecret, privatekey, matrixuser, matrixserver, ... }:
+{ config, pkgs, lib, vars, ... }:
 
 let machine = "atlas"; in {
 
   imports = [
-    (import ../common/variables.nix { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
-    (import ../common/home-manager.nix  { inherit machine fullname username domain email sshkey sshport timezone postcode address htpasswd vpnusername vpnpassword todosecret privatekey matrixuser matrixserver; })
+    (import ../common/variables.nix { inherit machine vars; })
+    (import ../common/home-manager.nix { inherit machine vars; })
     ../common/audio.nix
     ../common/autologin.nix
     ../common/boot-systemd.nix
@@ -34,7 +34,7 @@ let machine = "atlas"; in {
     ../scripts/taudiobooker.nix
     ../scripts/vidyaplace.nix
   ];
-  home-manager.users.${username} = {pkgs, ...}: { imports = [
+  home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
     ../home/alacritty.nix
     ../home/chromium.nix
     ../home/clipse.nix

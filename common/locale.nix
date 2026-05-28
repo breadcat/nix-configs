@@ -1,10 +1,10 @@
-{ timezone, ... }:
+{ vars, ... }:
 
 let
   locale = "en_GB.UTF-8";
 in
 {
-  time.timeZone = "${timezone}";
+  time.timeZone = "${vars.user.timezone}";
   i18n.defaultLocale = locale;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = locale;
