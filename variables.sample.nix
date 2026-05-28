@@ -14,9 +14,10 @@ let
   vpnusername = "";
   vpnpassword = "";
   todosecret = "JWTtoken";
+  pdfpassword = "";
   privatekey = "path/to/private.key";
   matrixuser = "";
   matrixserver = "";
 in {
-  inherit fullname username domain email sshkey sshport timezone vpnusername vpnpassword todosecret privatekey matrixuser matrixserver;
+  inherit fullname username domain email sshkey sshport timezone vpnusername vpnpassword todosecret pdfpassword privatekey matrixuser matrixserver;
 }
