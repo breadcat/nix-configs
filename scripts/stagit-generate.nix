@@ -1,4 +1,6 @@
-{ pkgs, ...}: let
+{ pkgs, vars, ... }:
+
+let
   css = ''
     body,pre{font-family:monospace}
     #blob,article img{max-width:100%}
@@ -113,7 +115,26 @@ EOF
     fi
 
     echo "Summary: Updated $updated_repos repositories, skipped $skipped_repos repositories"
-  '';
+    '';
 in {
-  environment.systemPackages = [stagit-generate];
+  environment.systemPackages = [ stagit-generate ];
+
+  systemd.services.stagit-generate = {
+    description = "Regenerate stagit static pages";
+    serviceConfig = {
+      Type = "oneshot";
+      User = vars.user.username;
+      ExecStart = "${stagit-generate}/bin/stagit-generate";
+      Environment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin";
+    };
+  };
+
+  systemd.timers.stagit-generate = {
+    description = "Run stagit-generate every 10 minutes";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*:0/10";
+      Persistent = true;
+    };
+  };
 }

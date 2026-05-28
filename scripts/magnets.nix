@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 
 let
   magnets = pkgs.writeShellScriptBin "magnets" ''
@@ -81,4 +81,23 @@ let
   '';
 in {
   environment.systemPackages = [ magnets ];
+
+  systemd.services.magnets = {
+    description = "Process magnet files via aria2";
+    serviceConfig = {
+      Type = "oneshot";
+      User = vars.user.username;
+      ExecStart = "${magnets}/bin/magnets";
+      Environment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin";
+    };
+  };
+
+  systemd.timers.magnets = {
+    description = "Run magnets every 10 minutes";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*:0/10";
+      Persistent = true;
+    };
+  };
 }

@@ -30,6 +30,7 @@ in {
       Type = "oneshot";
       User = vars.user.username;
       ExecStart = "${backup-cloud}/bin/backup-cloud";
+      Environment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin";
     };
   };
 

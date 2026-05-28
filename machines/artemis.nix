@@ -43,17 +43,6 @@ let machine = "artemis"; in {
   boot.initrd = { availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" ]; };
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
-  # Cron jobs
-  services.cron = {
-    enable = true;
-    systemCronJobs = [
-      "*/10 * * * * ${vars.user.username} blog-status"
-      "*/10 * * * * ${vars.user.username} magnets"
-      "*/10 * * * * ${vars.user.username} stagit-generate"
-      "55 23 * * SUN  ${vars.user.username} blog-duolingo"
-    ];
-  };
-
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }

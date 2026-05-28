@@ -101,6 +101,7 @@ in {
       Type = "oneshot";
       User = vars.user.username;
       ExecStart = "${tank-sort}/bin/tank-sort";
+      Environment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin";
     };
   };
 

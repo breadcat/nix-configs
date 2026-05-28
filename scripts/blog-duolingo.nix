@@ -25,5 +25,24 @@ let
 	lastmod "$post_file"
   '';
 in {
-  environment.systemPackages = [blog-duolingo];
+  environment.systemPackages = [ blog-duolingo ];
+
+  systemd.services.blog-duolingo = {
+    description = "Fetch and log Duolingo ranks to blog";
+    serviceConfig = {
+      Type = "oneshot";
+      User = vars.user.username;
+      ExecStart = "${blog-duolingo}/bin/blog-duolingo";
+      Environment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin";
+    };
+  };
+
+  systemd.timers.blog-duolingo = {
+    description = "Run blog-duolingo every Sunday at 23:55";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "Sun *-*-* 23:55:00";
+      Persistent = true;
+    };
+  };
 }
