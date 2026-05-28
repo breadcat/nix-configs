@@ -8,7 +8,7 @@ let
   sshkey = "ssh-rsa yourpubkeyhere";
   sshport = 2222;
   timezone = "Europe/London";
-  postcode = "AA1 1AA"
+  postcode = "AA1 1AA";
   address = "123 Fake Street\n${postcode}";
   htpasswd = ""; # caddy hash-password --plaintext "yourpassword" | base64 -w0
   vpnusername = "";
