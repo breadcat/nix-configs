@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 
 let
   media-sort = pkgs.callPackage ../common/media-sort.nix {};
@@ -93,5 +93,23 @@ let
 	echo "Media sort completed successfully"
   '';
 in {
-  environment.systemPackages = [tank-sort media-sort];
+  environment.systemPackages = [ tank-sort media-sort ];
+
+  systemd.services.tank-sort = {
+    description = "Sort media from rclone remote";
+    serviceConfig = {
+      Type = "oneshot";
+      User = vars.user.username;
+      ExecStart = "${tank-sort}/bin/tank-sort";
+    };
+  };
+
+  systemd.timers.tank-sort = {
+    description = "Run tank-sort every 4 hours";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 00/4:00:00";
+      Persistent = true;
+    };
+  };
 }

@@ -74,7 +74,6 @@ let machine = "ilias"; in {
     cron = {
       enable = true;
       systemCronJobs = [
-        "0 */4 * * *  ${vars.user.username} . /etc/profile; tank-sort"
         "0 */12 * * * ${vars.user.username} backup-cloud"
       ];
     };
