@@ -27,7 +27,7 @@ let machine = "artemis"; in {
     ../scripts/stagit-generate.nix
     ../scripts/taudiobooker.nix
   ];
-  home-manager.users.${username} = {pkgs, ...}: { imports = [
+  home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
         ../home/fish.nix
         ../home/git.nix
         ../home/htop.nix
