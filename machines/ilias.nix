@@ -85,7 +85,6 @@ let machine = "ilias"; in {
     czkawka # duplicate file finder
     jdupes # duplicate file finder
     mmv # mass renamer
-    nixfmt-rfc-style
     ocrmypdf
     optipng
     pciutils

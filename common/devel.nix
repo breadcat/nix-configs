@@ -12,5 +12,7 @@
     gcc
     # web
     hugo
+    # nix
+    nixfmt-rfc-style
   ];
 }
