@@ -5,12 +5,11 @@
 let machine = "ilias"; in {
 
   imports = [
-    (import ../common/variables.nix { inherit machine vars; })
-    (import ../common/home-manager.nix { inherit machine vars; })
     ../common/boot-systemd.nix
     ../common/devel.nix
     ../common/flakes.nix
     ../common/garbage.nix
+    ../common/home-manager.nix
     ../common/locale.nix
     ../common/mount-drives.nix
     ../common/networking.nix

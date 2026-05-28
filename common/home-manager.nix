@@ -1,8 +1,7 @@
-{ machine, vars }:
+{ machine, vars, ... }:
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
-  all-variables = { inherit machine vars; };
 in
 
 {
@@ -12,6 +11,6 @@ in
     backupFileExtension = "hm-bak";
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = all-variables;
+    extraSpecialArgs = { inherit machine vars; };
   };
 }

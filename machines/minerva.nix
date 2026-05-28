@@ -5,8 +5,6 @@
 let machine = "minerva"; in {
 
   imports = [
-    (import ../common/variables.nix { inherit machine vars; })
-    (import ../common/home-manager.nix { inherit machine vars; })
     ../common/audio.nix
     ../common/autologin.nix
     ../common/boot-grub.nix
@@ -14,6 +12,7 @@ let machine = "minerva"; in {
     ../common/flakes.nix
     ../common/fonts.nix
     ../common/garbage.nix
+    ../common/home-manager.nix
     ../common/hyprland.nix
     ../common/locale.nix
     ../common/mount-drives.nix

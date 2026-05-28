@@ -5,14 +5,13 @@
 let machine = "arcadia"; in {
 
   imports = [
-    (import ../common/variables.nix { inherit machine vars; })
-    (import ../common/home-manager.nix  { inherit machine vars; })
     ../common/audio.nix
     ../common/autologin.nix
     ../common/boot-systemd.nix
     ../common/flakes.nix
     ../common/fonts.nix
     ../common/garbage.nix
+    ../common/home-manager.nix
     ../common/hyprland.nix
     ../common/kodi.nix
     ../common/locale.nix

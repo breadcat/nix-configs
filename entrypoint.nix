@@ -11,5 +11,6 @@ let
   machine = lib.strings.removeSuffix "\n" hostname;
   osConfigPath = ./machines + "/${machine}.nix";
 in {
-  imports = [ (import osConfigPath { inherit config pkgs lib vars; }) ];
+  _module.args = { inherit machine vars; };
+  imports = [ osConfigPath ];
 }
