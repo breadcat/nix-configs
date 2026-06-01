@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ vars, pkgs, ... }:
 
 {
   programs.kodi = {
@@ -60,7 +60,7 @@
   # Launch Kodi via Hyprland
   wayland.windowManager.hyprland = {
     settings = {
-      "exec-once" = "kodi";
+      "exec-once" = "${pkgs.kodi-wayland}/bin/kodi-standalone -fullscreen";
     };
   };
 }
