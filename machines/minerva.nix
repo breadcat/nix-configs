@@ -46,6 +46,7 @@ let machine = "minerva"; in {
         ../home/neovim.nix
         ../home/newsboat.nix
         ../home/rbw.nix
+        ../home/spotify.nix
         ../home/ssh.nix
         ../home/tofi.nix
         ../home/yt-dlp.nix

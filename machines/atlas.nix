@@ -53,6 +53,7 @@ let machine = "atlas"; in {
     ../home/newsboat.nix
     ../home/rbw.nix
     ../home/rclone.nix
+    ../home/spotify.nix
     ../home/ssh.nix
     ../home/tofi.nix
     ../home/yt-dlp.nix

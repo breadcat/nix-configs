@@ -31,6 +31,7 @@ let machine = "arcadia"; in {
       ../home/kodi.nix
       ../home/rclone.nix
       ../home/retroarch.nix
+      ../home/spotify.nix
       ../home/ssh.nix
       ../home/yt-dlp.nix
     ];
