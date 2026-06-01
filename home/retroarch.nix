@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
     # Frontends: pegasus-frontend
     # Game engines: corsix-th, eduke32, openra, openrct2, openttd
@@ -17,7 +17,7 @@ let
     "pcsx2"
     "ppsspp"
     "sameboy"
-    "snes-9x"
+    "snes9x"
     "swanstation"
     ];
 in
