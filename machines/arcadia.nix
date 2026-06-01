@@ -21,13 +21,15 @@ let machine = "arcadia"; in {
     ../common/packages.nix
     ../common/ssh.nix
     ../common/syncthing.nix
-    ../scripts/seedy.nix
     ../common/user.nix
+    ../scripts/seedy.nix
     ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
       ../home/alacritty.nix
+      ../home/chromium.nix
       ../home/fish.nix
       ../home/hyprland.nix
+      ../home/hyprland-numlock.nix
       ../home/kodi.nix
       ../home/rclone.nix
       ../home/retroarch.nix
