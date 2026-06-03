@@ -24,6 +24,7 @@ let machine = "minerva"; in {
     ../common/syncthing.nix
     ../common/user.nix
     ../common/ydotool.nix
+    ../common/zerotier.nix
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
     ../scripts/restic.nix

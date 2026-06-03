@@ -24,6 +24,7 @@ let machine = "ilias"; in {
     ../common/ssh-tunnel.nix
     ../common/syncthing.nix
     ../common/user.nix
+    ../common/zerotier.nix
     ../scripts/audiobook-cleaner.nix
     ../scripts/backup-local.nix
     ../scripts/blog-music.nix

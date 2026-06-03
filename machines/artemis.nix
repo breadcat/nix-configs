@@ -19,6 +19,7 @@ let machine = "artemis"; in {
     ../common/syncthing.nix
     ../common/user.nix
     ../common/vnstat.nix
+    ../common/zerotier.nix
     ../scripts/blog-duolingo.nix
     ../scripts/blog-status.nix
     ../scripts/magnets.nix

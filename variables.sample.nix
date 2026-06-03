@@ -19,6 +19,7 @@ rec {
     todosecret = "";
     pdfpassword = "";
     privatekey = "path/to/private.key";
+    zerotier = "";
     };
   matrix = {
     user = "@user:domain.com";
