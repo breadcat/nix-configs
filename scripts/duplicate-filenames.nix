@@ -6,7 +6,7 @@
       set -euo pipefail
 
       usage() {
-        echo "Usage: $0 [-r] <dir1> <dir2>"
+        echo "Usage: $0 [-r] <dir1> <dir2> [dir3 ...]"
         echo "  -r    Search recursively"
         exit 1
       }
@@ -21,15 +21,14 @@
       done
       shift $((OPTIND - 1))
 
-      [[ $# -eq 2 ]] || usage
+      [[ $# -ge 2 ]] || usage
 
-      dir1=$1
-      dir2=$2
-
-      [[ -d "$dir1" && -d "$dir2" ]] || {
-        echo "Both arguments must be directories."
-        exit 1
-      }
+      for dir in "$@"; do
+        [[ -d "$dir" ]] || {
+          echo "Not a directory: $dir"
+          exit 1
+        }
+      done
 
       run_find() {
         local dir=$1
@@ -40,24 +39,36 @@
         fi
       }
 
-      declare -A files1
+      declare -A files
 
-      while IFS= read -r -d "" file; do
-        base=''${file##*/}
-        files1["$base"]+="$file
+      for dir in "$@"; do
+        while IFS= read -r -d "" file; do
+          base=''${file##*/}
+
+          files["$base"]+="$file
 "
-      done < <(run_find "$dir1")
+        done < <(run_find "$dir")
+      done
 
-      while IFS= read -r -d "" file; do
-        base=''${file##*/}
-        matches=''${files1["$base"]:-}
-        [[ -n "$matches" ]] || continue
+      for base in "''${!files[@]}"; do
+        matches=''${files["$base"]}
+
+        count=0
+        while IFS= read -r match; do
+          [[ -n "$match" ]] && ((count += 1))
+        done <<< "$matches"
+
+        (( count > 1 )) || continue
+
+        printf "MATCH: %s\n" "$base"
 
         while IFS= read -r match; do
           [[ -n "$match" ]] || continue
-          printf "MATCH:\n  %s\n  %s\n\n" "$match" "$file"
+          printf "  %s\n" "$match"
         done <<< "$matches"
-      done < <(run_find "$dir2")
+
+        printf "\n"
+      done
     '')
   ];
 }
