@@ -27,6 +27,7 @@ let machine = "atlas"; in {
     ../common/user.nix
     ../common/ydotool.nix
     ../scripts/ctimerename.nix
+    ../scripts/duplicate-filenames.nix
     ../scripts/duupmove.nix
     ../scripts/restic.nix
     ../scripts/seedy.nix
@@ -74,7 +75,9 @@ let machine = "atlas"; in {
 
   # Packages
   environment.systemPackages = with pkgs; [
+    discord
     ntfs3g
+    beeper
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
