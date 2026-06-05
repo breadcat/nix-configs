@@ -7,10 +7,11 @@ let
 	set -euo pipefail  # Exit on any error
 
 	# variables
+	export PATH=/run/wrappers/bin:/run/current-system/sw/bin:$PATH
 	temp_mount="$(mktemp -d)"
 	rclone_remote="seedbox:"
 	extensions="mp4,m4v,mkv"
-	state_file="/tmp/tank-sort.cache"
+	state_file="$HOME/.cache/tank-sort.cache"
 	destination_tvshows="/tank/media/videos/television"
 	template_tvshows="{{ .Name }}/{{ .Name }} S{{ printf \"%02d\" .Season }}E{{ printf \"%02d\" .Episode }}{{ if ne .ExtraEpisode -1 }}-{{ printf \"%02d\" .ExtraEpisode }}{{end}}.{{ .Ext }}"
 	destination_movies="/tank/media/videos/movies"
@@ -19,6 +20,10 @@ let
 	# Cleanup function
 	cleanup() {
 	  echo "Cleaning up..."
+	  if [ -n "''${RCLONE_PID:-}" ]; then
+	    kill "$RCLONE_PID" 2>/dev/null || tru
+	    wait "$RCLONE_PID" 2>/dev/null || true
+	  fi
 	  if mountpoint -q "$temp_mount" 2>/dev/null; then
 		fusermount -uz "$temp_mount" 2>/dev/null || true
 	  fi
@@ -29,7 +34,7 @@ let
 	trap cleanup EXIT
 
 	# check for changes on remote
-	current_hash="$(${pkgs.rclone}/bin/rclone lsjson "$rclone_remote" \
+	current_hash="$(${pkgs.rclone}/bin/rclone --config /home/${vars.user.username}/.config/rclone/rclone.conf lsjson "$rclone_remote" \
 	  --include "*.{''${extensions}}" \
 	  | ${pkgs.jq}/bin/jq -S '.[] | {Path, Size, ModTime}' \
 	  | sort \
@@ -46,31 +51,30 @@ let
 	fi
 
 	echo "Changes detected. Proceeding..."
-	echo "$current_hash" > "$state_file"
 
 	# mount remote
 	echo "Mounting rclone remote..."
-	if ! ${pkgs.rclone}/bin/rclone mount "$rclone_remote" "$temp_mount" \
-		--vfs-cache-mode writes \
-		--daemon-timeout 10s \
-		--daemon; then
-	  echo "ERROR: Failed to mount rclone remote"
-	  exit 1
-	fi
+	${pkgs.rclone}/bin/rclone mount "$rclone_remote" "$temp_mount" --vfs-cache-mode writes &
+	${pkgs.rclone}/bin/rclone mount \
+	  "$rclone_remote" \
+	  "$temp_mount" \
+	  --vfs-cache-mode writes &
+	RCLONE_PID=$!
 
 	# Wait for mount to be ready
 	echo "Waiting for mount to be ready..."
+	mounted=0
 	for i in {1..30}; do
-	  if mountpoint -q "$temp_mount" 2>/dev/null; then
-		echo "Mount is ready"
-		break
-	  fi
-	  if [ $i -eq 30 ]; then
-		echo "ERROR: Mount failed to become ready within 30 seconds"
-		exit 1
+	  if mountpoint -q "$temp_mount"; then
+	    mounted=1
+	    break
 	  fi
 	  sleep 1
 	done
+	if [ "$mounted" -eq 0 ]; then
+	  echo "ERROR: rclone mount never became available"
+	  exit 1
+	fi
 
 	# sorting process
 	echo "Starting media sort..."
@@ -87,6 +91,9 @@ let
 	  --extensions "$extensions" \
 	  "$temp_mount"
 
+    # update state file
+    echo "$current_hash" > "$state_file"
+
 	# git tank logger
 	tank-log
 
@@ -101,7 +108,10 @@ in {
       Type = "oneshot";
       User = vars.user.username;
       ExecStart = "${tank-sort}/bin/tank-sort";
-      Environment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin";
+      Environment = [
+        "PATH=/run/wrappers/bin:/run/current-system/sw/bin"
+        "HOME=/home/${vars.user.username}"
+        ];
     };
   };
 
