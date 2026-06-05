@@ -2,9 +2,7 @@
 
 {
   # Package and Addons
-  environment.systemPackages = with pkgs; [
-  kodi-wayland
-  ];
+  environment.systemPackages = with pkgs; [ kodi-wayland ];
 
   # Firewall rules
   networking.firewall = {
