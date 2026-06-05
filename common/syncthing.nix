@@ -9,20 +9,12 @@
     configDir = "/home/${vars.user.username}/.config/syncthing";
     settings = {
       options.urAccepted = 3;
-      devices = {
-        atlas.id = "${vars.syncthing.atlas}";
-        arcadia.id = "${vars.syncthing.arcadia}";
-        artemis.id = "${vars.syncthing.artemis}";
-        ilias.id = "${vars.syncthing.ilias}";
-        minerva.id = "${vars.syncthing.minerva}";
-        phone.id = "${vars.syncthing.phone}";
-        windows.id = "${vars.syncthing.windows}";
-        };
+      devices = builtins.mapAttrs (_: id: { inherit id; }) vars.syncthing;
       folders = {
         "/home/${vars.user.username}/vault" = {
       label = "vault";
             id = "vault";
-            devices = [ "atlas" "arcadia" "artemis" "ilias" "minerva" "phone" "windows" ];
+            devices = builtins.attrNames vars.syncthing;
           };
         };
       };
