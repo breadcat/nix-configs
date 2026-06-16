@@ -155,6 +155,8 @@
           ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
           ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
           ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+          "CONTROL_ALT, equal, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+          "CONTROL_ALT, minus, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ];
 
         bindl = [
