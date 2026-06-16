@@ -46,7 +46,6 @@
         HostName = "192.168.1.2";
         User = "root";
         Port = 22;
-        HostKeyAlgorithms = "+ssh-rsa";
       };
       "artemis" = {
         HostName = vars.user.domain;
