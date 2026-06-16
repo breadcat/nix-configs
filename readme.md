@@ -31,7 +31,7 @@ sudo e2label /dev/sda2 NIXROOT
 All `system.stateVersion` are defined at time of install. To upgrade a system, change the channel:
 ```
 sudo nix-channel --list
-sudo nix-channel --add https://nixos.org/channels/nixos-25.11 nixos
+sudo nix-channel --add https://nixos.org/channels/nixos-26.05 nixos
 sudo nix-channel --update
 ```
 The home-manager version is defined in `common/home-manager.nix`.
