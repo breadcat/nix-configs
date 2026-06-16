@@ -6,23 +6,24 @@ let machine = "ilias"; in {
 
   imports = [
     ../common/boot-systemd.nix
+    ../common/bruschetta.nix
+    ../common/caddy-${machine}.nix
+    ../common/cec-mini-kb.nix
     ../common/devel.nix
     ../common/flakes.nix
     ../common/garbage.nix
+    ../common/gnocchi.nix
     ../common/home-manager.nix
     ../common/locale.nix
     ../common/mount-drives.nix
     ../common/networking.nix
+    ../common/nfs-server.nix
     ../common/packages.nix
-    ../common/roles/bruschetta.nix
-    ../common/roles/caddy-${machine}.nix
-    ../common/roles/gnocchi.nix
-    ../common/roles/nfs-server.nix
-    ../common/roles/stromboli.nix
-    ../common/roles/tagliatelle.nix
-    ../common/ssh.nix
     ../common/ssh-tunnel.nix
+    ../common/ssh.nix
+    ../common/stromboli.nix
     ../common/syncthing.nix
+    ../common/tagliatelle.nix
     ../common/user.nix
     ../common/zerotier.nix
     ../scripts/audiobook-cleaner.nix
@@ -33,8 +34,8 @@ let machine = "ilias"; in {
     ../scripts/blog-sort-quotes.nix
     ../scripts/blog-weight.nix
     ../scripts/ctimerename.nix
-    ../scripts/duupmove.nix
     ../scripts/duplicate-filenames.nix
+    ../scripts/duupmove.nix
     ../scripts/overtid.nix
     ../scripts/payslips.nix
     ../scripts/phone-dump.nix
