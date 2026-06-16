@@ -1,10 +1,10 @@
 { pkgs, ... }: {
   programs.neovim = {
     enable = true;
+    withPython3 = false;
+    withRuby = false;
     defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [
-      vim-nix
-    ];
+    plugins = with pkgs.vimPlugins; [ vim-nix ];
     extraConfig = ''
       set smartcase
       set nocompatible
