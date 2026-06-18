@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       font = {
-        size = 11.0;
+        size = 10.0;
         # draw_bold_text_with_bright_colors = true;
         normal = {
           family = "JetBrainsMono Nerd Font Mono";
@@ -39,4 +39,3 @@
     };
   };
 }
-
