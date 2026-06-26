@@ -25,4 +25,7 @@
 
   };
 
+  # Firewall port
+  networking.firewall.allowedTCPPorts = [ 8080 ];
+
 }
