@@ -14,6 +14,7 @@ let machine = "ilias"; in {
     ../common/garbage.nix
     ../common/gnocchi.nix
     ../common/home-manager.nix
+    ../common/limoncello.nix
     ../common/locale.nix
     ../common/mount-drives.nix
     ../common/networking.nix
