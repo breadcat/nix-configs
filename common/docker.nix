@@ -19,7 +19,7 @@
   };
 
   # Firewall
-  networking.firewall.allowedTCPPorts = [ 80 443 50300 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   # Containers
   virtualisation.oci-containers = {
