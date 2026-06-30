@@ -77,7 +77,6 @@ let machine = "atlas"; in {
   environment.systemPackages = with pkgs; [
     discord
     ntfs3g
-    beeper
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
