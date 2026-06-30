@@ -4,7 +4,7 @@ let
   backup-cloud = pkgs.writeShellScriptBin "backup-cloud" ''
       # variables
       directories=( "$HOME/docker/" "$HOME/vault/" )
-      excludes=( "*.flac" "*.jpg" "*.jpeg" "*.mp4" "*.webm" "*.mkv")
+      excludes=( "*.flac" "*.jpg" "*.jpeg" "*.mp4" "*.webm" "*.mkv" "*.opus" )
       source "$HOME/vault/docs/secure/restic.env"
 
       case "''${1:-backup}" in
