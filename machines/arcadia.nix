@@ -26,7 +26,7 @@ let machine = "arcadia"; in {
     ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
       ../home/alacritty.nix
-      ../home/chromium.nix
+      ../home/firefox.nix
       ../home/fish.nix
       ../home/hyprland.nix
       ../home/kodi.nix

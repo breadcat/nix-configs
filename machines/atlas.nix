@@ -37,10 +37,10 @@
   ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
     ../home/alacritty.nix
-    ../home/chromium.nix
     ../home/clipse.nix
     ../home/cursor.nix
     ../home/espanso.nix
+    ../home/firefox.nix
     ../home/fish.nix
     ../home/git.nix
     ../home/github-desktop.nix

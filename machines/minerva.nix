@@ -33,9 +33,9 @@ let machine = "minerva"; in {
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
         ../home/alacritty.nix
         ../home/clipse.nix
-        ../home/chromium.nix
         ../home/cursor.nix
         ../home/espanso.nix
+        ../home/firefox.nix
         ../home/fish.nix
         ../home/git.nix
         ../home/htop.nix
