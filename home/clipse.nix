@@ -1,19 +1,10 @@
 { lib, ... }:
 {
-  services.clipse = {
-    enable = true;
-  };
+  services.clipse.enable = true;
 
-#  wayland.windowManager.hyprland.settings = {
-#    bind = [
-#      "SUPER, V, exec, alacritty --class clipse -e 'clipse'"
-#    ];
-#
-#    windowrule = [
-#      "match:class ^(clipse)$, float 1"
-#      "match:class ^(clipse)$, size 622 652"
-#    ];
-#
-#  };
+  wayland.windowManager.hyprland.extraConfig = ''
+    hl.bind("SUPER + V", hl.dsp.exec_cmd("alacritty --class clipse -e 'clipse'"))
+    hl.window_rule({name="clipse-float",match={class="^(clipse)$"},float=true,size={622,652}})
+  '';
 
 }

@@ -58,9 +58,8 @@
 		  };
 		};
   # Launch Kodi via Hyprland
-#  wayland.windowManager.hyprland = {
-#    settings = {
-#      "exec-once" = "${pkgs.kodi-wayland}/bin/kodi-standalone -fullscreen";
-#    };
-#  };
+  wayland.windowManager.hyprland.extraConfig = ''
+    hl.on("hyprland.start",function()hl.exec_cmd("${pkgs.kodi-wayland}/bin/kodi-standalone -fullscreen")end)
+  '';
+
 }
