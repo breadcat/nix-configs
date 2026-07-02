@@ -2,7 +2,7 @@
 
 { config, pkgs, lib, vars, ... }:
 
-let machine = "atlas"; in {
+{
 
   imports = [
     ../common/audio.nix
@@ -45,7 +45,6 @@ let machine = "atlas"; in {
     ../home/github-desktop.nix
     ../home/htop.nix
     ../home/hypridle.nix
-    ../home/hyprland-numlock.nix
     ../home/hyprland.nix
     ../home/iamb.nix
     ../home/lf.nix
