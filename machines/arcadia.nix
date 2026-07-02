@@ -29,7 +29,6 @@ let machine = "arcadia"; in {
       ../home/chromium.nix
       ../home/fish.nix
       ../home/hyprland.nix
-      ../home/hyprland-numlock.nix
       ../home/kodi.nix
       ../home/rclone.nix
       ../home/retroarch.nix

@@ -1,7 +1,7 @@
 { lib, machine, vars, ... }:
 
 let
-  numlockMachines = [ "atlas" ]; numlockEnabled = builtins.elem machine numlockMachines;
+  numlockMachines = [ "atlas" "arcadia" ]; numlockEnabled = builtins.elem machine numlockMachines;
 in
 {
   wayland.windowManager.hyprland = {
