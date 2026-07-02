@@ -30,6 +30,7 @@
     ../scripts/duplicate-filenames.nix
     ../scripts/duupmove.nix
     ../scripts/restic.nix
+    ../scripts/scan-to-pdf.nix
     ../scripts/seedy.nix
     ../scripts/taudiobooker.nix
     ../scripts/vidyaplace.nix
