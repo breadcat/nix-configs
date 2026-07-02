@@ -3,6 +3,7 @@
 {
   programs.firefox = {
     enable = true;
+    # configPath = "${config.xdg.configHome}/mozilla/firefox";
 
     profiles = {
       default = {
@@ -47,8 +48,14 @@
     };
   };
 
+
+  wayland.windowManager.hyprland.extraConfig = ''
+    hl.bind("SUPER + W", hl.dsp.exec_cmd("firefox"))
+    hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("firefox -private-window"))
+  '';
+
   home.sessionVariables = {
-#    BROWSER = "firefox";
+    BROWSER = "firefox";
     MOZ_ENABLE_WAYLAND = 1;
   };
 
