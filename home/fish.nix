@@ -12,6 +12,7 @@
       mcd = "mkdir -p $argv[1] && cd $argv[1]";
       mergeinto = "rsync --progress --remove-source-files -av \"$argv[1]\" \"$argv[2]\" && find \"$argv[1]\" -empty -delete";
       ncdu = ''set arg (count $argv); if test $arg -eq 0; set argv .; end; "${pkgs.rclone}/bin/rclone" ncdu $argv'';
+      notes = ''set file (find "$SYNCDIR/notes" -name ".git" -prune -o -type f | fzf --preview 'cat {}' --preview-window='right:60%:wrap'); and nvim "$file"'';
       vat = "math $argv + \"($argv * 0.2)\"";
     };
     shellInit = ''
