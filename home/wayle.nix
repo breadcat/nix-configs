@@ -1,5 +1,11 @@
-{ ... }:
+{ lib, machine, ... }:
 
+let
+  batteryMachines = [ "minerva" ];
+  hasBattery = builtins.elem machine batteryMachines;
+  deskModules = [ "media" "cpu" "ram" "storage" "netstat" "volume" "weather" "notifications" "clock" "power" ];
+  batModules  = [ "cpu" "ram" "storage" "netstat" "battery" "volume" "weather" "notifications" "clock" "power" ];
+in
 {
   services.wayle = {
     enable = true;
@@ -13,10 +19,10 @@
         button-variant = "basic";
         layout = [
           {
-            center = [ "media" ];
             left = [ "dashboard" "hyprland-workspaces" "window-title" ];
+            center = [ ];
             monitor = "*";
-            right = [ "cpu" "ram" "storage" "netstat" "volume" "weather" "notifications" "clock" "power" ];
+            right = if hasBattery then batModules else deskModules;
             show = true;
           }
         ];

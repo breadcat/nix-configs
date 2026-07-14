@@ -51,6 +51,7 @@ let machine = "minerva"; in {
         ../home/spotify.nix
         ../home/ssh.nix
         ../home/tofi.nix
+        ../home/wayle.nix
         ../home/yt-dlp.nix
       ];
       home.stateVersion = "24.11";
