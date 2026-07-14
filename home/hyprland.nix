@@ -52,6 +52,7 @@ in
       -- Input
       hl.config({input={numlock_by_default=${lib.boolToString numlockEnabled},kb_layout="gb",kb_options="caps:backspace",follow_mouse=1,sensitivity=0,touchpad={natural_scroll=false}}})
       -- Launch binds
+      hl.bind("SUPER + T", hl.dsp.exec_cmd("alacritty"))
       hl.bind("SUPER + RETURN", hl.dsp.exec_cmd("alacritty"))
       hl.bind("SUPER + R", hl.dsp.exec_cmd("tofi-run | xargs -I{} sh -c '{}'"))
       hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
