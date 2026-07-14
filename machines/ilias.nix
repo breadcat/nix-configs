@@ -2,7 +2,7 @@
 
 { config, pkgs, lib, vars, ... }:
 
-let machine = "ilias"; in {
+{
 
   imports = [
     ../common/boot-systemd.nix

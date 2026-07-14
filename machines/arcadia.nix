@@ -2,7 +2,7 @@
 
 { config, pkgs, lib, vars, ... }:
 
-let machine = "arcadia"; in {
+{
 
   imports = [
     ../common/audio.nix

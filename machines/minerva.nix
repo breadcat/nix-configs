@@ -2,7 +2,7 @@
 
 { config, pkgs, lib, vars, ... }:
 
-let machine = "minerva"; in {
+{
 
   imports = [
     ../common/audio.nix
