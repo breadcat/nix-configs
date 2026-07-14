@@ -13,8 +13,9 @@ in
     settings = {
       bar = {
         border-color = "bg-hover";
-        border-location = "bottom";
-        border-width = 2;
+        border-location = "top";
+        border-width = 1;
+        location = "bottom";
         button-rounding = "none";
         button-variant = "basic";
         layout = [
@@ -33,6 +34,7 @@ in
         dashboard = { icon-color = "fg-muted"; };
         hyprland-workspaces = { active-indicator = "underline"; };
         media = { icon-type = "default"; label-max-length= "15"; };
+        notifications = { popup-position = "bottom-right"; };
         ram = { left-click = "alacritty -e htop"; };
         weather = { location = "Huddersfield"; };
         window-title = { icon-show = false; };
