@@ -26,7 +26,7 @@
         cpu = { left-click = "alacritty -e htop"; };
         dashboard = { icon-color = "fg-muted"; };
         hyprland-workspaces = { active-indicator = "underline"; };
-        media = { icon-type = "application"; };
+        media = { icon-type = "default"; label-max-length= "15"; };
         ram = { left-click = "alacritty -e htop"; };
         weather = { location = "Huddersfield"; };
         window-title = { icon-show = false; };
