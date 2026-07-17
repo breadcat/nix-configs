@@ -6,15 +6,16 @@ let
 set -euo pipefail
 
 usage() {
+local prog=''${0##*/}
 cat <<EOF
 Usage:
-  $0 <model> <input> [output] [--volume N]
+  $prog <model> <input> [output] [--volume N]
 
 Examples:
-  $0 samsung greeting.mp3
-  $0 samsung greeting.mp3 output.wav
-  $0 gamma prompt.flac --volume 0.8
-  $0 webex prompt.wav output.wav --volume 0.75
+  $prog samsung greeting.mp3
+  $prog samsung greeting.mp3 output.wav
+  $prog gamma prompt.flac --volume 0.8
+  $prog webex prompt.wav output.wav --volume 0.75
 EOF
 exit 1
 }
@@ -60,25 +61,11 @@ fi
 	exit 1
 }
 
-COMMON_ARGS=(
-	-ar 8000
-	-ac 1
-)
-
 case "$MODEL" in
-	samsung|3cx|webex)
-		CODEC_ARGS=(-codec:a pcm_s16le -ab 128k)
-		;;
-	lg-emg|lg-ucp|panasonic|gamma)
-		CODEC_ARGS=(-codec:a pcm_mulaw -ab 64k)
-		;;
-	lg-hosted)
-		CODEC_ARGS=(-codec:a pcm_s16le -ab 64k)
-		;;
-	*)
-		echo "Unknown model '$MODEL'"
-		exit 1
-		;;
+	samsung|3cx|webex) CODEC_ARGS=(-codec:a pcm_s16le -ab 128k) ;;
+	lg-emg|lg-ucp|panasonic|gamma) CODEC_ARGS=(-codec:a pcm_mulaw -ab 64k) ;;
+	lg-hosted) CODEC_ARGS=(-codec:a pcm_s16le -ab 64k) ;;
+	*) echo "Unknown model '$MODEL'" && exit 1 ;;
 esac
 
 FFMPEG_ARGS=()
@@ -105,11 +92,7 @@ if [[ "$(realpath "$INPUT")" == "$(realpath -m "$OUTPUT")" ]]; then
 	echo "Original renamed to $BACKUP"
 fi
 
-${pkgs.ffmpeg}/bin/ffmpeg -i "$INPUT" \
-	"''${CODEC_ARGS[@]}" \
-	"''${COMMON_ARGS[@]}" \
-	"''${FFMPEG_ARGS[@]}" \
-	"$OUTPUT"
+${pkgs.ffmpeg}/bin/ffmpeg -i "$INPUT" -ar 8000 -ac 1 "''${CODEC_ARGS[@]}" "''${FFMPEG_ARGS[@]}" "$OUTPUT"
 
 echo "Created $OUTPUT"
 
