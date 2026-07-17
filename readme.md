@@ -11,6 +11,7 @@ sudo nixos-rebuild -I nixos-config=entrypoint.nix switch
 * `arcadia` - Intel NUC HTPC
 * `artemis` - Ampere VPS
 * `atlas` - Gaming workstation
+* `hades` - Work WSL laptop
 * `ilias` - Optiplex NAS
 * `minerva` - Thinkpad Laptop
 
