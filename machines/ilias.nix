@@ -7,8 +7,8 @@
   imports = [
     ../common/boot-systemd.nix
     ../common/bruschetta.nix
-    ../common/caddy-${machine}.nix
     ../common/cec-mini-kb.nix
+    ../common/caddy-ilias.nix
     ../common/devel.nix
     ../common/flakes.nix
     ../common/garbage.nix
