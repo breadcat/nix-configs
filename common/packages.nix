@@ -21,12 +21,11 @@
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "beeper"
     "discord"
+    "jocalsend"
     "libretro-genesis-plus-gx"
     "libretro-snes9x"
     "posy-cursors"
-    "spotify"
     "steam"
     "steam-unwrapped"
     "unrar"
