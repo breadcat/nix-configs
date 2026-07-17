@@ -39,6 +39,7 @@
     ../scripts/duupmove.nix
     ../scripts/overtid.nix
     ../scripts/payslips.nix
+    ../scripts/pbx.nix
     ../scripts/phone-dump.nix
     ../scripts/restic.nix
     ../scripts/seedy.nix
