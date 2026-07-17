@@ -14,6 +14,7 @@
     ../common/garbage.nix
     ../common/gnocchi.nix
     ../common/home-manager.nix
+    ../common/jocalsend.nix
     ../common/limoncello.nix
     ../common/locale.nix
     ../common/mount-drives.nix
