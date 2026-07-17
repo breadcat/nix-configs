@@ -47,7 +47,6 @@
     ../home/htop.nix
     ../home/hypridle.nix
     ../home/hyprland.nix
-    ../home/iamb.nix
     ../home/lf.nix
     ../home/mpv.nix
     ../home/neovim.nix

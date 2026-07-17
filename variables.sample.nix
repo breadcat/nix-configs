@@ -25,8 +25,4 @@ rec {
     machine1 = "id-number-1";
     machine2 = "id-number-2";
     };
-  matrix = {
-    user = "@user:domain.com";
-    homeserver = "https://matrix.domain.com";
-    };
 }
