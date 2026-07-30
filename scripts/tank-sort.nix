@@ -21,7 +21,7 @@ let
 	cleanup() {
 	  echo "Cleaning up..."
 	  if [ -n "''${RCLONE_PID:-}" ]; then
-	    kill "$RCLONE_PID" 2>/dev/null || tru
+	    kill "$RCLONE_PID" 2>/dev/null || true
 	    wait "$RCLONE_PID" 2>/dev/null || true
 	  fi
 	  if mountpoint -q "$temp_mount" 2>/dev/null; then
