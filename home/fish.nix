@@ -39,7 +39,7 @@
       set_color green
       echo (dirs)
       set_color normal
-      printf "❯ "
+      printf "%s ❯ " (hostname)
       end
     '';
 
