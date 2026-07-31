@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, vars, ... }:
 
-# OpenWRT setup for custom LAN domain names:
-# uci add_list dhcp.@dnsmasq[0].rebind_domain='lan'
-# uci add_list dhcp.@dnsmasq[0].address='/example.lan/192.168.1.3'
+# OpenWRT setup for custom *.home. domain names:
+# uci add_list dhcp.@dnsmasq[0].rebind_domain='home.minskio.co.uk'
+# uci add_list dhcp.@dnsmasq[0].address='/home.minskio.co.uk/192.168.1.3'
 # uci commit dhcp
 # service dnsmasq restart
 
@@ -15,9 +15,12 @@ let
   };
 
   mkVirtualHost = name: svc: {
-    name = "http://${name}.lan";
+    name = "${name}.home.${vars.user.domain}";
     value = {
       extraConfig = ''
+        tls {
+          dns cloudflare ${vars.secrets.cloudflare}
+        }
         reverse_proxy ${svc.host}:${toString svc.port}
       '';
     };
@@ -26,14 +29,15 @@ in
 {
   services.caddy = {
     enable = true;
+    package = pkgs.caddy.withPlugins {
+      plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
+      hash = "sha256-7GoH8YLCoPmPExQxoga2FHB58zQDoZVf1BBwkVi0SsQ=";
+    };
     virtualHosts = (lib.mapAttrs' mkVirtualHost services) // {
-      "http://192.168.1.3" = {
-        extraConfig = ''
-          reverse_proxy 127.0.0.1:8080
-        '';
-      };
+      # Handle http://192.168.1.3:80/ fallback to Stromboli
+      "http://192.168.1.3" = { extraConfig = "reverse_proxy 127.0.0.1:8080"; };
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
