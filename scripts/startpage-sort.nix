@@ -3,9 +3,10 @@
 	set -euo pipefail
 
 	source_file="$HOME/vault/src/startpage/index.html"
-	backup="''${source_file}.bak"
+	tmp_file="$(mktemp)"
+	trap 'rm -f "$tmp_file"' EXIT
 
-	cp "$source_file" "$backup"
+	before_sum="$(sha256sum "$source_file" | cut -d" " -f1)"
 
 	awk '
 	function ci_cmp(i1, v1, i2, v2,    a, b) {
@@ -70,7 +71,18 @@
 	{
 	  print
 	}
-	' "$backup" > "$source_file"
+	' "$source_file" > "$tmp_file"
+
+	mv "$tmp_file" "$source_file"
+	trap - EXIT
+
+	after_sum="$(sha256sum "$source_file" | cut -d" " -f1)"
+
+	if [ "$before_sum" != "$after_sum" ]; then
+	  echo "startpage index.html was reordered"
+	else
+	  echo "startpage index.html already sorted, no changes made"
+	fi
   '';
 in {
   environment.systemPackages = [startpage-sort];
