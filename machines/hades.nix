@@ -6,6 +6,7 @@
   imports = [
     <nixos-wsl/modules> # include NixOS-WSL modules
     ../common/home-manager.nix
+    ../common/locale.nix
     ../common/networking.nix
     ../common/packages.nix
     ../common/syncthing.nix
