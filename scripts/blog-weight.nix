@@ -33,9 +33,15 @@
 		set ylabel "Weight (kg)"
 		set key off
 		set term svg font 'sans-serif,12'
-		set sample 50
+		set samples 200
 		set output "temp.svg"
-		plot "temp.dat" using 1:2 smooth cspline with lines
+		set border lc rgb "#666666"
+		set xtics textcolor rgb "#AAAAAA"
+		set ytics textcolor rgb "#AAAAAA"
+		set xlabel textcolor rgb "#AAAAAA"
+		set ylabel textcolor rgb "#AAAAAA"
+		set grid lc rgb "#444444"
+		plot "temp.dat" using 1:2 smooth bezier with lines lc rgb "#6CB6FF" lw 2
 	EOF
 	printf "done\\nWriting page... "
 	{
