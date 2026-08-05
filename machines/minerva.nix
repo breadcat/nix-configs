@@ -14,6 +14,7 @@
     ../common/garbage.nix
     ../common/home-manager.nix
     ../common/hyprland.nix
+    ../common/jocalsend.nix
     ../common/locale.nix
     ../common/mount-drives.nix
     ../common/networking.nix
