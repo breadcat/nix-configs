@@ -33,6 +33,7 @@
     ../scripts/scan-to-pdf.nix
     ../scripts/seedy.nix
     ../scripts/taudiobooker.nix
+    ../scripts/vidyaplace-tears.nix
     ../scripts/vidyaplace.nix
   ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [

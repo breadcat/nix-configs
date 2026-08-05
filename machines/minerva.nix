@@ -29,6 +29,7 @@
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
     ../scripts/restic.nix
+    ../scripts/vidyaplace-tears.nix
     ../scripts/vidyaplace.nix
   ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
