@@ -5,6 +5,7 @@
     enable = true;
     configs = {
       default = {
+        show_notifications = false;
         keyboard_layout = {
           layout = "gb";
           };
