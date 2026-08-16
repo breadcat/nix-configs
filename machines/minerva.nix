@@ -54,6 +54,7 @@
         ../home/tofi.nix
         ../home/wayle.nix
         ../home/yt-dlp.nix
+        ../home/zathura.nix
       ];
       home.stateVersion = "24.11";
   };
