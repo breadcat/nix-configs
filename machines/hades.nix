@@ -26,6 +26,7 @@
   environment.systemPackages = with pkgs; [
     ffmpeg
     gping
+    miller
     nmap
   ];
 
