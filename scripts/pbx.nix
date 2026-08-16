@@ -8,15 +8,15 @@ let
     usage() {
     local prog=''${0##*/}
     cat <<EOF
-    Usage:
-    $prog <model> <input> [output] [--volume N]
+Usage:
+$prog <model> <input> [output] [--volume N]
 
-    Examples:
-    $prog samsung greeting.mp3
-    $prog samsung greeting.mp3 output.wav
-    $prog gamma prompt.flac --volume 0.8
-    $prog webex prompt.wav output.wav --volume 0.75
-    EOF
+Examples:
+$prog samsung greeting.mp3
+$prog samsung greeting.mp3 output.wav
+$prog gamma prompt.flac --volume 0.8
+$prog webex prompt.wav output.wav --volume 0.75
+EOF
     exit 1
     }
 
