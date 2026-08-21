@@ -46,24 +46,25 @@
 		sed 's/\\\,/,/g' >temp.artists.log
 	tail -n +2 <"$source" |
 		awk -F'\",\"' '{print $2}' |
-		sed 's/ - .... - Remaster$//g' |
-		sed 's/ - .... Remaster$//g' |
-		sed 's/ - .... Remastered Edition$//g' |
-		sed 's/ - .... re-mastered version$//g' |
-		sed 's/ - .... Remastered Version$//g' |
-		sed 's/ - feat.*$//g' |
-		sed 's/ - Live$//g' |
-		sed 's/ - Single$//g' |
-		sed 's/ - Original Mix$//g' |
-		sed 's/ - Remaster$//g' |
-		sed 's/ - Remastered ....$//g' |
-		sed 's/ - Remastered$//g' |
-		sed 's/ - Radio Version$//g' |
-		sed 's/ - Remastered Version$//g' |
-		sed 's/ (.... Remaster)$//g' |
-		sed 's/ (feat.*)$//g' |
-		sed 's/ (Live)//g' |
-		sed 's/\[[^][]*\]//g' |
+		sed \
+			-e 's/ - .... - Remaster$//' \
+			-e 's/ - .... Remaster$//' \
+			-e 's/ - .... Remastered Edition$//' \
+			-e 's/ - .... re-mastered version$//' \
+			-e 's/ - .... Remastered Version$//' \
+			-e 's/ - [0-9]\+\x27\x27 Version$//' \
+			-e 's/ - feat.*$//' \
+			-e 's/ - Live$//' \
+			-e 's/ - Original Mix$//' \
+			-e 's/ - Radio Version$//' \
+			-e 's/ - Remaster$//' \
+			-e 's/ - Remastered ....$//' \
+			-e 's/ - Remastered$//' \
+			-e 's/ - Single$//' \
+			-e 's/ (.... Remaster)$//' \
+			-e 's/ (feat.*)$//' \
+			-e 's/ (Live)$//' \
+			-e 's/\[[^][]*\]//' |
 		awk '{print "["$0"]"}' >temp.tracks.log
 	tail -n +2 <"$source" |
 		awk -F'\"' '{print $2}' |
