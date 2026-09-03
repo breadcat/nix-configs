@@ -7,6 +7,7 @@ rec {
     domain = "domain.com";
     email = "${username}@${domain}";
     timezone = "Europe/London";
+    locale = "en_GB.UTF-8";
     postcode = "AA1 1AA";
     address = "123 Fake Street\n${postcode}\n${postcode}";
     };
