@@ -31,6 +31,7 @@ in
       };
       modules = {
         cpu = { left-click = "alacritty -e htop"; };
+        clock = { format = "%a %b %d %-l:%M %p" };
         dashboard = { icon-color = "fg-muted"; };
         hyprland-workspaces = { active-indicator = "underline"; };
         media = { icon-type = "default"; label-max-length= "15"; };
