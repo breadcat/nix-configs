@@ -21,6 +21,7 @@ rec {
     pdfpassword = "";
     privatekey = "path/to/private.key";
     zerotier = "";
+    cloudflare = "";
     };
   syncthing = {
     machine1 = "id-number-1";
