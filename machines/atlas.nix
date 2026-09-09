@@ -25,7 +25,6 @@
     ../common/steam.nix
     ../common/syncthing.nix
     ../common/user.nix
-    ../common/ydotool.nix
     ../scripts/ctimerename.nix
     ../scripts/duplicate-filenames.nix
     ../scripts/duupmove.nix

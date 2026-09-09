@@ -24,7 +24,6 @@
     ../common/ssh.nix
     ../common/syncthing.nix
     ../common/user.nix
-    ../common/ydotool.nix
     ../common/upower.nix
     ../common/zerotier.nix
     ../scripts/ctimerename.nix
