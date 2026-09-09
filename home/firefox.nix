@@ -3,7 +3,7 @@
 {
   programs.firefox = {
     enable = true;
-    # configPath = "${config.xdg.configHome}/mozilla/firefox";
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
 
     profiles = {
       default = {
