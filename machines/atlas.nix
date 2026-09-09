@@ -59,6 +59,7 @@
     ../home/tofi.nix
     ../home/wayle.nix
     ../home/yt-dlp.nix
+    ../home/vesktop.nix
     ../home/zathura.nix
   ];
   home.stateVersion = "24.11";
@@ -76,10 +77,7 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Packages
-  environment.systemPackages = with pkgs; [
-    ntfs3g
-    vesktop
-  ];
+  environment.systemPackages = with pkgs; [ ntfs3g ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
 
