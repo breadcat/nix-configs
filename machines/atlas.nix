@@ -77,8 +77,8 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
-    discord
     ntfs3g
+    vesktop
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
