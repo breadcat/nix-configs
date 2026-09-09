@@ -3,8 +3,8 @@
 let
   batteryMachines = [ "minerva" ];
   hasBattery = builtins.elem machine batteryMachines;
-  deskModules = [ "media" "cpu" "ram" "storage" "netstat" "volume" "weather" "notifications" "clock" "power" ];
-  batModules  = [ "cpu" "ram" "storage" "netstat" "battery" "volume" "weather" "notifications" "clock" "power" ];
+  deskModules = [ "media" "cpu" "ram" "storage" "netstat" "volume" "weather" "notifications" "systray" "clock" "power" ];
+  batModules  = [ "cpu" "ram" "storage" "netstat" "battery" "volume" "weather" "notifications" "systray" "clock" "power" ];
 in
 {
   services.wayle = {
