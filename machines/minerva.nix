@@ -21,6 +21,7 @@
     ../common/nfs.nix
     ../common/nur.nix
     ../common/packages.nix
+    ../common/speechd.nix
     ../common/ssh.nix
     ../common/syncthing.nix
     ../common/user.nix

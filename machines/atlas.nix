@@ -21,6 +21,7 @@
     ../common/nur.nix
     ../common/packages.nix
     ../common/scanning.nix
+    ../common/speechd.nix
     ../common/ssh.nix
     ../common/steam.nix
     ../common/syncthing.nix
