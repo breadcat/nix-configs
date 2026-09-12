@@ -18,7 +18,6 @@
     ../common/mount-drives.nix
     ../common/networking.nix
     ../common/nfs.nix
-    ../common/nur.nix
     ../common/packages.nix
     ../common/scanning.nix
     ../common/speechd.nix
