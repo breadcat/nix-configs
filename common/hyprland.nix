@@ -9,7 +9,6 @@
     seatd
     slurp
     swayimg
-    tofi
     wl-clipboard
     xdg-utils
   ];
