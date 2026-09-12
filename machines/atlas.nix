@@ -44,7 +44,6 @@
     ../home/firefox.nix
     ../home/fish.nix
     ../home/git.nix
-    ../home/github-desktop.nix
     ../home/htop.nix
     ../home/hypridle.nix
     ../home/hyprland.nix

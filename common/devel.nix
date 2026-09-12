@@ -1,8 +1,10 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    # ide
-    geany
+    # graphical git
+    gitg
+    # basic notepad
+    mousepad
     # bash
     shellcheck-minimal
     shfmt

@@ -1,5 +1,7 @@
 { vars, ... }:
 
+# Setup tokens here: https://github.com/settings/tokens
+
 {
   programs.git = {
     enable = true;
