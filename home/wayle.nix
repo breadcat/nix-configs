@@ -37,6 +37,7 @@ in
         media = { icon-type = "default"; label-max-length= "15"; };
         notifications = { popup-position = "bottom-right"; };
         ram = { left-click = "alacritty -e htop"; };
+        volume = { right-click = "pavucontrol"; };
         weather = { location = "Huddersfield"; };
         window-title = { icon-show = false; };
       };
