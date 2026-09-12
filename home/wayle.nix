@@ -30,8 +30,8 @@ in
         scale = 0.8;
       };
       modules = {
+        clock = { format = "%a %b %d %-l:%M %p"; week-start = "monday"; };
         cpu = { left-click = "alacritty -e htop"; };
-        clock = { format = "%a %b %d %-l:%M %p" };
         dashboard = { icon-color = "fg-muted"; };
         hyprland-workspaces = { active-indicator = "underline"; };
         media = { icon-type = "default"; label-max-length= "15"; };
