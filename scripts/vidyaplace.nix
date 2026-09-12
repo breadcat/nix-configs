@@ -19,6 +19,7 @@ let
         "hideAfter=3"
         "legacyNpcs=false"
         "legacyObjects=true"
+        "displayPing=true"
         "loginMusic=false"
         "lowDetail=false"
         "modernRendering=true"
