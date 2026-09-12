@@ -1,6 +1,4 @@
-{ vars, ... }:
-
-# Setup tokens here: https://github.com/settings/tokens
+{ vars, pkgs, ... }:
 
 {
   programs.git = {
@@ -8,6 +6,8 @@
     settings = {
       user.name = "${vars.user.fullname}";
       user.email = "${vars.user.email}";
+      credential.helper = "!gh auth git-credential";
     };
   };
+  home.packages = with pkgs; [ gh ];
 }
