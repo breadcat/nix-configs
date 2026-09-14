@@ -46,6 +46,7 @@
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # disable pip popup
             "media.webspeech.synth.dont_notify_on_error" = true; # disable speech errors
             "media.webspeech.synth.enabled" = false; # disable speech entirely
+            "privacy.reducePageProtection.infobar.enabled.pbmode" = false; # reloading page tracker protecion bar
           };
 
           extensions = {
