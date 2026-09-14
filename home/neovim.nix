@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   programs.neovim = {
     enable = true;
     withPython3 = false;
@@ -36,5 +38,13 @@
       autocmd BufWritepre * %s/\n\+\%$//e
       lua << EOF
     '';
+    initLua = ''
+      vim.api.nvim_create_user_command("Uppercase", function()
+        vim.cmd("'<,'>s/.*/\\U&/")
+      end, { range = true })
+      vim.api.nvim_create_user_command("Lowercase", function()
+        vim.cmd("'<,'>s/.*/\\L&/")
+      end, { range = true })
+      '';
   };
 }
