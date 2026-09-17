@@ -56,9 +56,9 @@
     ../home/ssh.nix
     ../home/swayimg.nix
     ../home/tofi.nix
+    ../home/vesktop.nix
     ../home/wayle.nix
     ../home/yt-dlp.nix
-    ../home/vesktop.nix
     ../home/zathura.nix
   ];
   home.stateVersion = "24.11";
