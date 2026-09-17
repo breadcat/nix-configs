@@ -50,6 +50,7 @@
         ../home/rbw.nix
         ../home/spotify.nix
         ../home/ssh.nix
+        ../home/swayimg.nix
         ../home/tofi.nix
         ../home/wayle.nix
         ../home/yt-dlp.nix

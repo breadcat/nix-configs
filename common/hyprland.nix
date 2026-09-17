@@ -8,7 +8,6 @@
     hyprland
     seatd
     slurp
-    swayimg
     wl-clipboard
     xdg-utils
   ];
