@@ -22,6 +22,8 @@
             "browser.ai.control.smartWindow" = "blocked"; # ai blocking
             "browser.ai.control.translations" = "blocked"; # ai blocking
             "browser.discovery.containers.enabled" = false; # disable containers
+            "browser.gesture.swipe.left" = "cmd_scrollLeft"; # disable trackpad swipe gestures
+            "browser.gesture.swipe.right" = "cmd_scrollRight"; # disable trackpad swipe gestures
             "browser.ml.linkPreview.enabled" = false; # long press link previews
             "browser.newtab.extensionControlled" = true; # don't warn new tab page has changed
             "browser.newtab.privateAllowed" = true; # hide new tab warning in private too
