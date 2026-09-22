@@ -17,8 +17,8 @@ let
 	fi
 
 	# count watched content
-	movie_count=$(sqlite3 "$database" "SELECT COUNT(*) FROM movie_watched;")
-	episode_count=$(sqlite3 "$database" "SELECT COUNT(*) FROM episode_watched;")
+	movie_count=$(${pkgs.sqlite}/bin/sqlite3 "$database" "SELECT COUNT(*) FROM movie_watched;")
+	episode_count=$(${pkgs.sqlite}/bin/sqlite3 "$database" "SELECT COUNT(*) FROM episode_watched;")
 
 	# blank database
 	if [ "$movie_count" -eq 0 ] && [ "$episode_count" -eq 0 ]
@@ -44,7 +44,7 @@ let
 	# movies
 	if [ "$movie_count" -gt 0 ]
 	then
-		sqlite3 -noheader -quote "$database" "SELECT title FROM movie_watched;" |
+		${pkgs.sqlite}/bin/sqlite3 -noheader -quote "$database" "SELECT title FROM movie_watched;" |
 			sed "s/^'//;s/'$//" |
 			sed 's/^/* /' > movies.md
 
@@ -54,15 +54,15 @@ let
 	# tv shows
 	if [ "$episode_count" -gt 0 ]
 	then
-		watched_ids=$(sqlite3 -noheader "$database" "SELECT DISTINCT idShow FROM episode_watched;")
+		watched_ids=$(${pkgs.sqlite}/bin/sqlite3 -noheader "$database" "SELECT DISTINCT idShow FROM episode_watched;")
 
 		for id in $watched_ids
 		do
-			title=$(sqlite3 -noheader -quote "$database" "SELECT title FROM tvshows WHERE idShow = $id;")
+			title=$(${pkgs.sqlite}/bin/sqlite3 -noheader -quote "$database" "SELECT title FROM tvshows WHERE idShow = $id;")
 			title=''${title//\"/}
 			title=''${title//\'/}
-			latest_season=$(sqlite3 -noheader "$database" "SELECT MAX(season) FROM episode_watched WHERE idShow = $id;")
-			latest_episode=$(sqlite3 -noheader "$database" "SELECT MAX(episode) FROM episode_watched WHERE idShow = $id AND season = $latest_season;")
+			latest_season=$(${pkgs.sqlite}/bin/sqlite3 -noheader "$database" "SELECT MAX(season) FROM episode_watched WHERE idShow = $id;")
+			latest_episode=$(${pkgs.sqlite}/bin/sqlite3 -noheader "$database" "SELECT MAX(episode) FROM episode_watched WHERE idShow = $id AND season = $latest_season;")
 			echo "* "$title" ("$latest_season"x"$latest_episode")"
 		done > tv_shows.md
 
