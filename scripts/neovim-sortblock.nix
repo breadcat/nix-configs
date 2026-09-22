@@ -7,14 +7,16 @@ let
     --
     -- Wrap lines in markers:
     --   # sort:start
-    --   cat
     --   dog
+    --   cat
+    --   cat
     --   # sort:end
     --
+    --
     -- Also supports flags, eh: sort:start reverse nodedupe case
-      start_marker = "sort:start",
     local M = {}
     M.config = {
+      start_marker = "sort:start",
       end_marker = "sort:end",
       pattern = "*",
       ignorecase = true,
