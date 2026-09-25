@@ -26,6 +26,10 @@
     ];
   };
 
+
+#      hl.bind("SUPER + W", hl.dsp.exec_cmd("chromium"))
+#      hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("chromium --incognito"))
+
   home.sessionVariables = {
     BROWSER = "chromium";
   };
