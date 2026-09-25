@@ -93,6 +93,7 @@ in
       hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
       hl.bind("CTRL + ALT + equal", hl.dsp.exec_cmd("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
       hl.bind("CTRL + ALT + minus", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),        { locked = true, repeating = true })
+      hl.bind("CTRL + ALT + 0",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),       { locked = true, repeating = false })
       -- Smart gaps
       hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
       hl.workspace_rule({ workspace = "f[1]", gaps_out = 0, gaps_in = 0 })
