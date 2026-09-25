@@ -5,9 +5,10 @@
 {
 
   imports = [
+    # sort:start
+    # ../common/cec-mini-kb.nix
     ../common/boot-systemd.nix
     ../common/bruschetta.nix
-    ../common/cec-mini-kb.nix
     ../common/caddy-ilias.nix
     ../common/devel.nix
     ../common/flakes.nix
@@ -38,6 +39,7 @@
     ../scripts/ctimerename.nix
     ../scripts/duplicate-filenames.nix
     ../scripts/duupmove.nix
+    ../scripts/notes.nix
     ../scripts/overtid.nix
     ../scripts/payslips.nix
     ../scripts/pbx.nix
@@ -51,8 +53,10 @@
     ../scripts/vidyaplace-tears.nix
     ../scripts/watchedlist.nix
     ../scripts/youtube-id-rss.nix
+    # sort:end
   ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
+        # sort:start
         ../home/fish.nix
         ../home/git.nix
         ../home/htop.nix
@@ -61,9 +65,10 @@
         ../home/rclone.nix
         ../home/ssh.nix
         ../home/yt-dlp.nix
+        # sort:end
       ];
       home.stateVersion = "24.11";
-  };
+    };
 
   # Hardware and system
   boot.initrd = { availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ]; };
@@ -76,6 +81,7 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
+    # sort:start
     czkawka # duplicate file finder
     jdupes # duplicate file finder
     mmv # mass renamer
@@ -85,6 +91,7 @@
     python3
     qpdf
     sqlite
+    # sort:end
   ];
 
   system.stateVersion = "24.11";

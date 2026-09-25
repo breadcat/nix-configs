@@ -12,6 +12,7 @@
           isDefault = true;
 
           settings = {
+            # sort:start
             "browser.aboutConfig.showWarning" = false; # disable about:config warning
             "browser.aboutwelcome.enabled" = false; # disable welcome screen
             "browser.ai.control.default" = "blocked"; # ai blocking
@@ -49,6 +50,7 @@
             "media.webspeech.synth.dont_notify_on_error" = true; # disable speech errors
             "media.webspeech.synth.enabled" = false; # disable speech entirely
             "privacy.reducePageProtection.infobar.enabled.pbmode" = false; # reloading page tracker protecion bar
+            # sort:end
           };
 
           extensions = {

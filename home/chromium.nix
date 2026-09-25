@@ -14,11 +14,15 @@
     ];
 
     commandLineArgs = [
-      "--homepage=https://breadcat.github.io/startpage/"
-      "--force-dark-mode"
-      "--no-default-browser-check"
-      "--enable-feature=WebUIDarkMode"
+      # sort:start
+      "--disable-features=AiModeOmniboxEntryPoint"
+      "--disable-features=HideAimEntrypointOnUserInput"
       "--disable-features=Translate"
+      "--enable-feature=WebUIDarkMode"
+      "--force-dark-mode"
+      "--homepage=https://breadcat.github.io/startpage/"
+      "--no-default-browser-check"
+      # sort:end
     ];
   };
 

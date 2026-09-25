@@ -14,37 +14,37 @@
     matches = {
       base = {
         matches = [
-          { trigger = "(ae)"; replace = "æ"; }
-          { trigger = "(Ae)"; replace = "Æ"; }
-          { trigger = "(AE)"; replace = "Æ"; }
-          { trigger = "(ai)"; replace = "ä"; }
-          { trigger = "(Ai)"; replace = "Ä"; }
-          { trigger = "(AI)"; replace = "Ä"; }
-          { trigger = "(ao)"; replace = "å"; }
-          { trigger = "(Ao)"; replace = "Å"; }
-          { trigger = "(AO)"; replace = "Å"; }
-          { trigger = "(o/)"; replace = "ø"; }
-          { trigger = "(O/)"; replace = "Ø"; }
-          { trigger = "(oi)"; replace = "ö"; }
-          { trigger = "(Oi)"; replace = "Ö"; }
-          { trigger = "(OI)"; replace = "Ö"; }
-          { trigger = "(??)"; replace = "¿"; }
+          # sort:start
           { trigger = "(!!)"; replace = "¡"; }
-          { trigger = "(?!)"; replace = "‽"; }
           { trigger = "(!?)"; replace = "‽"; }
+          { trigger = "(?!)"; replace = "‽"; }
+          { trigger = "(??)"; replace = "¿"; }
+          { trigger = "(Ae)"; replace = "Æ"; }
+          { trigger = "(ae)"; replace = "æ"; }
+          { trigger = "(Ai)"; replace = "Ä"; }
+          { trigger = "(ai)"; replace = "ä"; }
+          { trigger = "(Ao)"; replace = "Å"; }
+          { trigger = "(ao)"; replace = "å"; }
           { trigger = "(deg)"; replace = "°"; }
-          { trigger = "_date"; replace = "{{date}}"; }
-          { trigger = "_time"; replace = "{{time}}"; }
-          { trigger = "_dttime"; replace = "{{datetime}}"; }
-          { trigger = "_reg"; replace = "\n\nRegards,\n${vars.user.fullname}"; }
-          { trigger = "_kreg"; replace = "\n\nKind regards,\n${vars.user.fullname}"; }
-          { trigger = "_hem"; replace = "${vars.user.email}"; }
+          { trigger = "(O/)"; replace = "Ø"; }
+          { trigger = "(o/)"; replace = "ø"; }
+          { trigger = "(Oi)"; replace = "Ö"; }
+          { trigger = "(oi)"; replace = "ö"; }
           { trigger = "_addr"; replace = "${vars.user.address}"; }
+          { trigger = "_date"; replace = "{{date}}"; }
+          { trigger = "_dttime"; replace = "{{datetime}}"; }
+          { trigger = "_hem"; replace = "${vars.user.email}"; }
+          { trigger = "_kreg"; replace = "\n\nKind regards,\n${vars.user.fullname}"; }
+          { trigger = "_reg"; replace = "\n\nRegards,\n${vars.user.fullname}"; }
+          { trigger = "_time"; replace = "{{time}}"; }
+          # sort:end
         ];
          global_vars = [
-          { name = "date"; type = "date"; params = { format = "%Y-%m-%d"; }; }
-          { name = "time"; type = "date"; params = { format = "%H:%M"; }; }
-          { name = "datetime"; type = "date"; params = { format = "%Y-%m-%dT%H:%M"; }; }
+           # sort:start
+           { name = "date"; type = "date"; params = { format = "%Y-%m-%d"; }; }
+           { name = "datetime"; type = "date"; params = { format = "%Y-%m-%dT%H:%M"; }; }
+           { name = "time"; type = "date"; params = { format = "%H:%M"; }; }
+           # sort:end
         ];
         };
     };

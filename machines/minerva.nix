@@ -5,6 +5,7 @@
 {
 
   imports = [
+    # sort:start
     ../common/audio.nix
     ../common/autologin.nix
     ../common/boot-grub.nix
@@ -23,16 +24,19 @@
     ../common/speechd.nix
     ../common/ssh.nix
     ../common/syncthing.nix
-    ../common/user.nix
     ../common/upower.nix
+    ../common/user.nix
     ../common/zerotier.nix
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
+    ../scripts/notes.nix
     ../scripts/restic.nix
     ../scripts/vidyaplace-tears.nix
     ../scripts/vidyaplace.nix
+    # sort:end
   ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
+        # sort:start
         ../home/alacritty.nix
         ../home/clipse.nix
         ../home/cursor.nix
@@ -55,9 +59,10 @@
         ../home/wayle.nix
         ../home/yt-dlp.nix
         ../home/zathura.nix
+        # sort:end
       ];
       home.stateVersion = "24.11";
-  };
+    };
 
   # Hardware and system
   boot.initrd = { availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" ]; };

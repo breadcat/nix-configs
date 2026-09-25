@@ -5,6 +5,8 @@
 {
 
   imports = [
+    # sort:start
+    # ../common/cec-mini-kb.nix
     ../common/audio.nix
     ../common/autologin.nix
     ../common/boot-systemd.nix
@@ -23,8 +25,10 @@
     ../common/syncthing.nix
     ../common/user.nix
     ../scripts/seedy.nix
-    ];
+    # sort:end
+  ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
+      # sort:start
       ../home/alacritty.nix
       ../home/firefox.nix
       ../home/fish.nix
@@ -35,6 +39,7 @@
       ../home/spotify.nix
       ../home/ssh.nix
       ../home/yt-dlp.nix
+      # sort:end
     ];
     home.stateVersion = "24.11";
   };

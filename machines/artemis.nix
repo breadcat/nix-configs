@@ -5,9 +5,10 @@
 {
 
   imports = [
+    # sort:start
     ../common/boot-systemd.nix
-    ../common/docker.nix
     ../common/docker-webdev.nix
+    ../common/docker.nix
     ../common/flakes.nix
     ../common/garbage.nix
     ../common/home-manager.nix
@@ -23,11 +24,15 @@
     ../scripts/blog-duolingo.nix
     ../scripts/blog-status.nix
     ../scripts/magnets.nix
+    ../scripts/notes.nix
     ../scripts/restic.nix
     ../scripts/stagit-generate.nix
+    ../scripts/startpage-sort.nix
     ../scripts/taudiobooker.nix
+    # sort:end
   ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
+        # sort:start
         ../home/fish.nix
         ../home/git.nix
         ../home/htop.nix
@@ -36,9 +41,10 @@
         ../home/rclone.nix
         ../home/ssh.nix
         ../home/yt-dlp.nix
+        # sort:end
       ];
       home.stateVersion = "25.05";
-  };
+    };
 
   # Hardware and system
   boot.initrd = { availableKernelModules = [ "xhci_pci" "virtio_pci" "virtio_scsi" "usbhid" ]; };

@@ -1,6 +1,7 @@
 { lib, pkgs, ... }: {
 
   environment.systemPackages = with pkgs; [
+    # sort:start
     fastfetch
     ffmpeg
     file
@@ -18,6 +19,7 @@
     syncthing
     tmux
     unzip
+    # sort:end
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

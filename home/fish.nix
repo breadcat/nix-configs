@@ -4,6 +4,7 @@
   programs.fish = {
     enable = true;
     functions = {
+      # sort:start
       __fish_command_not_found_handler = { body = "echo fish: Unknown command $argv[1]"; onEvent = "fish_command_not_found"; };
       backup = "tar -zcvf (basename \$argv)_backup-(date +%F-%H%M%S).tar.gz \$argv";
       book = "grep -i \"$argv\" \"$SYNCDIR/src/blog.${vars.user.domain}/content/reading-list.md\"";
@@ -12,8 +13,8 @@
       mcd = "mkdir -p $argv[1] && cd $argv[1]";
       mergeinto = "rsync --progress --remove-source-files -av \"$argv[1]\" \"$argv[2]\" && find \"$argv[1]\" -empty -delete";
       ncdu = ''set arg (count $argv); if test $arg -eq 0; set argv .; end; "${pkgs.rclone}/bin/rclone" ncdu $argv'';
-      notes = ''set file (find "$SYNCDIR/notes" -name ".git" -prune -o -type f | fzf --preview 'cat {}' --preview-window='right:60%:wrap'); and nvim "$file"'';
       vat = "math $argv + \"($argv * 0.2)\"";
+      # sort:end
     };
     shellInit = ''
       set fish_greeting # Disable greeting
@@ -24,6 +25,7 @@
       set -gx VISUAL $EDITOR
     '';
     shellAliases = {
+      # sort:start
       cdv = "cd $HOME/vault/";
       crypto-sum = "${pkgs.rbw}/bin/rbw get 'crypto purchases' | awk '/^20/ {print $2}' | paste -sd+ | math";
       empties = "find . -maxdepth 3 -mount -not -path \"*/\.*\" -empty -print";
@@ -31,6 +33,7 @@
       jdupes = "jdupes -A"; # exclude hidden files
       vaultedit = "find \"$SYNCDIR\" -maxdepth 5 -type f -not -path \"\*/\.git\" | ${pkgs.fzf}/bin/fzf --preview \"cat {}\" --layout reverse | xargs -r -I{} \"$EDITOR\" {}";
       week = "date +%V";
+      # sort:end
     };
     interactiveShellInit = ''
       set -g fish_greeting

@@ -5,6 +5,7 @@
 {
 
   imports = [
+    # sort:start
     ../common/audio.nix
     ../common/autologin.nix
     ../common/boot-systemd.nix
@@ -25,17 +26,24 @@
     ../common/steam.nix
     ../common/syncthing.nix
     ../common/user.nix
+    ../common/ydotool.nix
+    ../common/zerotier.nix
     ../scripts/ctimerename.nix
     ../scripts/duplicate-filenames.nix
     ../scripts/duupmove.nix
+    ../scripts/notes.nix
     ../scripts/restic.nix
     ../scripts/scan-to-pdf.nix
     ../scripts/seedy.nix
+    ../scripts/startpage-sort.nix
     ../scripts/taudiobooker.nix
     ../scripts/vidyaplace-tears.nix
     ../scripts/vidyaplace.nix
+    ../scripts/watchedlist.nix
+    # sort:end
   ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
+    # sort:start
     ../home/alacritty.nix
     ../home/clipse.nix
     ../home/cursor.nix
@@ -60,6 +68,7 @@
     ../home/wayle.nix
     ../home/yt-dlp.nix
     ../home/zathura.nix
+    # sort:end
   ];
   home.stateVersion = "24.11";
 };

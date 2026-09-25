@@ -7,6 +7,7 @@
 
 let
   cores = [
+    # sort:start
     "dolphin"
     "flycast"
     "genesis-plus-gx"
@@ -19,6 +20,7 @@ let
     "sameboy"
     "snes9x"
     "swanstation"
+    # sort:end
     ];
 in
 
@@ -27,11 +29,7 @@ in
     enable = true;
     cores = lib.genAttrs cores (_: { enable = true; });
     settings = {
-      video_fullscreen = "true";
-      input_driver = "wayland";
-      video_driver = "vulkan";
-      system_directory = "/tank/media/games/.firmware";
-      rgui_browser_directory = "/tank/media/games";
+      # sort:start
       audio_driver = "pipewire";
       audio_enable_menu = "true";
       audio_enable_menu_bgm = "true";
@@ -45,9 +43,15 @@ in
       content_show_netplay = "false";
       content_show_playlists = "false";
       content_show_video = "false";
+      input_driver = "wayland";
       menu_driver = "xmb";
+      rgui_browser_directory = "/tank/media/games";
+      system_directory = "/tank/media/games/.firmware";
+      video_driver = "vulkan";
+      video_fullscreen = "true";
       xmb_menu_color_theme = "21";
       xmb_theme = "1";
+      # sort:end
     };
   };
 }
