@@ -31,6 +31,7 @@
     ../scripts/ctimerename.nix
     ../scripts/duplicate-filenames.nix
     ../scripts/duupmove.nix
+    ../scripts/hyprland-alt-toggle.nix
     ../scripts/notes.nix
     ../scripts/restic.nix
     ../scripts/scan-to-pdf.nix
