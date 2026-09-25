@@ -52,7 +52,7 @@ in
       -- Misc
       hl.config({misc={force_default_wallpaper=0,disable_hyprland_logo=true,disable_splash_rendering=true}})
       -- Input
-      hl.config({input={numlock_by_default=${lib.boolToString numlockEnabled},kb_layout="gb",kb_options="caps:backspace",follow_mouse=1,sensitivity=0,touchpad={natural_scroll=false}}})
+      hl.config({input={numlock_by_default=${lib.boolToString numlockEnabled},kb_layout="gb",kb_options="caps:backspace",follow_mouse=1,sensitivity=0,accel_profile="flat",touchpad={natural_scroll=false}}})
       -- Launch binds
       hl.bind("SUPER + W", hl.dsp.exec_cmd("firefox"))
       hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("firefox -private-window"))
