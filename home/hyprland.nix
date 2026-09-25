@@ -1,4 +1,4 @@
-{ lib, machine, vars, ... }:
+{ lib, machine, vars, pkgs, ... }:
 
 let
   numlockMachines = [ "atlas" "arcadia" ]; numlockEnabled = builtins.elem machine numlockMachines;
@@ -63,6 +63,8 @@ in
       hl.bind("ALT + SHIFT + Tab", hl.dsp.window.cycle_next({ next = false }))
       hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close())
       hl.bind("SUPER + E", hl.dsp.exec_cmd("alacritty -e lf"))
+      hl.bind("Print", hl.dsp.exec_cmd('${pkgs.grim}/bin/grim ~/screenshot_$(date +"%Y-%m-%d_%H-%M-%S").png'))
+      hl.bind("SHIFT + Print", hl.dsp.exec_cmd('${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" ~/screenshot_$(date +"%Y-%m-%d_%H-%M-%S").png'))
       -- WM controls
       hl.bind("SUPER + Space", hl.dsp.window.float({ action = "toggle" }))
       hl.bind("SUPER + F", hl.dsp.window.fullscreen())

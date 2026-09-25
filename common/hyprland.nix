@@ -2,14 +2,14 @@
 
 {
   environment.systemPackages = with pkgs; [
-    grim
+    # sort:start
     hyprcursor
     hypridle
     hyprland
     seatd
-    slurp
     wl-clipboard
     xdg-utils
+    # sort:end
   ];
   programs.hyprland.enable = true;
   users.users.${vars.user.username}.extraGroups = ["seat" "video"];
