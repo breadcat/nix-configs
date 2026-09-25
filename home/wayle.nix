@@ -34,7 +34,7 @@ in
         cpu = { left-click = "alacritty -e htop"; };
         dashboard = { icon-color = "fg-muted"; };
         hyprland-workspaces = { active-indicator = "underline"; };
-        media = { icon-type = "default"; label-max-length= "15"; };
+        media = { icon-type = "default"; label-max-length = "15"; right-click = "alacritty -e spotify_player"; };
         notifications = { popup-position = "bottom-right"; };
         ram = { left-click = "alacritty -e htop"; };
         volume = { right-click = "pavucontrol"; };
