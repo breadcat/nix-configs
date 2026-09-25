@@ -23,7 +23,6 @@
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "discord"
     "jocalsend"
     "libretro-genesis-plus-gx"
     "libretro-snes9x"
