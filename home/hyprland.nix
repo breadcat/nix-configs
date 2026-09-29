@@ -65,6 +65,7 @@ in
       hl.bind("SUPER + E", hl.dsp.exec_cmd("alacritty -e lf"))
       hl.bind("Print", hl.dsp.exec_cmd('${pkgs.grim}/bin/grim ~/screenshot_$(date +"%Y-%m-%d_%H-%M-%S").png'))
       hl.bind("SHIFT + Print", hl.dsp.exec_cmd('${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" ~/screenshot_$(date +"%Y-%m-%d_%H-%M-%S").png'))
+      hl.bind("SUPER + L", hl.dsp.exec_cmd("power-menu"))
       -- WM controls
       hl.bind("SUPER + Space", hl.dsp.window.float({ action = "toggle" }))
       hl.bind("SUPER + F", hl.dsp.window.fullscreen())

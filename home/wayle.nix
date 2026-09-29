@@ -36,6 +36,7 @@ in
         hyprland-workspaces = { active-indicator = "underline"; };
         media = { icon-type = "default"; label-max-length = "15"; right-click = "alacritty -e spotify_player"; };
         notifications = { popup-position = "bottom-right"; };
+        power = { left-click = "power-menu"; };
         ram = { left-click = "alacritty -e htop"; };
         volume = { right-click = "pavucontrol"; };
         weather = { location = "Huddersfield"; };

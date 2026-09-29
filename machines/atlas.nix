@@ -33,6 +33,7 @@
     ../scripts/duupmove.nix
     ../scripts/hyprland-alt-toggle.nix
     ../scripts/notes.nix
+    ../scripts/power-menu.nix
     ../scripts/restic.nix
     ../scripts/scan-to-pdf.nix
     ../scripts/seedy.nix

@@ -30,6 +30,7 @@
     ../scripts/ctimerename.nix
     ../scripts/duupmove.nix
     ../scripts/notes.nix
+    ../scripts/power-menu.nix
     ../scripts/restic.nix
     ../scripts/vidyaplace-tears.nix
     ../scripts/vidyaplace.nix
