@@ -68,6 +68,7 @@ in
       hl.bind("SUPER + E", hl.dsp.exec_cmd("alacritty -e lf"))
       hl.bind("Print", hl.dsp.exec_cmd('${pkgs.grim}/bin/grim ~/screenshot_$(date +"%Y-%m-%d_%H-%M-%S").png'))
       hl.bind("SHIFT + Print", hl.dsp.exec_cmd('${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" ~/screenshot_$(date +"%Y-%m-%d_%H-%M-%S").png'))
+      hl.bind("CTRL + ALT + M", hl.dsp.exec_cmd("${pkgs.playerctl}/bin/playerctl play-pause"))
       hl.bind("SUPER + L", hl.dsp.exec_cmd("power-menu"))
       -- WM controls
       hl.bind("SUPER + Space", hl.dsp.window.float({ action = "toggle" }))
