@@ -11,7 +11,7 @@
       ytdl-raw-options = "sub-format=en,write-srt=";
       ytdl-format = "bestvideo[height<=?480][fps<=?30]+bestaudio/best";
     };
-    scripts = with pkgs.mpvScripts; [ sponsorblock-minimal ];
+    scripts = with pkgs.mpvScripts; [ mpris sponsorblock-minimal ];
 
     profiles = builtins.listToAttrs (
       map (ext: { name = "extension.${ext}"; value = { loop-file = "inf"; }; })
