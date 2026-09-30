@@ -62,6 +62,7 @@
     ../home/newsboat.nix
     ../home/rbw.nix
     ../home/rclone.nix
+    ../home/retroarch.nix
     ../home/spotify.nix
     ../home/ssh.nix
     ../home/swayimg.nix
