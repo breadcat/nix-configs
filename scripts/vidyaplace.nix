@@ -59,5 +59,6 @@ let
   };
 
 in {
+  imports = [ ./vidyaplace-tears.nix ];
   environment.systemPackages = [ vidyaplace ];
 }

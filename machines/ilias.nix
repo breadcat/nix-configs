@@ -51,7 +51,6 @@
     ../scripts/tank-log.nix
     ../scripts/tank-sort.nix
     ../scripts/taudiobooker.nix
-    ../scripts/vidyaplace-tears.nix
     ../scripts/watchedlist.nix
     ../scripts/youtube-id-rss.nix
     # sort:end

@@ -38,7 +38,6 @@
     ../scripts/seedy.nix
     ../scripts/startpage-sort.nix
     ../scripts/taudiobooker.nix
-    ../scripts/vidyaplace-tears.nix
     ../scripts/vidyaplace.nix
     ../scripts/watchedlist.nix
     # sort:end
