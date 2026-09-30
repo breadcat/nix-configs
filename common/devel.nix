@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     # graphical git
-    gitg
+    github-desktop
     # basic notepad
     mousepad
     # bash
