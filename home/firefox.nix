@@ -13,6 +13,7 @@
 
           settings = {
             # sort:start
+            "accessibility.browsewithcaret_shortcut.enabled" = false; # disable F7 caret browsing shortcut
             "browser.aboutConfig.showWarning" = false; # disable about:config warning
             "browser.aboutwelcome.enabled" = false; # disable welcome screen
             "browser.ai.control.default" = "blocked"; # ai blocking
@@ -23,6 +24,7 @@
             "browser.ai.control.smartWindow" = "blocked"; # ai blocking
             "browser.ai.control.translations" = "blocked"; # ai blocking
             "browser.discovery.containers.enabled" = false; # disable containers
+            "browser.download.alwaysOpenPanel" = true; # show downloads when started, even after hiding button
             "browser.gesture.swipe.left" = "cmd_scrollLeft"; # disable trackpad swipe gestures
             "browser.gesture.swipe.right" = "cmd_scrollRight"; # disable trackpad swipe gestures
             "browser.ml.linkPreview.enabled" = false; # long press link previews
