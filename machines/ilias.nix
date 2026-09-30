@@ -30,6 +30,7 @@
     ../common/user.nix
     ../common/zerotier.nix
     ../scripts/audiobook-cleaner.nix
+    ../scripts/average-relative.nix
     ../scripts/backup-local.nix
     ../scripts/blog-music.nix
     ../scripts/blog-sort-archives.nix
