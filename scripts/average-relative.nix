@@ -1,15 +1,15 @@
 { pkgs, ... }:
 
 let
-  average-relative = pkgs.writeShellScriptBin "av`erage-relative" ''
-    dir="${1:-.}"
+  average-relative = pkgs.writeShellScriptBin "average-relative" ''
+    dir="''${1:-.}"
     if [[ ! -d "$dir" ]]; then
     echo "Not a directory: $dir" >&2
     exit 1
     fi
     shopt -s nullglob
     for i in "$dir"/*/; do
-    i="${i%/}"
+    i="''${i%/}"
     size=$(du -sk "$i" | awk '{print $1}')
     count=$(find "$i" -type f -size +1M | wc -l)
     (( count == 0 )) && continue
