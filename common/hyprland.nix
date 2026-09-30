@@ -7,6 +7,7 @@
     hypridle
     hyprland
     seatd
+    slurp
     wl-clipboard
     xdg-utils
     # sort:end
