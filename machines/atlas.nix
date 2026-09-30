@@ -35,7 +35,6 @@
     ../scripts/notes.nix
     ../scripts/power-menu.nix
     ../scripts/restic.nix
-    ../scripts/scan-to-pdf.nix
     ../scripts/seedy.nix
     ../scripts/startpage-sort.nix
     ../scripts/taudiobooker.nix
