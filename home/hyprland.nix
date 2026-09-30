@@ -40,7 +40,10 @@ in
       hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
       hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
       hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
-      -- Monitors
+      -- Pinned dual monitors
+      hl.monitor({ output = "desc:Iiyama North America PL2710HD 11049A0B03195", mode = "1920x1080", position = "0x0", scale = 1, })
+      hl.monitor({ output = "desc:AOC Q34E2G5 POBL9HA002276", mode = "2560x1080", position = "1920x0", scale = 1, })
+      -- Default backup monitor
       hl.monitor({output="",mode="preferred",position="auto",scale="auto"})
       -- Environment
       hl.env("XCURSOR_SIZE", "24")
