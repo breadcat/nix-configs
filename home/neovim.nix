@@ -2,6 +2,7 @@
 
 let
   sortblock = pkgs.callPackage ../scripts/neovim-sortblock.nix { };
+  lastmod = pkgs.callPackage ../scripts/neovim-lastmod.nix { };
 in
 {
   programs.neovim = {
@@ -9,7 +10,7 @@ in
     withPython3 = false;
     withRuby = false;
     defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [ vim-nix sortblock ];
+    plugins = with pkgs.vimPlugins; [ vim-nix sortblock lastmod ];
     extraConfig = ''
       " Options
       set smartcase
@@ -46,6 +47,7 @@ in
     '';
     initLua = ''
       require("sortblock").setup()
+      require("lastmod")
 
       vim.api.nvim_create_user_command("Uppercase", function()
         vim.cmd("'<,'>s/.*/\\U&/")
