@@ -10,6 +10,9 @@
           style = "Regular";
         };
       };
+      window = {
+        padding = { x = 10; y = 10; };
+      };
       colors = {
         primary = {
           background = "#1d1f21";
