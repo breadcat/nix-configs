@@ -9,7 +9,8 @@
 
   environment.systemPackages = with pkgs; [
     mangohud
-    protonup-ng
+    protonup-rs
+    protontricks
   ];
 
   environment.sessionVariables = {
