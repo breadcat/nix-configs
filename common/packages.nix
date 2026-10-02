@@ -12,6 +12,7 @@
     htop
     imagemagick
     jdupes
+    killall
     lf
     neovim
     rclone
