@@ -36,7 +36,6 @@
     ../scripts/power-menu.nix
     ../scripts/restic.nix
     ../scripts/seedy.nix
-    ../scripts/startpage-sort.nix
     ../scripts/taudiobooker.nix
     ../scripts/vidyaplace.nix
     ../scripts/watchedlist.nix

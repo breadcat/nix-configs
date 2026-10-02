@@ -27,7 +27,6 @@
     ../scripts/notes.nix
     ../scripts/restic.nix
     ../scripts/stagit-generate.nix
-    ../scripts/startpage-sort.nix
     ../scripts/taudiobooker.nix
     # sort:end
   ];

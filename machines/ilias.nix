@@ -47,7 +47,6 @@
     ../scripts/phone-dump.nix
     ../scripts/restic.nix
     ../scripts/seedy.nix
-    ../scripts/startpage-sort.nix
     ../scripts/tank-log.nix
     ../scripts/tank-sort.nix
     ../scripts/taudiobooker.nix
