@@ -32,6 +32,7 @@
             "browser.newtab.privateAllowed" = true; # hide new tab warning in private too
             "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false; # recommend extensions while I browse
             "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false; # recommend features while I browse
+            "browser.nova.enabled" = false; # disable new ugly gradient themes
             "browser.profiles.enabled" = false; # disable profiles
             "browser.search.suggest.enabled" = false; # disable search suggestions in urlbar
             "browser.sessionstore.resume_from_crash" = false; # don't prompt to restore the previous session on startup
