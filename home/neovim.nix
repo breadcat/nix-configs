@@ -46,9 +46,13 @@ in
       autocmd BufWritepre * %s/\n\+\%$//e
     '';
     initLua = ''
+      -- Keybinds
+      vim.keymap.set('i', '<C-v>', '<C-r>+', { desc = 'Paste from system clipboard' })
+      vim.keymap.set('c', '<C-v>', '<C-r>+', { desc = 'Paste from system clipboard (cmdline)' })
+      -- Plugins in ../scripts/neovim-*
       require("sortblock").setup()
       require("lastmod")
-
+      -- Uppercase/Lowercase functions
       vim.api.nvim_create_user_command("Uppercase", function()
         vim.cmd("'<,'>s/.*/\\U&/")
       end, { range = true })
