@@ -37,10 +37,10 @@
   ];
   home-manager.users.${vars.user.username} = {pkgs, ...}: { imports = [
         # sort:start
+        # ../home/espanso.nix
         ../home/alacritty.nix
         ../home/clipse.nix
         ../home/cursor.nix
-        ../home/espanso.nix
         ../home/firefox.nix
         ../home/fish.nix
         ../home/git.nix
