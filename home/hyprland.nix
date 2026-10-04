@@ -53,7 +53,7 @@ in
       hl.config({master={new_status="master"}})
       hl.config({scrolling={fullscreen_on_one_column=true}})
       -- Misc
-      hl.config({misc={force_default_wallpaper=0,disable_hyprland_logo=true,disable_splash_rendering=true,enable_swallow=true,swallow_regex="^Alacritty$"}})
+      hl.config({misc={force_default_wallpaper=0,disable_hyprland_logo=true,disable_splash_rendering=true,enable_swallow=true,swallow_regex="^Alacritty$",mouse_move_enables_dpms=true,key_press_enables_dpms=true}})
       -- Input
       hl.config({input={numlock_by_default=${lib.boolToString numlockEnabled},kb_layout="gb",kb_options="caps:backspace",follow_mouse=1,sensitivity=0,accel_profile="flat",touchpad={natural_scroll=false}}})
       -- Launch binds

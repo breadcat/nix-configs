@@ -30,7 +30,6 @@ let
       ;;
 
     'Turn off screen')
-      hyprctl eval 'hl.config({ misc = { mouse_move_enables_dpms = true, key_press_enables_dpms = true } })'
       sleep 0.5
       hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'
       ;;
