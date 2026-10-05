@@ -21,6 +21,7 @@
     ../common/networking.nix
     ../common/nfs.nix
     ../common/packages.nix
+    ../common/seedbox.nix
     ../common/ssh.nix
     ../common/syncthing.nix
     ../common/user.nix
