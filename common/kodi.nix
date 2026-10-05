@@ -12,4 +12,7 @@
 
   # Extra groups for Kodi CEC input
   users.users.${vars.user.username}.extraGroups = [ "networkmanager" "wheel" "input" "dialout" "video" ];
+
+  # Fix timezone zoneinfo
+  systemd.tmpfiles.rules = [ "L+ /usr/share/zoneinfo - - - - ${pkgs.tzdata}/share/zoneinfo" ];
 }
