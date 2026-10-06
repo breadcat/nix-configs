@@ -9,7 +9,9 @@
       backup = "tar -zcvf (basename \$argv)_backup-(date +%F-%H%M%S).tar.gz \$argv";
       book = "grep -i \"$argv\" \"$SYNCDIR/src/blog.${vars.user.domain}/content/reading-list.md\"";
       dos2unix = "sed -i 's/\r//' \"$argv\"";
+      fractodec = "math -s2 \"$argv\"";
       fullpath = "set -l dir (test (count \$argv) -gt 0; and echo \$argv[1]; or echo .); realpath \$dir/*";
+      hextodec = "math \"0x$argv\"";
       mcd = "mkdir -p $argv[1] && cd $argv[1]";
       mergeinto = "rsync --progress --remove-source-files -av \"$argv[1]\" \"$argv[2]\" && find \"$argv[1]\" -empty -delete";
       ncdu = ''set arg (count $argv); if test $arg -eq 0; set argv .; end; "${pkgs.rclone}/bin/rclone" ncdu $argv'';
