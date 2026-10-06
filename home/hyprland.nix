@@ -73,11 +73,11 @@ in
       -- WM controls
       hl.bind("SUPER + Space", hl.dsp.window.float({ action = "toggle" }))
       hl.bind("SUPER + F", hl.dsp.window.fullscreen())
+      hl.bind("SUPER + Up", hl.dsp.window.fullscreen()) -- Holdover from Windows
       hl.bind("SUPER + P", hl.dsp.window.pseudo())
       hl.bind("SUPER + J", hl.dsp.layout("togglesplit"))    -- dwindle only
       hl.bind("SUPER + left",  hl.dsp.focus({ direction = "left" }))
       hl.bind("SUPER + right", hl.dsp.focus({ direction = "right" }))
-      hl.bind("SUPER + up",    hl.dsp.focus({ direction = "up" }))
       hl.bind("SUPER + down",  hl.dsp.focus({ direction = "down" }))
       for a=1,10 do local b=a%10;
         hl.bind("SUPER + "..b,hl.dsp.focus({workspace=a}))
