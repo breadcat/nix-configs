@@ -8,9 +8,32 @@
     # Pull latest from git
     git -C "$notes_dir" pull >/dev/null &
     pull_pid=$!
-    # Delete empty notes files
-    find "$notes_dir" -type f -not -path '*/.git/*' -empty -print
 
+    # Sync without editing a file
+    if [ "$1" = "sync" ]; then
+      # Wait for the pull to finish before modifying/committing anything.
+      if ! wait "$pull_pid"; then
+        echo "Git pull failed."
+        exit 1
+      fi
+
+      # Delete empty notes files
+      find "$notes_dir" -type f -not -path '*/.git/*' -empty -print -delete
+
+      # Commit anything new
+      git -C "$notes_dir" add -A
+      if git -C "$notes_dir" diff --cached --quiet; then
+        echo "No changes made; nothing to commit."
+      else
+        git -C "$notes_dir" commit -m "$commit_msg" || exit 1
+      fi
+
+      # Push everything
+      git -C "$notes_dir" push
+      exit $?
+    fi
+
+    # Interactive file selection
     if ! edit_file=$(
       git -C "$notes_dir" ls-files |
         SHELL="$(command -v bash)" fzf --preview '
@@ -27,8 +50,17 @@
       exit 0
     fi
 
+    # Wait for the pull before editing/committing.
+    if ! wait "$pull_pid"; then
+      echo "Git pull failed."
+      exit 1
+    fi
+
     # Edit our file
     nvim "$notes_dir/$edit_file"
+
+    # Delete empty notes files again
+    find "$notes_dir" -type f -not -path '*/.git/*' -empty -print -delete
 
     # Commit anything new
     git -C "$notes_dir" add -A
