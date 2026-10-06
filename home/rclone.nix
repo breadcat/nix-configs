@@ -6,10 +6,11 @@
     remotes = {
       artemis.config = {
         type = "sftp";
-        host = "${vars.user.domain}";
+        host = vars.user.domain;
         port = vars.secrets.sshport;
-        user = "${vars.user.username}";
-        key_file = "${vars.secrets.privatekey}";
+        user = vars.user.username;
+        key_file = vars.secrets.privatekey;
+        known_hosts_file = "none";
         shell_type = "cmd";
         };
       seedbox.config = {
@@ -25,7 +26,8 @@
         host = "phone";
         port = "1234";
         user = "ftp";
-        key_file = "${vars.secrets.privatekey}";
+        key_file = vars.secrets.privatekey;
+        known_hosts_file = "none";
         };
       nas.config = {
         type = "alias";
