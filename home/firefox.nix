@@ -1,5 +1,15 @@
 { lib, config, vars, ... }:
 
+let
+  extensions = {
+    "uBlock0@raymondhill.net" = "ublock-origin";
+    "uMatrix@raymondhill.net" = "umatrix";
+    "newtaboverride@agenedia.com" = "new-tab-override";
+    "CookieAutoDelete@kennydo.com" = "cookie-autodelete";
+    "sponsorBlocker@ajay.app" = "sponsorblock";
+  };
+in
+
   {
     programs.firefox = {
       enable = true;
@@ -87,49 +97,30 @@
         };
         ExtensionSettings = {
           "*".installation_mode = "blocked";
-          "uBlock0@raymondhill.net" = {
-            installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            private_browsing = true;
-            default_area = "menupanel";
-            "adminSettings" = builtins.toJSON {
-              userSettings = [ [ "prefetchingDisabled" "true" ] ];
-              selectedFilterLists = [
-                "ublock-filters"
-                "ublock-badware"
-                "ublock-privacy"
-                "ublock-unbreak"
-                "easylist"
-                "easyprivacy"
-                "plowe-0"
-                "fanboy-cookiemonster"
-                "ublock-cookies-easylist"
-                "adguard-cookies"
-                "ublock-annoyances"
-              ];
-              # externalLists = ''
-              #   https://example.com/my-filter-list.txt
-              # '';
-            };
-          };
-          "newtaboverride@agenedia.com" = {
-            installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/new-tab-override/latest.xpi";
-            private_browsing = true;
-            default_area = "menupanel";
-          };
-          "CookieAutoDelete@kennydo.com" = {
-            installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/cookie-autodelete/latest.xpi";
-            private_browsing = true;
-            default_area = "menupanel";
-          };
-          "sponsorBlocker@ajay.app" = {
-            installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
-            private_browsing = true;
-            default_area = "menupanel";
-          };
+        }
+
+        // lib.mapAttrs
+        (_id: addon: {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/${addon}/latest.xpi";
+          installation_mode = "force_installed"; private_browsing = true; default_area = "menupanel";
+        })
+        extensions;
+
+        "3rdparty".Extensions."uBlock0@raymondhill.net".adminSettings = {
+          selectedFilterLists = [
+            "ublock-filters"
+            "ublock-badware"
+            "ublock-privacy"
+            "ublock-unbreak"
+            "easylist"
+            "easyprivacy"
+            "plowe-0"
+            "fanboy-cookiemonster"
+            "ublock-cookies-easylist"
+            "adguard-cookies"
+            "ublock-annoyances"
+          ];
+
         };
         UserMessaging = {
           "ExtensionRecommendations" = false;
@@ -143,16 +134,16 @@
       };
     };
 
-      home.sessionVariables = {
-        BROWSER = "firefox";
-        MOZ_ENABLE_WAYLAND = 1;
-      };
+    home.sessionVariables = {
+      BROWSER = "firefox";
+      MOZ_ENABLE_WAYLAND = 1;
+    };
 
-      xdg.mimeApps.defaultApplications = {
-        "text/html" = ["firefox.desktop"];
-        "text/xml" = ["firefox.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-      };
+    xdg.mimeApps.defaultApplications = {
+      "text/html" = ["firefox.desktop"];
+      "text/xml" = ["firefox.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+    };
 
-    }
+  }
