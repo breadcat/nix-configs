@@ -1,8 +1,7 @@
 { pkgs, vars, ... }:
 
 {
-  # Package and Addons
-  environment.systemPackages = with pkgs; [ kodi-wayland ];
+  # Kodi package is installed via home-manager in home/kodi.nix
 
   # Firewall rules
   networking.firewall = {
