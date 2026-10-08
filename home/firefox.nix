@@ -66,11 +66,25 @@
       };
 
       policies = {
+        # sort:start
         DisableFirefoxAccounts = true;
         DisableFirefoxStudies = true;
-        DisablePocket = true;
         DisableMasterPasswordCreation = true;
+        DisablePocket = true;
         DisableTelemetry = true;
+        DisplayBookmarksToolbar = "never";
+        DontCheckDefaultBrowser = true;
+        NewTabPage = false;
+        OverrideFirstRunPage = "";
+        OverridePostUpdatePage = "";
+        PictureInPicture.Enabled = false;
+        # sort:end
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
         ExtensionSettings = {
           "*".installation_mode = "blocked";
           "uBlock0@raymondhill.net" = {
