@@ -75,17 +75,14 @@
 
   # Hardware and system
   boot.initrd = { availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ]; };
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
   hardware.firmware = [ pkgs.linux-firmware ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # Packages
-  environment.systemPackages = with pkgs; [ ntfs3g ];
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   system.stateVersion = "24.11"; # Did you read the comment?
 
