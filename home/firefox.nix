@@ -1,8 +1,9 @@
-{ lib, config, ... }:
+{ lib, config, vars, ... }:
 
   {
     programs.firefox = {
       enable = true;
+      languagePacks = [ (builtins.replaceStrings [ "_" ".UTF8" ] [ "-" "" ] vars.user.locale) ];
       configPath = "${config.xdg.configHome}/mozilla/firefox";
 
       profiles = {
