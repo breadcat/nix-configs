@@ -33,6 +33,7 @@
       empties = "find . -maxdepth 3 -mount -not -path \"*/\.*\" -empty -print";
       extract = "${pkgs.atool}/bin/aunpack";
       jdupes = "jdupes -A"; # exclude hidden files
+      ncdusteam = "ncdu $HOME/.local/share/Steam/steamapps/common/ 2>/dev/null";
       vaultedit = "find \"$SYNCDIR\" -maxdepth 5 -type f -not -path \"\*/\.git\" | ${pkgs.fzf}/bin/fzf --preview \"cat {}\" --layout reverse | xargs -r -I{} \"$EDITOR\" {}";
       week = "date +%V";
       # sort:end
