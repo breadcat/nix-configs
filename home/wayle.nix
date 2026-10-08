@@ -38,7 +38,7 @@ in
         notifications = { popup-position = "bottom-right"; };
         power = { left-click = "power-menu"; };
         ram = { left-click = "alacritty -e htop"; };
-        volume = { right-click = "pavucontrol"; };
+        volume = { right-click = "pavucontrol"; scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"; scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; };
         weather = { location = vars.user.addr.town; };
         window-title = { icon-show = false; };
       };
