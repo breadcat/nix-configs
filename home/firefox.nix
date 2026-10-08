@@ -1,19 +1,21 @@
 { lib, config, vars, ... }:
 
 let
+  lang = builtins.replaceStrings [ "_" ] [ "-" ] (builtins.head (lib.splitString "." vars.user.locale));
   extensions = {
+    "CookieAutoDelete@kennydo.com" = "cookie-autodelete";
+    "marcoagpinto@mail.telepac.pt" = "british-english-dictionary-2";
+    "newtaboverride@agenedia.com" = "new-tab-override";
+    "sponsorBlocker@ajay.app" = "sponsorblock";
     "uBlock0@raymondhill.net" = "ublock-origin";
     "uMatrix@raymondhill.net" = "umatrix";
-    "newtaboverride@agenedia.com" = "new-tab-override";
-    "CookieAutoDelete@kennydo.com" = "cookie-autodelete";
-    "sponsorBlocker@ajay.app" = "sponsorblock";
   };
 in
 
   {
     programs.firefox = {
       enable = true;
-      languagePacks = [ (builtins.replaceStrings [ "_" ".UTF8" ] [ "-" "" ] vars.user.locale) ];
+      languagePacks = [ lang ];
       configPath = "${config.xdg.configHome}/mozilla/firefox";
 
       profiles = {
@@ -59,11 +61,13 @@ in
             "extensions.autoDisableScopes" = 0; # enable extensions by default
             "extensions.formautofill.creditCards.enabled" = false; # disable credit card saving
             "general.autoScroll" = true; # middle mouse page scroll instead of paste
+            "intl.accept_languages" = "${lang}, en";
             "media.videocontrols.picture-in-picture.enabled" = false; # disable pip entirely
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # disable pip popup
             "media.webspeech.synth.dont_notify_on_error" = true; # disable speech errors
             "media.webspeech.synth.enabled" = false; # disable speech entirely
             "privacy.reducePageProtection.infobar.enabled.pbmode" = false; # reloading page tracker protecion bar
+            "spellchecker.dictionary" = lang;
             # sort:end
           };
 
