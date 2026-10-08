@@ -1,4 +1,4 @@
-{ lib, machine, ... }:
+{ vars, lib, machine, ... }:
 
 let
   batteryMachines = [ "minerva" ];
@@ -39,7 +39,7 @@ in
         power = { left-click = "power-menu"; };
         ram = { left-click = "alacritty -e htop"; };
         volume = { right-click = "pavucontrol"; };
-        weather = { location = "Huddersfield"; };
+        weather = { location = vars.user.addr.town; };
         window-title = { icon-show = false; };
       };
       styling = {

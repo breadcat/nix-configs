@@ -8,8 +8,14 @@ rec {
     email = "${username}@${domain}";
     timezone = "Europe/London";
     locale = "en_GB.UTF-8";
-    postcode = "AA1 1AA";
-    address = "123 Fake Street\n${postcode}\n${postcode}";
+    address = "${addr.number} ${addr.street}\n${addr.town}\n${addr.county}\n${addr.postcode}";
+    addr = {
+      number = "123";
+      street = "Fake Street";
+      town = "Faketown";
+      county = "North Fakesburg";
+      postcode = "AB1 1CD";
+    };
     };
   secrets = {
     sshkey = "ssh-rsa yourpubkeyhere";
