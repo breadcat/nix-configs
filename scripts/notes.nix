@@ -17,8 +17,8 @@
         exit 1
       fi
 
-      # Delete empty notes files
-      find "$notes_dir" -type f -not -path '*/.git/*' -empty -print -delete
+      # Delete empty files and directories
+      find "$notes_dir" -not -path '*/.git/*' -empty -print -delete
 
       # Commit anything new
       git -C "$notes_dir" add -A
