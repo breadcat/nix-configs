@@ -1,7 +1,8 @@
-{ machine, vars, ... }:
+{ lib, machine, vars, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
+  hmVersion = (import ../variables.nix { inherit lib; }).hm-version;
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-${hmVersion}.tar.gz";
 in
 
 {

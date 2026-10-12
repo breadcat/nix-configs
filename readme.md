@@ -35,4 +35,4 @@ sudo nix-channel --list
 sudo nix-channel --add https://nixos.org/channels/nixos-26.05 nixos
 sudo nix-channel --update
 ```
-The home-manager version is defined in `common/home-manager.nix`.
+The home-manager version is defined in `variables.nix` as `hm-version`.

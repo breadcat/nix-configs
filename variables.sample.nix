@@ -1,6 +1,7 @@
 { lib }:
 
 rec {
+  hm-version = "26.05";
   user = rec {
     fullname = "Peter";
     username = lib.strings.toLower fullname;
