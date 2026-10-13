@@ -17,6 +17,8 @@
       "i" = "$swayimg -r *";
       "j" = "fzf-jump";
       "gv" = "cd ~/vault";
+      "<esc>" = "quit";
+      "Q" = "quit";
     };
     extraConfig = ''
       set previewer ~/.config/lf/previewer
