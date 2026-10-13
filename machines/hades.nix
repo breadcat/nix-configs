@@ -21,6 +21,7 @@
         # sort:start
         ../home/fish.nix
         ../home/git.nix
+        ../home/lf.nix
         ../home/neovim.nix
         ../home/rbw.nix
         ../home/ssh.nix
