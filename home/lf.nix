@@ -15,10 +15,16 @@
       "<enter>" = "shell";
       "d" = "delete";
       "i" = "$swayimg -r *";
+      "j" = "fzf-jump";
       "gv" = "cd ~/vault";
     };
     extraConfig = ''
       set previewer ~/.config/lf/previewer
+      cmd fzf-jump ''${{
+        dir=$(find . -type d -name .git -prune -o -type d -print | fzf --prompt='Directory: ') || exit
+        [ -n "$dir" ] || exit
+        lf -remote "send $id cd \"$PWD/$dir\""
+      }}
     '';
   };
 
