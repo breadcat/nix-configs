@@ -54,6 +54,7 @@ let
 
       # launch game
       echo "Launching game..."
+      export _JAVA_AWT_WM_NONREPARENTING=1
       java -jar "/tmp/$(basename $launcher_uri)"
     '';
   };
