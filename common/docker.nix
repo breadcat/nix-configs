@@ -163,16 +163,6 @@
         volumes = [ "/home/${vars.user.username}/docker/vaultwarden:/data" ];
         };
 
-      vikunja = {
-        autoStart = true;
-        dependsOn = [ "caddy" ];
-        environment = { PGID = "100"; PUID = "1000"; VIKUNJA_SERVICE_ENABLEREGISTRATION = "false"; VIKUNJA_SERVICE_ENABLETASKCOMMENTS = "false"; VIKUNJA_SERVICE_JWTSECRET = "${vars.secrets.todosecret}"; VIKUNJA_SERVICE_PUBLICURL = "https://todo.${vars.user.domain}/"; VIKUNJA_SERVICE_TIMEZONE = "${vars.user.timezone}";};
-        image = "vikunja/vikunja";
-        labels = { "caddy" = "todo.${vars.user.domain}"; "caddy.reverse_proxy" = "{{upstreams 3456}}"; };
-        networks = [ "proxy" ];
-        volumes = [ "/home/${vars.user.username}/docker/vikunja/db:/db" "/home/${vars.user.username}/docker/vikunja/files:/app/vikunja/files" ];
-        };
-
       watchtower = {
         autoStart = true;
         image = "nickfedor/watchtower";
