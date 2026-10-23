@@ -33,6 +33,8 @@
     environment.systemPackages = with pkgs; [
     # sort:start
     ffmpeg
+    gcc
+    go
     gping
     miller
     nmap
