@@ -9,7 +9,6 @@
     # ../common/cec-mini-kb.nix
     ../common/boot-systemd.nix
     ../common/bruschetta.nix
-    ../common/caddy-ilias.nix
     ../common/devel.nix
     ../common/flakes.nix
     ../common/garbage.nix
@@ -27,6 +26,7 @@
     ../common/stromboli.nix
     ../common/syncthing.nix
     ../common/tagliatelle.nix
+    ../common/traefik-ilias.nix
     ../common/user.nix
     ../common/zerotier.nix
     ../scripts/audiobook-cleaner.nix
