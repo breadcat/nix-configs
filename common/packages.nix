@@ -13,6 +13,7 @@
     imagemagick
     jdupes
     killall
+    lm_sensors
     neovim
     rclone
     rsync
