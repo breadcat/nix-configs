@@ -21,7 +21,7 @@
       GOPATH = "/home/${vars.user.username}/go";
     };
 
-    path = with pkgs; [ gcc go ];
+    path = with pkgs; [ gcc go ffmpeg ];
 
   };
 
