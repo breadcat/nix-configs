@@ -28,6 +28,7 @@
       if [ -d "$i" ]; then
         echo "$i"
         find "$i" -type f -name '.nomedia*' -delete -print
+        find "$i" -type d -name '.thumbnails' -prune -exec find {} -mindepth 1 -delete \;
         ${pkgs.phockup}/bin/phockup "$i" "$destination/" -m
       fi
     done
@@ -45,7 +46,7 @@
       sleep 2s
       umount "$directory_temp" || fusermount -uz "$directory_temp"
       echo "Deduplicating photos..."
-      ${pkgs.jdupes}/bin/jdupes "$destination" -r
+      ${pkgs.jdupes}/bin/jdupes "$destination" -rdN
       find "/tmp/tmp.*" -maxdepth 1 -type d -not -path "*/\.*" -empty -delete -print 2>/dev/null
     else
       echo "Phone not reachable via ping, exiting" && exit 1
