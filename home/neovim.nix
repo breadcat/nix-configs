@@ -49,6 +49,8 @@ in
       -- Keybinds
       vim.keymap.set('i', '<C-v>', '<C-r>+', { desc = 'Paste from system clipboard' })
       vim.keymap.set('c', '<C-v>', '<C-r>+', { desc = 'Paste from system clipboard (cmdline)' })
+      vim.keymap.set("n", "<S-Del>", "x", { desc = "Delete forwards" })
+      vim.keymap.set("i", "<S-Del>", "<C-o>x", { desc = "Delete forwards" })
       -- Plugins in ../scripts/neovim-*
       require("sortblock").setup()
       require("lastmod")
