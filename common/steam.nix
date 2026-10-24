@@ -8,9 +8,12 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # sort:start
+    heroic
     mangohud
-    protonup-rs
     protontricks
+    protonup-rs
+    # sort:end
   ];
 
   environment.sessionVariables = {
