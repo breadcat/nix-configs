@@ -17,6 +17,7 @@
     ../common/hyprland.nix
     ../common/kodi.nix
     ../common/locale.nix
+    ../common/moonlight.nix
     ../common/mount-drives.nix
     ../common/networking.nix
     ../common/nfs.nix
