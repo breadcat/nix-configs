@@ -21,7 +21,7 @@
       GOPATH = "/home/${vars.user.username}/go";
     };
 
-    path = with pkgs; [ ffmpeg gcc git go yt-dlp ];
+    path = with pkgs; [ ffmpeg gcc git go yt-dlp czkawka ];
 
   };
 
