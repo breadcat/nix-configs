@@ -1,15 +1,13 @@
-{ vars, ... }:
+{ vars, pkgs, ... }:
 
 {
   services.espanso = {
     enable = true;
-    configs = {
-      default = {
-        show_notifications = false;
-        keyboard_layout = {
-          layout = "gb";
-          };
-      };
+    package = pkgs.espanso-wayland;
+    configs.default = {
+      show_notifications = false;
+      backend = "clipboard";
+      keyboard_layout.layout = "gb";
     };
     matches = {
       base = {
