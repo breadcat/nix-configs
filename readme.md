@@ -4,7 +4,7 @@ An effort to merge my [dotfiles](https://github.com/breadcat/dotfiles), [dockerf
 
 Amend your `variables.nix`, then run:
 ```
-sudo nixos-rebuild -I nixos-config=entrypoint.nix switch
+test -f entrypoint.nix && sudo nixos-rebuild -I nixos-config=entrypoint.nix switch
 ```
 
 ## Machines
