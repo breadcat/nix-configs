@@ -34,6 +34,7 @@
       extract = "${pkgs.atool}/bin/aunpack";
       jdupes = "jdupes -A"; # exclude hidden files
       ncdusteam = "ncdu $HOME/.local/share/Steam/steamapps/common/ 2>/dev/null";
+      nrebuild = "test -f entrypoint.nix && sudo nixos-rebuild -I nixos-config=entrypoint.nix switch --upgrade";
       vaultedit = "find \"$SYNCDIR\" -maxdepth 5 -type f -not -path \"\*/\.git\" | ${pkgs.fzf}/bin/fzf --preview \"cat {}\" --layout reverse | xargs -r -I{} \"$EDITOR\" {}";
       week = "date +%V";
       # sort:end
