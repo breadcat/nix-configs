@@ -103,10 +103,16 @@
 
 			echo "Concatenating all .$extension files → $output"
 
+			local q="'"
+			local list
+			list=$(for f in "$dir"/*."$extension"; do
+				p=$(${pkgs.coreutils}/bin/realpath "$f")
+				p="''${p//$q/$q\\$q$q}"
+				printf "file '%s'\n" "$p"
+			done)
+
 			${pkgs.ffmpeg}/bin/ffmpeg -f concat -safe 0 \
-				-i <(for f in "$dir"/*."$extension"; do
-						echo "file '$PWD/$f'"
-					  done) \
+				-i <(printf '%s\n' "$list") \
 				-acodec "$codec" \
 				-ac 1 \
 				-b:a "$bitrate" \
