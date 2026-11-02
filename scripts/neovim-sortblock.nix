@@ -13,7 +13,15 @@ let
     --   # sort:end
     --
     --
-    -- Also supports flags, eh: sort:start reverse nodedupe case
+    -- Also supports flags, eh: sort:start reverse nodedupe case articles
+    --
+    -- The "articles" flag (or ignore_articles = true in setup) sorts as if a
+    -- leading "The", "A" or "An" were not there, so "The Beatles" sorts
+    -- under B. Deduping still compares the full line, so "Beatles" and
+    -- "The Beatles" are both kept.
+    --
+    -- Markdown bullets ("* ", "- ", "+ ") are ignored when ordering, so
+    -- "* The Nun II (2023)" sorts under N with the articles flag on.
     local M = {}
     M.config = {
       start_marker = "sort:start",
@@ -23,6 +31,8 @@ let
       dedupe = true,
       reverse = false,
       strip_blanks = true,
+      ignore_articles = false,
+      articles = { "the", "a", "an" },
     }
 
     -- Flags accepted on the start-marker line, mapped to config overrides.
@@ -33,6 +43,8 @@ let
       nodedupe = { dedupe = false },
       dedupe = { dedupe = true },
       keepblanks = { strip_blanks = false },
+      articles = { ignore_articles = true },
+      noarticles = { ignore_articles = false },
     }
 
     local function opts_for_block(base, tail)
@@ -44,8 +56,35 @@ let
       return opts
     end
 
-    local function key_of(line, opts)
+    -- Remove one leading article (matched case-insensitively) if it is
+    -- followed by whitespace and something else. "A" on its own, or
+    -- "Anchor", is left alone.
+    local function strip_article(s, articles)
+      local lower = s:lower()
+      for _, art in ipairs(articles) do
+        art = art:lower()
+        local n = #art
+        if lower:sub(1, n) == art and lower:sub(n + 1, n + 1):match("%s") then
+          local rest = vim.trim(s:sub(n + 1))
+          if rest ~= "" then return rest end
+        end
+      end
+      return s
+    end
+
+    -- Key used for deduping: the whole line, trimmed, case-folded if asked.
+    local function dedupe_key(line, opts)
       local k = vim.trim(line)
+      if opts.ignorecase then k = k:lower() end
+      return k
+    end
+
+    -- Key used for ordering: as above, minus any markdown bullet ("* ",
+    -- "- ", "+ ") and, if asked, any leading article after it.
+    local function sort_key(line, opts)
+      local k = vim.trim(line)
+      k = k:gsub("^[%*%-%+]%s+", "", 1)
+      if opts.ignore_articles then k = strip_article(k, opts.articles) end
       if opts.ignorecase then k = k:lower() end
       return k
     end
@@ -56,7 +95,7 @@ let
       for _, line in ipairs(lines) do
         local trimmed = vim.trim(line)
         if not (opts.strip_blanks and trimmed == "") then
-          local k = key_of(line, opts)
+          local k = dedupe_key(line, opts)
           if not (opts.dedupe and seen[k]) then
             seen[k] = true
             out[#out + 1] = line
@@ -65,8 +104,13 @@ let
       end
 
       table.sort(out, function(a, b)
-        local ka, kb = key_of(a, opts), key_of(b, opts)
-        if ka == kb then return vim.trim(a) < vim.trim(b) end -- stable-ish tiebreak
+        local ka, kb = sort_key(a, opts), sort_key(b, opts)
+        if ka == kb then
+          -- e.g. "Beatles" vs "The Beatles": fall back to the full line
+          local da, db = dedupe_key(a, opts), dedupe_key(b, opts)
+          if da ~= db then return da < db end
+          return vim.trim(a) < vim.trim(b) -- stable-ish tiebreak
+        end
         if opts.reverse then return ka > kb end
         return ka < kb
       end)
@@ -154,7 +198,7 @@ let
 in
 vimUtils.buildVimPlugin {
   pname = "sortblock";
-  version = "1.0.0";
+  version = "1.2.0";
 
   # buildVimPlugin expects a source tree laid out the way Neovim's
   # runtimepath wants it, so wrap the embedded lua string in lua/.
