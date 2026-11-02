@@ -33,7 +33,6 @@
     ../scripts/average-relative.nix
     ../scripts/backup-local.nix
     ../scripts/blog-music.nix
-    ../scripts/blog-sort-archives.nix
     ../scripts/blog-sort-languages.nix
     ../scripts/blog-sort-quotes.nix
     ../scripts/blog-weight.nix
