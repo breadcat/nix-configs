@@ -14,6 +14,7 @@
     jdupes
     killall
     lm_sensors
+    mmv
     neovim
     rclone
     rsync
