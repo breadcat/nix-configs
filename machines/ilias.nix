@@ -71,6 +71,7 @@
   # Hardware and system
   boot.initrd = { availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ]; };
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [ "pcie_aspm=off" "pcie_port_pm=off" "usbcore.autosuspend=-1" ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   swapDevices = [
