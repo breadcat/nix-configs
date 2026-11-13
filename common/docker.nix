@@ -1,8 +1,8 @@
-{ pkgs, vars, ... }: {
+{ lib, pkgs, vars, ... }: {
 
   # Runtime
   virtualisation.docker.enable = true;
-  virtualisation.docker.autoPrune.enable = true;
+  # virtualisation.docker.autoPrune.enable = true;
   users.extraUsers.${vars.user.username}.extraGroups = ["docker"];
 
   # Create Network
@@ -20,6 +20,8 @@
 
   # Firewall
   networking.firewall.allowedTCPPorts = [ 80 443 ];
+  # Transmission VPN killswitch fixes
+  systemd.services.docker-transmission.serviceConfig = { Restart = lib.mkForce "always"; RestartSec = "10s"; };
 
   # Containers
   virtualisation.oci-containers = {
