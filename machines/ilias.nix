@@ -13,6 +13,7 @@
     ../common/flakes.nix
     ../common/garbage.nix
     ../common/gnocchi.nix
+    ../common/home-assistant.nix
     ../common/home-manager.nix
     ../common/jocalsend.nix
     ../common/limoncello.nix
