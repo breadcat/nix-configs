@@ -40,10 +40,10 @@
         # ../home/espanso.nix
         ../home/alacritty.nix
         ../home/clipse.nix
-        ../home/cursor.nix
         ../home/firefox.nix
         ../home/fish.nix
         ../home/git.nix
+        ../home/gtk.nix
         ../home/htop.nix
         ../home/hypridle.nix
         ../home/hyprland.nix

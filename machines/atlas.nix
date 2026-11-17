@@ -45,11 +45,11 @@
     # sort:start
     ../home/alacritty.nix
     ../home/clipse.nix
-    ../home/cursor.nix
     ../home/espanso.nix
     ../home/firefox.nix
     ../home/fish.nix
     ../home/git.nix
+    ../home/gtk.nix
     ../home/htop.nix
     ../home/hypridle.nix
     ../home/hyprland.nix
