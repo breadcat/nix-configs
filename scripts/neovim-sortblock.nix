@@ -20,8 +20,13 @@ let
     -- under B. Deduping still compares the full line, so "Beatles" and
     -- "The Beatles" are both kept.
     --
-    -- Markdown bullets ("* ", "- ", "+ ") are ignored when ordering, so
-    -- "* The Nun II (2023)" sorts under N with the articles flag on.
+    -- Markdown blockquote markers (">") and bullets ("* ", "- ", "+ ") are
+    -- ignored when ordering, so "* The Nun II (2023)" and ">The Nun II"
+    -- both sort under N with the articles flag on.
+    --
+    -- The "double" flag (or double_space = true in setup) puts one blank
+    -- line between sorted items. Existing blank lines in the block are
+    -- discarded first, so re-saving a double-spaced block leaves it as is.
     local M = {}
     M.config = {
       start_marker = "sort:start",
@@ -33,6 +38,7 @@ let
       strip_blanks = true,
       ignore_articles = false,
       articles = { "the", "a", "an" },
+      double_space = false,
     }
 
     -- Flags accepted on the start-marker line, mapped to config overrides.
@@ -45,6 +51,8 @@ let
       keepblanks = { strip_blanks = false },
       articles = { ignore_articles = true },
       noarticles = { ignore_articles = false },
+      double = { double_space = true },
+      nodouble = { double_space = false },
     }
 
     local function opts_for_block(base, tail)
@@ -79,10 +87,12 @@ let
       return k
     end
 
-    -- Key used for ordering: as above, minus any markdown bullet ("* ",
-    -- "- ", "+ ") and, if asked, any leading article after it.
+    -- Key used for ordering: as above, minus any markdown blockquote
+    -- markers (">", ">>", "> >"), then any bullet ("* ", "- ", "+ ") and,
+    -- if asked, any leading article after those.
     local function sort_key(line, opts)
       local k = vim.trim(line)
+      k = k:gsub("^>[>%s]*", "", 1)
       k = k:gsub("^[%*%-%+]%s+", "", 1)
       if opts.ignore_articles then k = strip_article(k, opts.articles) end
       if opts.ignorecase then k = k:lower() end
@@ -94,7 +104,8 @@ let
       local out, seen = {}, {}
       for _, line in ipairs(lines) do
         local trimmed = vim.trim(line)
-        if not (opts.strip_blanks and trimmed == "") then
+        local drop_blank = opts.strip_blanks or opts.double_space
+        if not (drop_blank and trimmed == "") then
           local k = dedupe_key(line, opts)
           if not (opts.dedupe and seen[k]) then
             seen[k] = true
@@ -114,6 +125,16 @@ let
         if opts.reverse then return ka > kb end
         return ka < kb
       end)
+
+      -- Put a single blank line between items (none before or after).
+      if opts.double_space and #out > 1 then
+        local spaced = {}
+        for i, line in ipairs(out) do
+          if i > 1 then spaced[#spaced + 1] = "" end
+          spaced[#spaced + 1] = line
+        end
+        out = spaced
+      end
 
       return out
     end
@@ -198,7 +219,7 @@ let
 in
 vimUtils.buildVimPlugin {
   pname = "sortblock";
-  version = "1.2.0";
+  version = "1.3.1";
 
   # buildVimPlugin expects a source tree laid out the way Neovim's
   # runtimepath wants it, so wrap the embedded lua string in lua/.
