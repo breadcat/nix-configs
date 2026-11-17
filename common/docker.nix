@@ -56,14 +56,6 @@
         volumes = [ "/home/${vars.user.username}/docker/changedetection:/config" ];
         };
 
-      docker-rss = {
-        autoStart = true;
-        dependsOn = [ "caddy" ];
-        image = "theconnman/docker-hub-rss";
-        labels = { "caddy" = "dock.${vars.user.domain}"; "caddy.reverse_proxy" = "{{upstreams 3000}}"; };
-        networks = [ "proxy" ];
-        };
-
       echoip = {
         autoStart = true;
         dependsOn = [ "caddy" ];
