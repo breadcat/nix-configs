@@ -8,7 +8,6 @@ let
     "newtaboverride@agenedia.com" = "new-tab-override";
     "sponsorBlocker@ajay.app" = "sponsorblock";
     "uBlock0@raymondhill.net" = "ublock-origin";
-    # "uMatrix@raymondhill.net" = "umatrix";
   };
 in
 
