@@ -39,6 +39,7 @@ in
             "browser.download.alwaysOpenPanel" = true; # show downloads when started, even after hiding button
             "browser.gesture.swipe.left" = "cmd_scrollLeft"; # disable trackpad swipe gestures
             "browser.gesture.swipe.right" = "cmd_scrollRight"; # disable trackpad swipe gestures
+            "browser.mini-window.enabled" = false; # disable mini-window functionality
             "browser.ml.linkPreview.enabled" = false; # long press link previews
             "browser.newtab.extensionControlled" = true; # don't warn new tab page has changed
             "browser.newtab.privateAllowed" = true; # hide new tab warning in private too
@@ -51,6 +52,7 @@ in
             "browser.startup.couldRestoreSession.count" = "2"; # disable restore tabs on startup banner
             "browser.startup.homepage" = "https://breadcat.github.io/startpage/";
             "browser.tabs.groups.enabled" = false; # disable tab grouping
+            "browser.tabs.splitView.enabled" = false; # disable split view
             "browser.toolbars.bookmarks.visibility" = "never"; # always hide bookmarks bar
             "browser.uiCustomization.state" = builtins.toJSON { placements = { "nav-bar" = [ "back-button" "forward-button" "stop-reload-button" "urlbar-container" ]; "TabsToolbar" = [ "tabbrowser-tabs" ]; }; currentVersion = 26; newElementCount = 0; }; # toolbar layout
             "browser.urlbar.showSearchTerms.enabled" = false; # always show address in address bar
