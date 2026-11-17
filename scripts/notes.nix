@@ -35,15 +35,18 @@
 
     # Interactive file selection
     if ! edit_file=$(
-      git -C "$notes_dir" ls-files |
-        SHELL="$(command -v bash)" fzf --preview '
-          if file --mime-type --brief -- "$notes_dir"/{} | grep -q "^text/"; then
-            cat -- "$notes_dir"/{}
-          else
-            echo "Binary file"
-          fi
-        ' \
-        --preview-window='right:60%:wrap'
+    find "$notes_dir" -type f -not -path '*/.git/*' \
+    -printf '%T@ %P\n' |
+    sort -rn |
+    cut -d' ' -f2- |
+    SHELL="$(command -v bash)" fzf --preview '
+      if file --mime-type --brief -- "$notes_dir"/{} | grep -q "^text/"; then
+        cat -- "$notes_dir"/{}
+      else
+        echo "Binary file"
+      fi
+    ' \
+    --preview-window='right:60%:wrap'
     ); then
       kill "$pull_pid" 2>/dev/null
       wait "$pull_pid" 2>/dev/null
