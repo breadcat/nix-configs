@@ -7,8 +7,8 @@
   imports = [
     # sort:start
     ../common/boot-systemd.nix
-    ../common/docker-webdev.nix
-    ../common/docker.nix
+    ../common/containers-webdev.nix
+    ../common/containers.nix
     ../common/flakes.nix
     ../common/garbage.nix
     ../common/home-manager.nix

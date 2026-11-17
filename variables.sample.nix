@@ -21,7 +21,7 @@ rec {
   secrets = {
     sshkey = "ssh-rsa yourpubkeyhere";
     sshport = 2222;
-    htpasswd = "caddy hash-password --plaintext "yourpassword" | base64 -w0";
+    htpasswd = "htpasswd -nB username";
     vpnusername = "";
     vpnpassword = "";
     todosecret = "";

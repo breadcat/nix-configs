@@ -16,7 +16,7 @@ let
 		printf "* Tank Storage: %s\\n" "$(df | awk -v tank="/tank" '$0 ~ tank {print $5}')"
 		printf "* Torrent Ratio: %s\\n" "$(echo "scale=3; $(awk '/upload/ {print $2}' "$HOME/docker/transmission/stats.json") / $(awk '/download/ {print $2}' "$HOME/docker/transmission/stats.json" | sed 's/,//g')" | ${pkgs.bc}/bin/bc)"
 		printf "* NAS Storage: %s\\n" "$(git --git-dir="$HOME/vault/src/logger/.git" show | awk 'END{print $3" "$4}')"
-		printf "* [Containers](https://github.com/breadcat/nix-configs/blob/main/common/docker.nix): %s\\n" "$(docker ps -q | wc -l)/$(docker ps -aq | wc -l)"
+		printf "* [Containers](https://github.com/breadcat/nix-configs/blob/main/common/containers.nix): %s\\n" "$(sudo -n ${pkgs.podman}/bin/podman ps -q | wc -l)/$(sudo -n ${pkgs.podman}/bin/podman ps -aq | wc -l)"
 		printf "* Packages: %s\\n" "$(${pkgs.fastfetch}/bin/fastfetch | awk -F": " '/Packages/ {print $2}')"
 		printf "* Monthly Data: %s\\n" "$(vnstat -m --oneline | cut -f11 -d\;)"
 		printf "\\nHardware specifications themselves are covered on the [hardware page](/hardware/#server).\\n"
@@ -31,7 +31,7 @@ in {
       Type = "oneshot";
       User = vars.user.username;
       ExecStart = "${blog-status}/bin/blog-status";
-      Environment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin";
+      Environment = "PATH=/run/wrappers/bin:/run/current-system/sw/bin";
     };
   };
 
