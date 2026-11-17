@@ -15,6 +15,7 @@
       label = "vault";
             id = "vault";
             devices = builtins.attrNames vars.syncthing;
+            ignorePatterns = [ "(?i).git" ];
           };
         };
       };
